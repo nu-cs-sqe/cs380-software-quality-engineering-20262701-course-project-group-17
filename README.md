@@ -1,8 +1,10 @@
 # YOUR PROJECT NAME
+Chess
 
 ## Contributors
-- PERSON
-- PERSON
+- Ziqian Kris Ni
+- Max Zeng
+- Cindy Jiang
 
 ## Dependencies
 - JDK 11
