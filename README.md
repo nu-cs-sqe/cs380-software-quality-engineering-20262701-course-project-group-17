@@ -1,5 +1,6 @@
-# YOUR PROJECT NAME
-Chess
+![Gradle Build](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/actions/workflows/main.yml/badge.svg)
+
+# Chess
 
 ## Contributors
 - Ziqian Kris Ni
