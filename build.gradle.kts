@@ -1,5 +1,9 @@
 plugins {
     id("java")
+    id("application")
+    id("jacoco")
+    id("checkstyle")
+    id("info.solidsoft.pitest") version "1.15.0"
 }
 
 group = "nu.csse.sqe"
@@ -9,9 +13,16 @@ repositories {
     mavenCentral()
 }
 
+application {
+    mainClass = "ui.Main"
+}
+
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("org.junit.jupiter:junit-jupiter-params")
+    testImplementation("org.easymock:easymock:5.4.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 java {
@@ -26,4 +37,64 @@ tasks.compileJava {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+checkstyle {
+    toolVersion = "10.12.5"
+    configFile = file("config/checkstyle/checkstyle.xml")
+    isIgnoreFailures = false
+    maxWarnings = 0
+}
+
+val coverageExclusions = listOf("ui/**", "**/*Type.class", "**/*Color.class")
+
+jacoco {
+    toolVersion = "0.8.11"
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        html.required = true
+        xml.required = true
+    }
+    classDirectories.setFrom(
+        files(classDirectories.files.map { fileTree(it) { exclude(coverageExclusions) } })
+    )
+}
+
+tasks.jacocoTestCoverageVerification {
+    dependsOn(tasks.test)
+    classDirectories.setFrom(
+        files(classDirectories.files.map { fileTree(it) { exclude(coverageExclusions) } })
+    )
+    violationRules {
+        rule {
+            limit {
+                counter = "BRANCH"
+                minimum = "1.0".toBigDecimal()
+            }
+            limit {
+                counter = "LINE"
+                minimum = "1.0".toBigDecimal()
+            }
+        }
+    }
+}
+
+tasks.check {
+    dependsOn(tasks.jacocoTestCoverageVerification)
+}
+
+pitest {
+    pitestVersion = "1.15.3"
+    junit5PluginVersion = "1.2.1"
+    targetClasses = setOf("domain.*")
+    excludedClasses = setOf("domain.piece.PieceType", "domain.piece.PieceColor")
+    threads = 4
+    outputFormats = setOf("HTML", "XML")
+    timestampedReports = false
+    mutationThreshold = 100
+    failWhenNoMutations = false
 }

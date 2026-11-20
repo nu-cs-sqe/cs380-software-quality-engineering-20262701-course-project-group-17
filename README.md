@@ -1,5 +1,6 @@
-# YOUR PROJECT NAME
-Chess
+# Chess (CS 380 Group 17)
+
+A two-player desktop chess game with a Java Swing GUI.
 
 ## Contributors
 - Ziqian Kris Ni
@@ -8,13 +9,32 @@ Chess
 
 ## Dependencies
 - JDK 11
-- JUnit 5.10
-- Gradle 8.10
+- Gradle 8.10 (wrapper included)
+- JUnit 5.10, EasyMock 5.4
+- Java Swing
+- Checkstyle 10.12, JaCoCo 0.8.11, PIT 1.15
+
+## Commands
+| What | Command |
+|------|---------|
+| Run the game | `./gradlew run` |
+| Tests + style + 100% coverage gate | `./gradlew check` |
+| Mutation testing | `./gradlew pitest` |
+
+Reports: `build/reports/tests`, `build/reports/jacoco`, `build/reports/checkstyle`, `build/reports/pitest`.
+
+## Documentation
+- Rules: [docs/requirements/game-rules.md](docs/requirements/game-rules.md)
+- Feature requirements: [docs/requirements](docs/requirements)
+- Design: [docs/design](docs/design)
+- BVA: [docs/bva](docs/bva)
+- Coding standard: [docs/coding-standard.md](docs/coding-standard.md)
+- Weekly reports: [docs/weekly-reports.md](docs/weekly-reports.md)
 
 ## Exceptions
 ### Code Coverage
-N/A
+`ui.*` (View classes and `Main`) and enums are excluded, as the rubric allows.
 ### Mutation Testing
-N/A
+`ui.*` and enums are excluded. No equivalent mutants so far.
 ### Others
 N/A

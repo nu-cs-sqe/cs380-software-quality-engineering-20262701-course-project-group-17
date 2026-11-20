@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <!-- In tests the BVA boundary values are the point, so naming them would hide them. -->
+    <suppress checks="MagicNumber" files="[\\/]src[\\/]test[\\/]"/>
+    <!-- Swing views are full of pixel sizes and RGB values. -->
+    <suppress checks="MagicNumber" files="[\\/]src[\\/]main[\\/]java[\\/]ui[\\/]"/>
+</suppressions>
