@@ -1,0 +1,96 @@
+@startuml
+title Game Setup Phase - Class Diagram
+
+package domain {
+    package piece {
+        enum PieceType {
+            KING
+            QUEEN
+            ROOK
+            BISHOP
+            KNIGHT
+            PAWN
+        }
+
+        enum PieceColor {
+            WHITE
+            BLACK
+        }
+
+        class Piece <<final>> {
+            - type: PieceType
+            - color: PieceColor
+            + Piece(type: PieceType, color: PieceColor)
+            + getType(): PieceType
+            + getColor(): PieceColor
+            + isSameColorAs(other: Piece): boolean
+            + equals(other: Object): boolean
+            + hashCode(): int
+        }
+    }
+
+    class Position <<final>> {
+        + {static} BOARD_SIZE: int = 8
+        - row: int
+        - col: int
+        + Position(row: int, col: int)
+        + getRow(): int
+        + getCol(): int
+        + equals(other: Object): boolean
+        + hashCode(): int
+    }
+
+    class Board {
+        - grid: Piece[8][8]
+        + Board()
+        + {static} createStandard(): Board
+        + getPiece(position: Position): Optional<Piece>
+        + isEmpty(position: Position): boolean
+        + placePiece(position: Position, piece: Piece): void
+    }
+
+    class Player {
+        - name: String
+        - color: PieceColor
+        + Player(name: String, color: PieceColor)
+        + getName(): String
+        + getColor(): PieceColor
+    }
+
+    class Game {
+        - board: Board
+        - whitePlayer: Player
+        - blackPlayer: Player
+        - currentPlayer: Player
+        + Game(player1Name: String, player2Name: String)
+        + getBoard(): Board
+        + getWhitePlayer(): Player
+        + getBlackPlayer(): Player
+        + getCurrentPlayer(): Player
+    }
+}
+
+package ui {
+    class Main
+    class WelcomeView
+    class MainView
+    class BoardView
+    class GameStatsView
+    class BoardController
+}
+
+Piece --> PieceType
+Piece --> PieceColor
+Board --> "0..64" Piece
+Board ..> Position
+Player --> PieceColor
+Game --> Board
+Game --> "2" Player
+
+Main ..> WelcomeView
+WelcomeView ..> MainView
+MainView --> BoardView
+MainView --> GameStatsView
+BoardView --> BoardController
+BoardController --> Game
+@enduml
