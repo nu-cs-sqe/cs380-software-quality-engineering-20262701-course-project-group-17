@@ -7,8 +7,9 @@
 |-------|------|---------------|
 | `type` | enum reference | a valid `PieceType`, or `null` |
 | `color` | enum reference | a valid `PieceColor`, or `null` |
-| `other` in `isSameColorAs` | Piece | same color, different color |
-| `other` in `equals` | object reference | same type and color, different type, different color, null, a different class |
+| `other` in `isSameColorAs` | Piece reference | same color, different color, `null` |
+| `other` in `equals` | object reference | a separate instance with the same type and color, different type, different color, null, a different class |
+| `type`, `color` in `hashCode` | enum order | first type and first color, first type and last color, second type, last type and last color |
 
 ## Step 4: Test cases
 All tests are in `src/test/java/domain/piece/PieceTest.java`.
@@ -25,11 +26,12 @@ All tests are in `src/test/java/domain/piece/PieceTest.java`.
 |----|---------------|-----------------|-------------|--------------|
 | TC4 | white king compared with a white pawn | `true` | `isSameColorAs_sameColor_returnsTrue` | Not yet |
 | TC5 | white king compared with a black king | `false` | `isSameColorAs_differentColor_returnsFalse` | Not yet |
+| TC13 | white king compared with `null` | `NullPointerException`: "other must not be null" | `isSameColorAs_null_throwsNullPointerException` | Not yet |
 
 ### Method under test: `equals(Object other)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC6 | black rook compared with a black rook | `true` | `equals_sameTypeAndColor_returnsTrue` | Not yet |
+| TC6 | two separate `Piece` instances with the same type and color (black rook) | `true` | `equals_sameTypeAndColor_returnsTrue` | Not yet |
 | TC7 | black rook compared with a black bishop | `false` | `equals_differentType_returnsFalse` | Not yet |
 | TC8 | black rook compared with a white rook | `false` | `equals_differentColor_returnsFalse` | Not yet |
 | TC9 | black rook compared with `null` | `false` | `equals_null_returnsFalse` | Not yet |
@@ -39,4 +41,6 @@ All tests are in `src/test/java/domain/piece/PieceTest.java`.
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
 | TC11 | two separate white queens | the same hash code | `hashCode_equalPieces_returnsSameValue` | Not yet |
-| TC12 | white queen compared with a black queen | different hash codes | `hashCode_differentColor_returnsDifferentValue` | Not yet |
+| TC12 | (KING, WHITE), (KING, BLACK), (QUEEN, WHITE), (PAWN, BLACK) | 0, 1, 2, 11 (the piece index, `type.ordinal() * 2 + color.ordinal()`) | `hashCode_anyPiece_returnsPieceIndex` | Not yet |
+
+TC13 was added during review, so it sits with the other `isSameColorAs` cases rather than in numeric order. TC12 checks exact values instead of only "different hash codes". Enum hash codes can change from run to run, so a test built on them could fail at random. A fixed formula based on enum order gives each of the 12 pieces its own index, from 0 to 11, the same way `Position` numbers its 64 squares.
