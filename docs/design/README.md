@@ -16,7 +16,7 @@ The code is split into two packages.
 | `PieceColor` (enum) | WHITE, BLACK | Kris |
 | `Piece` | Immutable (type, color) pair with value equality and `isSameColorAs`. | Kris |
 | `Board` | Owns the 8×8 grid: `getPiece`, `isEmpty`, `placePiece`, plus static factory `Board.createStandard()` for the starting position. | Max |
-| `Player` | Name (trimmed, must not be blank) and color. | Cindy |
+| `Player` | Name (trimmed, must contain between 1 and 30 characters) and color. | Cindy |
 | `Game` | Built from two names: creates the players (White/Black), creates the standard board, sets the current player to White. Exposes `getBoard()`, `getCurrentPlayer()`, `getWhitePlayer()`, `getBlackPlayer()`. | Cindy |
 
 ## Design decisions
