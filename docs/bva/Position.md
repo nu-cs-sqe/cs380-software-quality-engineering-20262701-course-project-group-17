@@ -25,7 +25,7 @@ All tests are in `src/test/java/domain/PositionTest.java`.
 ### Method under test: `equals(Object other)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC7 | (3,4) compared with (3,4) | `true` | `equals_sameRowAndCol_returnsTrue` | Not yet |
+| TC7 | two separate Position(3,4) instances | `true` | `equals_sameRowAndCol_returnsTrue` | Not yet |
 | TC8 | (3,4) compared with (2,4) | `false` | `equals_differentRow_returnsFalse` | Not yet |
 | TC9 | (3,4) compared with (3,5) | `false` | `equals_differentCol_returnsFalse` | Not yet |
 | TC10 | (3,4) compared with `null` | `false` | `equals_null_returnsFalse` | Not yet |
@@ -34,5 +34,5 @@ All tests are in `src/test/java/domain/PositionTest.java`.
 ### Method under test: `hashCode()`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC12 | two separate (3,4) positions | the same hash code | `hashCode_equalPositions_returnsSameValue` | Not yet |
+| TC12 | two separate Position(3,4) instances | the same hash code | `hashCode_equalPositions_returnsSameValue` | Not yet |
 | TC13 | (0,0), (0,1), (1,0), (7,7) | 0, 1, 8, 63 (the square index, `row * 8 + col`) | `hashCode_anySquare_returnsSquareIndex` | Not yet |
