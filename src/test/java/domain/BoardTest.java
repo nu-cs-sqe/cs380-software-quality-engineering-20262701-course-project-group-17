@@ -209,6 +209,17 @@ public class BoardTest {
         }
     }
 
+    @Test
+    public void createStandard_rowsTwoToFive_areEmpty() {
+        Board board = Board.createStandard();
+
+        for (int row = 2; row <= 5; row++) {
+            for (int col = 0; col <= 7; col++) {
+                assertTrue(board.isEmpty(new Position(row, col)));
+            }
+        }
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
