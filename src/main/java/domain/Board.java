@@ -18,6 +18,7 @@ public class Board {
 
     public void placePiece(Position position, Piece piece) {
         Objects.requireNonNull(position, "position must not be null");
+        Objects.requireNonNull(piece, "piece must not be null");
         grid[position.getRow()][position.getCol()] = piece;
     }
 }
