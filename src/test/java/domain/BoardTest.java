@@ -37,7 +37,7 @@ public class BoardTest {
 
         board.placePiece(new Position(0, 0), whiteKing());
 
-        assertHolds(board, new Position(0, 0), PieceType.KING, PieceColor.WHITE);
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(0, 0)));
     }
 
 
@@ -56,7 +56,7 @@ public class BoardTest {
 
         board.placePiece(new Position(7, 7), whiteKing());
 
-        assertHolds(board, new Position(7, 7), PieceType.KING, PieceColor.WHITE);
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(7, 7)));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class BoardTest {
 
         board.placePiece(new Position(0, 7), whiteKing());
 
-        assertHolds(board, new Position(0, 7), PieceType.KING, PieceColor.WHITE);
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(0, 7)));
         assertTrue(board.isEmpty(new Position(7, 0)));
     }
 
@@ -76,7 +76,7 @@ public class BoardTest {
 
         board.placePiece(new Position(7, 0), whiteKing());
 
-        assertHolds(board, new Position(7, 0), PieceType.KING, PieceColor.WHITE);
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(7, 0)));
         assertTrue(board.isEmpty(new Position(0, 7)));
     }
 
@@ -86,7 +86,7 @@ public class BoardTest {
 
         board.placePiece(new Position(3, 4), whiteKing());
 
-        assertHolds(board, new Position(3, 4), PieceType.KING, PieceColor.WHITE);
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(3, 4)));
         assertTrue(board.isEmpty(new Position(2, 4)));
         assertTrue(board.isEmpty(new Position(4, 4)));
         assertTrue(board.isEmpty(new Position(3, 3)));
@@ -100,7 +100,7 @@ public class BoardTest {
 
         board.placePiece(new Position(3, 4), new Piece(PieceType.QUEEN, PieceColor.BLACK));
 
-        assertHolds(board, new Position(3, 4), PieceType.QUEEN, PieceColor.BLACK);
+        assertPiece(PieceType.QUEEN, PieceColor.BLACK, board.getPiece(new Position(3, 4)));
     }
 
     @Test
@@ -111,7 +111,7 @@ public class BoardTest {
 
         board.placePiece(placedAt, whiteKing());
 
-        assertHolds(board, readAt, PieceType.KING, PieceColor.WHITE);
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(readAt));
     }
 
 
@@ -191,8 +191,8 @@ public class BoardTest {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
 
-    private static void assertHolds(Board board, Position position, PieceType type, PieceColor color) {
-        Piece piece = board.getPiece(position).orElseThrow();
+    private static void assertPiece(PieceType type, PieceColor color, Optional<Piece> actual) {
+        Piece piece = actual.orElseThrow();
         assertEquals(type, piece.getType());
         assertEquals(color, piece.getColor());
     }
