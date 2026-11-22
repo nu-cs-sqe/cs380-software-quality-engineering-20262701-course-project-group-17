@@ -2,6 +2,7 @@ package domain;
 
 import domain.piece.Piece;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class Board {
@@ -16,6 +17,7 @@ public class Board {
     }
 
     public void placePiece(Position position, Piece piece) {
+        Objects.requireNonNull(position, "position must not be null");
         grid[position.getRow()][position.getCol()] = piece;
     }
 }
