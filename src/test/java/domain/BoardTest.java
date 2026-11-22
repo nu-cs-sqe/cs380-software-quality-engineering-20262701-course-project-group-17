@@ -125,6 +125,17 @@ public class BoardTest {
         assertEquals("position must not be null", exception.getMessage());
     }
 
+
+    @Test
+    public void placePiece_nullPiece_throwsNullPointerException() {
+        Board board = new Board();
+
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> board.placePiece(new Position(3, 4), null));
+
+        assertEquals("piece must not be null", exception.getMessage());
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
