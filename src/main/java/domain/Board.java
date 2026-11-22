@@ -5,16 +5,17 @@ import domain.piece.Piece;
 import java.util.Optional;
 
 public class Board {
+    private Piece piece;
 
     public boolean isEmpty(Position position) {
         return true;
     }
 
     public Optional<Piece> getPiece(Position position) {
-        return Optional.empty();
+        return Optional.ofNullable(piece);
     }
 
     public void placePiece(Position position, Piece piece) {
-        throw new UnsupportedOperationException("not implemented yet");
+        this.piece = piece;
     }
 }
