@@ -23,7 +23,7 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
 | TC1 | a new empty board; check all 64 squares from (0,0) to (7,7) | `isEmpty` is `true` for every square | `constructor_newBoard_allSquaresAreEmpty` | ✅ |
-| TC2 | a new empty board; check all 64 squares from (0,0) to (7,7) | `getPiece` returns `Optional.empty()` for every square | `constructor_newBoard_getPieceReturnsEmptyForAllSquares` | Not yet |
+| TC2 | a new empty board; check all 64 squares from (0,0) to (7,7) | `getPiece` returns `Optional.empty()` for every square | `constructor_newBoard_getPieceReturnsEmptyForAllSquares` | ✅ |
 
 ### Method under test: `placePiece(Position position, Piece piece)`
 | ID | State / Input | Expected output | Test method | Implemented? |
