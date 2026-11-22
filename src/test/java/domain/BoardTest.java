@@ -1,5 +1,6 @@
 package domain;
 
+import domain.piece.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -28,5 +29,24 @@ public class BoardTest {
                 assertEquals(Optional.empty(), board.getPiece(new Position(row, col)));
             }
         }
+    }
+
+    @Test
+    public void placePiece_lowerCorner_pieceIsStored() {
+        Board board = new Board();
+
+        board.placePiece(new Position(0, 0), whiteKing());
+
+        assertHolds(board, new Position(0, 0), PieceType.KING, PieceColor.WHITE);
+    }
+
+    private static Piece whiteKing() {
+        return new Piece(PieceType.KING, PieceColor.WHITE);
+    }
+
+    private static void assertHolds(Board board, Position position, PieceType type, PieceColor color) {
+        Piece piece = board.getPiece(position).orElseThrow();
+        assertEquals(type, piece.getType());
+        assertEquals(color, piece.getColor());
     }
 }

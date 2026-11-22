@@ -13,4 +13,8 @@ public class Board {
     public Optional<Piece> getPiece(Position position) {
         return Optional.empty();
     }
+
+    public void placePiece(Position position, Piece piece) {
+        throw new UnsupportedOperationException("not implemented yet");
+    }
 }

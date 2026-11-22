@@ -28,7 +28,7 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 ### Method under test: `placePiece(Position position, Piece piece)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC3 | empty board; place a white king on (0,0) (lower corner) | `getPiece((0,0))` contains a white king | `placePiece_lowerCorner_pieceIsStored` | Not yet |
+| TC3 | empty board; place a white king on (0,0) (lower corner) | `getPiece((0,0))` contains a white king | `placePiece_lowerCorner_pieceIsStored` | ✅ |
 | TC4 | empty board; place a white king on (7,7) (upper corner) | `getPiece((7,7))` contains a white king | `placePiece_upperCorner_pieceIsStored` | Not yet |
 | TC5 | empty board; place a white king on (0,7) | `getPiece((0,7))` contains a white king, and `isEmpty((7,0))` is `true` | `placePiece_rowZeroColSeven_doesNotSwapRowAndCol` | Not yet |
 | TC6 | empty board; place a white king on (7,0) | `getPiece((7,0))` contains a white king, and `isEmpty((0,7))` is `true` | `placePiece_rowSevenColZero_doesNotSwapRowAndCol` | Not yet |
