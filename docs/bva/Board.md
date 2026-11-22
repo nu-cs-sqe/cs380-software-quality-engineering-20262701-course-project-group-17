@@ -35,7 +35,7 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 | TC7 | empty board; place a white king on (3,4) | (3,4) holds the white king; neighbours (2,4), (4,4), (3,3), (3,5) are all empty | `placePiece_innerSquare_onlyThatSquareChanges` | ✅ |
 | TC8 | (3,4) holds a white king; place a black queen on (3,4) | `getPiece((3,4))` contains a black queen | `placePiece_occupiedSquare_replacesPiece` | ✅ |
 | TC9 | empty board; place a white king using one `new Position(3,4)`, then read with a separate `new Position(3,4)` | `getPiece` contains a white king | `placePiece_separateEqualPosition_findsPiece` | ✅ |
-| TC10 | empty board; `placePiece(null, white king)` | `NullPointerException`: "position must not be null" | `placePiece_nullPosition_throwsNullPointerException` | Not yet |
+| TC10 | empty board; `placePiece(null, white king)` | `NullPointerException`: "position must not be null" | `placePiece_nullPosition_throwsNullPointerException` | ✅ |
 | TC11 | empty board; `placePiece((3,4), null)` | `NullPointerException`: "piece must not be null" | `placePiece_nullPiece_throwsNullPointerException` | Not yet |
 
 ### Method under test: `getPiece(Position position)`
