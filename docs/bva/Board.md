@@ -43,7 +43,7 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 |----|---------------|-----------------|-------------|--------------|
 | TC12 | (3,4) holds a white king; read (3,4) | `Optional` containing a piece with type KING and color WHITE | `getPiece_occupiedSquare_returnsPiece` | ✅ |
 | TC13 | (3,4) holds a white king; read the neighbour (3,5) | `Optional.empty()` | `getPiece_emptySquare_returnsEmptyOptional` | ✅ |
-| TC14 | empty board; `getPiece(null)` | `NullPointerException`: "position must not be null" | `getPiece_nullPosition_throwsNullPointerException` | Not yet |
+| TC14 | empty board; `getPiece(null)` | `NullPointerException`: "position must not be null" | `getPiece_nullPosition_throwsNullPointerException` | ✅ |
 
 ### Method under test: `isEmpty(Position position)`
 | ID | State / Input | Expected output | Test method | Implemented? |
