@@ -49,6 +49,26 @@ public class BoardTest {
         assertFalse(board.isEmpty(new Position(3, 4)));
     }
 
+
+    @Test
+    public void placePiece_upperCorner_pieceIsStored() {
+        Board board = new Board();
+
+        board.placePiece(new Position(7, 7), whiteKing());
+
+        assertHolds(board, new Position(7, 7), PieceType.KING, PieceColor.WHITE);
+    }
+
+    @Test
+    public void placePiece_rowZeroColSeven_doesNotSwapRowAndCol() {
+        Board board = new Board();
+
+        board.placePiece(new Position(0, 7), whiteKing());
+
+        assertHolds(board, new Position(0, 7), PieceType.KING, PieceColor.WHITE);
+        assertTrue(board.isEmpty(new Position(7, 0)));
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
