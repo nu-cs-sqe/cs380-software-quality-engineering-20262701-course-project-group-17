@@ -19,13 +19,23 @@ public class Board {
 
     public static Board createStandard() {
         Board board = new Board();
-        for (int col = 0; col < Position.BOARD_SIZE; col++) {
-            board.placePiece(new Position(BLACK_BACK_RANK_ROW, col), new Piece(BACK_RANK[col], PieceColor.BLACK));
-            board.placePiece(new Position(BLACK_PAWN_ROW, col), new Piece(PieceType.PAWN, PieceColor.BLACK));
-            board.placePiece(new Position(WHITE_PAWN_ROW, col), new Piece(PieceType.PAWN, PieceColor.WHITE));
-            board.placePiece(new Position(WHITE_BACK_RANK_ROW, col), new Piece(BACK_RANK[col], PieceColor.WHITE));
-        }
+        board.fillBackRank(BLACK_BACK_RANK_ROW, PieceColor.BLACK);
+        board.fillPawnRow(BLACK_PAWN_ROW, PieceColor.BLACK);
+        board.fillPawnRow(WHITE_PAWN_ROW, PieceColor.WHITE);
+        board.fillBackRank(WHITE_BACK_RANK_ROW, PieceColor.WHITE);
         return board;
+    }
+
+    private void fillBackRank(int row, PieceColor color) {
+        for (int col = 0; col < Position.BOARD_SIZE; col++) {
+            placePiece(new Position(row, col), new Piece(BACK_RANK[col], color));
+        }
+    }
+
+    private void fillPawnRow(int row, PieceColor color) {
+        for (int col = 0; col < Position.BOARD_SIZE; col++) {
+            placePiece(new Position(row, col), new Piece(PieceType.PAWN, color));
+        }
     }
 
     public boolean isEmpty(Position position) {
