@@ -8,7 +8,7 @@ public class Board {
     private Piece piece;
 
     public boolean isEmpty(Position position) {
-        return true;
+        return getPiece(position).isEmpty();
     }
 
     public Optional<Piece> getPiece(Position position) {
