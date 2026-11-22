@@ -40,6 +40,15 @@ public class BoardTest {
         assertHolds(board, new Position(0, 0), PieceType.KING, PieceColor.WHITE);
     }
 
+
+    @Test
+    public void isEmpty_occupiedSquare_returnsFalse() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        assertFalse(board.isEmpty(new Position(3, 4)));
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }

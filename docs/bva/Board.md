@@ -49,7 +49,7 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
 | TC15 | (3,4) holds a white king; check the neighbour (3,5) | `true` | `isEmpty_emptySquare_returnsTrue` | Not yet |
-| TC16 | (3,4) holds a white king; check (3,4) | `false` | `isEmpty_occupiedSquare_returnsFalse` | Not yet |
+| TC16 | (3,4) holds a white king; check (3,4) | `false` | `isEmpty_occupiedSquare_returnsFalse` | ✅ |
 | TC17 | empty board; `isEmpty(null)` | `NullPointerException`: "position must not be null" | `isEmpty_nullPosition_throwsNullPointerException` | Not yet |
 
 ### Method under test: `createStandard()`
