@@ -56,7 +56,7 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
 | TC18 | standard board; read row 0, cols 0 to 7 | black Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook (black queen on (0,3), black king on (0,4)) | `createStandard_rowZero_hasBlackBackRank` | ✅ |
-| TC19 | standard board; read row 1, cols 0 to 7 | 8 black pawns | `createStandard_rowOne_hasBlackPawns` | Not yet |
+| TC19 | standard board; read row 1, cols 0 to 7 | 8 black pawns | `createStandard_rowOne_hasBlackPawns` | ✅ |
 | TC20 | standard board; read rows 2 to 5 (edges: row 2 and row 5), cols 0 to 7 | all 32 squares are empty | `createStandard_rowsTwoToFive_areEmpty` | Not yet |
 | TC21 | standard board; read row 6, cols 0 to 7 | 8 white pawns | `createStandard_rowSix_hasWhitePawns` | Not yet |
 | TC22 | standard board; read row 7, cols 0 to 7 | white Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook (white queen on (7,3), white king on (7,4)) | `createStandard_rowSeven_hasWhiteBackRank` | Not yet |

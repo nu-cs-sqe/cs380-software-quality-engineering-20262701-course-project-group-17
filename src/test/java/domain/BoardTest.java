@@ -200,6 +200,15 @@ public class BoardTest {
         }
     }
 
+    @Test
+    public void createStandard_rowOne_hasBlackPawns() {
+        Board board = Board.createStandard();
+
+        for (int col = 0; col <= 7; col++) {
+            assertPiece(PieceType.PAWN, PieceColor.BLACK, board.getPiece(new Position(1, col)));
+        }
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
