@@ -41,8 +41,8 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 ### Method under test: `getPiece(Position position)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC12 | (3,4) holds a white king; read (3,4) | `Optional` containing a piece equal to a separate white king | `getPiece_occupiedSquare_returnsPiece` | Not yet |
-| TC13 | (3,4) holds a white king; read the neighbour (3,5) | `Optional.empty()` | `getPiece_emptySquare_returnsEmptyOptional` | Not yet |
+| TC12 | (3,4) holds a white king; read (3,4) | `Optional` containing a piece with type KING and color WHITE | `getPiece_occupiedSquare_returnsPiece` | ✅ |
+| TC13 | (3,4) holds a white king; read the neighbour (3,5) | `Optional.empty()` | `getPiece_emptySquare_returnsEmptyOptional` | ✅ |
 | TC14 | empty board; `getPiece(null)` | `NullPointerException`: "position must not be null" | `getPiece_nullPosition_throwsNullPointerException` | Not yet |
 
 ### Method under test: `isEmpty(Position position)`

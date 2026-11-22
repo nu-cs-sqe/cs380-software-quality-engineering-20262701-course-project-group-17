@@ -136,6 +136,27 @@ public class BoardTest {
         assertEquals("piece must not be null", exception.getMessage());
     }
 
+
+    @Test
+    public void getPiece_occupiedSquare_returnsPiece() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        Optional<Piece> piece = board.getPiece(new Position(3, 4));
+
+        assertTrue(piece.isPresent());
+        assertEquals(PieceType.KING, piece.get().getType());
+        assertEquals(PieceColor.WHITE, piece.get().getColor());
+    }
+
+    @Test
+    public void getPiece_emptySquare_returnsEmptyOptional() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        assertEquals(Optional.empty(), board.getPiece(new Position(3, 5)));
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
