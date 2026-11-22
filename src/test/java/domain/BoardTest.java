@@ -8,6 +8,10 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
+    private static final PieceType[] BACK_RANK = {
+        PieceType.ROOK, PieceType.KNIGHT, PieceType.BISHOP, PieceType.QUEEN,
+        PieceType.KING, PieceType.BISHOP, PieceType.KNIGHT, PieceType.ROOK
+    };
 
     @Test
     public void constructor_newBoard_allSquaresAreEmpty() {
@@ -185,6 +189,15 @@ public class BoardTest {
                 () -> board.isEmpty(null));
 
         assertEquals("position must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void createStandard_rowZero_hasBlackBackRank() {
+        Board board = Board.createStandard();
+
+        for (int col = 0; col <= 7; col++) {
+            assertPiece(BACK_RANK[col], PieceColor.BLACK, board.getPiece(new Position(0, col)));
+        }
     }
 
     private static Piece whiteKing() {

@@ -8,6 +8,10 @@ import java.util.Optional;
 public class Board {
     private final Piece[][] grid = new Piece[Position.BOARD_SIZE][Position.BOARD_SIZE];
 
+    public static Board createStandard() {
+        throw new UnsupportedOperationException("not implemented yet");
+    }
+
     public boolean isEmpty(Position position) {
         return getPiece(position).isEmpty();
     }
