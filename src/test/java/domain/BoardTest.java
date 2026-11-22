@@ -168,6 +168,25 @@ public class BoardTest {
         assertEquals("position must not be null", exception.getMessage());
     }
 
+
+    @Test
+    public void isEmpty_emptySquare_returnsTrue() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        assertTrue(board.isEmpty(new Position(3, 5)));
+    }
+
+    @Test
+    public void isEmpty_nullPosition_throwsNullPointerException() {
+        Board board = new Board();
+
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> board.isEmpty(null));
+
+        assertEquals("position must not be null", exception.getMessage());
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
