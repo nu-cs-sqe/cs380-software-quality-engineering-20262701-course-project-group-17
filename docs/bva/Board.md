@@ -58,7 +58,7 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 | TC18 | standard board; read row 0, cols 0 to 7 | black Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook (black queen on (0,3), black king on (0,4)) | `createStandard_rowZero_hasBlackBackRank` | ✅ |
 | TC19 | standard board; read row 1, cols 0 to 7 | 8 black pawns | `createStandard_rowOne_hasBlackPawns` | ✅ |
 | TC20 | standard board; read rows 2 to 5 (edges: row 2 and row 5), cols 0 to 7 | all 32 squares are empty | `createStandard_rowsTwoToFive_areEmpty` | ✅ |
-| TC21 | standard board; read row 6, cols 0 to 7 | 8 white pawns | `createStandard_rowSix_hasWhitePawns` | Not yet |
+| TC21 | standard board; read row 6, cols 0 to 7 | 8 white pawns | `createStandard_rowSix_hasWhitePawns` | ✅ |
 | TC22 | standard board; read row 7, cols 0 to 7 | white Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook (white queen on (7,3), white king on (7,4)) | `createStandard_rowSeven_hasWhiteBackRank` | Not yet |
 | TC23 | standard board; count pieces by color and type over all 64 squares | 32 pieces in total; each color has 8 pawns, 2 rooks, 2 knights, 2 bishops, 1 queen, 1 king | `createStandard_allSquares_hasSixteenPiecesPerColor` | Not yet |
 | TC24 | call `createStandard()` twice; place a white king on (4,4) of the first board | (4,4) on the second board is still empty | `createStandard_calledTwice_returnsIndependentBoards` | Not yet |
