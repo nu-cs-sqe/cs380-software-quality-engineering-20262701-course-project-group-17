@@ -31,10 +31,10 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 | TC3 | empty board; place a white king on (0,0) (lower corner) | `getPiece((0,0))` contains a white king | `placePiece_lowerCorner_pieceIsStored` | ✅ |
 | TC4 | empty board; place a white king on (7,7) (upper corner) | `getPiece((7,7))` contains a white king | `placePiece_upperCorner_pieceIsStored` | ✅ |
 | TC5 | empty board; place a white king on (0,7) | `getPiece((0,7))` contains a white king, and `isEmpty((7,0))` is `true` | `placePiece_rowZeroColSeven_doesNotSwapRowAndCol` | ✅ |
-| TC6 | empty board; place a white king on (7,0) | `getPiece((7,0))` contains a white king, and `isEmpty((0,7))` is `true` | `placePiece_rowSevenColZero_doesNotSwapRowAndCol` | Not yet |
-| TC7 | empty board; place a white king on (3,4) | (3,4) holds the white king; neighbours (2,4), (4,4), (3,3), (3,5) are all empty | `placePiece_innerSquare_onlyThatSquareChanges` | Not yet |
-| TC8 | (3,4) holds a white king; place a black queen on (3,4) | `getPiece((3,4))` contains a black queen | `placePiece_occupiedSquare_replacesPiece` | Not yet |
-| TC9 | empty board; place a white king using one `new Position(3,4)`, then read with a separate `new Position(3,4)` | `getPiece` contains a white king | `placePiece_separateEqualPosition_findsPiece` | Not yet |
+| TC6 | empty board; place a white king on (7,0) | `getPiece((7,0))` contains a white king, and `isEmpty((0,7))` is `true` | `placePiece_rowSevenColZero_doesNotSwapRowAndCol` | ✅ |
+| TC7 | empty board; place a white king on (3,4) | (3,4) holds the white king; neighbours (2,4), (4,4), (3,3), (3,5) are all empty | `placePiece_innerSquare_onlyThatSquareChanges` | ✅ |
+| TC8 | (3,4) holds a white king; place a black queen on (3,4) | `getPiece((3,4))` contains a black queen | `placePiece_occupiedSquare_replacesPiece` | ✅ |
+| TC9 | empty board; place a white king using one `new Position(3,4)`, then read with a separate `new Position(3,4)` | `getPiece` contains a white king | `placePiece_separateEqualPosition_findsPiece` | ✅ |
 | TC10 | empty board; `placePiece(null, white king)` | `NullPointerException`: "position must not be null" | `placePiece_nullPosition_throwsNullPointerException` | Not yet |
 | TC11 | empty board; `placePiece((3,4), null)` | `NullPointerException`: "piece must not be null" | `placePiece_nullPiece_throwsNullPointerException` | Not yet |
 

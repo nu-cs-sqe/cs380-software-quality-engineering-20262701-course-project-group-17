@@ -69,6 +69,51 @@ public class BoardTest {
         assertTrue(board.isEmpty(new Position(7, 0)));
     }
 
+
+    @Test
+    public void placePiece_rowSevenColZero_doesNotSwapRowAndCol() {
+        Board board = new Board();
+
+        board.placePiece(new Position(7, 0), whiteKing());
+
+        assertHolds(board, new Position(7, 0), PieceType.KING, PieceColor.WHITE);
+        assertTrue(board.isEmpty(new Position(0, 7)));
+    }
+
+    @Test
+    public void placePiece_innerSquare_onlyThatSquareChanges() {
+        Board board = new Board();
+
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        assertHolds(board, new Position(3, 4), PieceType.KING, PieceColor.WHITE);
+        assertTrue(board.isEmpty(new Position(2, 4)));
+        assertTrue(board.isEmpty(new Position(4, 4)));
+        assertTrue(board.isEmpty(new Position(3, 3)));
+        assertTrue(board.isEmpty(new Position(3, 5)));
+    }
+
+    @Test
+    public void placePiece_occupiedSquare_replacesPiece() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        board.placePiece(new Position(3, 4), new Piece(PieceType.QUEEN, PieceColor.BLACK));
+
+        assertHolds(board, new Position(3, 4), PieceType.QUEEN, PieceColor.BLACK);
+    }
+
+    @Test
+    public void placePiece_separateEqualPosition_findsPiece() {
+        Board board = new Board();
+        Position placedAt = new Position(3, 4);
+        Position readAt = new Position(3, 4);
+
+        board.placePiece(placedAt, whiteKing());
+
+        assertHolds(board, readAt, PieceType.KING, PieceColor.WHITE);
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
