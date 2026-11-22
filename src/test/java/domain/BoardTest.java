@@ -238,6 +238,31 @@ public class BoardTest {
         }
     }
 
+    @Test
+    public void createStandard_allSquares_hasSixteenPiecesPerColor() {
+        Board board = Board.createStandard();
+
+        assertEquals(32, countAllPieces(board));
+        for (PieceColor color : PieceColor.values()) {
+            assertEquals(8, countPieces(board, PieceType.PAWN, color));
+            assertEquals(2, countPieces(board, PieceType.ROOK, color));
+            assertEquals(2, countPieces(board, PieceType.KNIGHT, color));
+            assertEquals(2, countPieces(board, PieceType.BISHOP, color));
+            assertEquals(1, countPieces(board, PieceType.QUEEN, color));
+            assertEquals(1, countPieces(board, PieceType.KING, color));
+        }
+    }
+
+    @Test
+    public void createStandard_calledTwice_returnsIndependentBoards() {
+        Board first = Board.createStandard();
+        Board second = Board.createStandard();
+
+        first.placePiece(new Position(4, 4), whiteKing());
+
+        assertTrue(second.isEmpty(new Position(4, 4)));
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
@@ -246,5 +271,30 @@ public class BoardTest {
         Piece piece = actual.orElseThrow();
         assertEquals(type, piece.getType());
         assertEquals(color, piece.getColor());
+    }
+
+    private static int countAllPieces(Board board) {
+        int count = 0;
+        for (int row = 0; row <= 7; row++) {
+            for (int col = 0; col <= 7; col++) {
+                if (!board.isEmpty(new Position(row, col))) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private static int countPieces(Board board, PieceType type, PieceColor color) {
+        int count = 0;
+        for (int row = 0; row <= 7; row++) {
+            for (int col = 0; col <= 7; col++) {
+                Optional<Piece> piece = board.getPiece(new Position(row, col));
+                if (piece.isPresent() && piece.get().getType() == type && piece.get().getColor() == color) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }
