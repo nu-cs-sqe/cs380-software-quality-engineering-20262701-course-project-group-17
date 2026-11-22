@@ -13,6 +13,7 @@ public class Board {
     }
 
     public Optional<Piece> getPiece(Position position) {
+        Objects.requireNonNull(position, "position must not be null");
         return Optional.ofNullable(grid[position.getRow()][position.getCol()]);
     }
 
