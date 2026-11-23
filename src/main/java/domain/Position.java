@@ -14,11 +14,15 @@ public final class Position {
     }
 
     private static int requireOnBoard(int index, String axis) {
-        if (index < FIRST_INDEX || index > LAST_INDEX) {
+        if (isOffBoard(index)) {
             throw new IllegalArgumentException(String.format(
                     "%s must be between %d and %d, but was %d", axis, FIRST_INDEX, LAST_INDEX, index));
         }
         return index;
+    }
+
+    private static boolean isOffBoard(int index) {
+        return index < FIRST_INDEX || index > LAST_INDEX;
     }
 
     public int getRow() {
