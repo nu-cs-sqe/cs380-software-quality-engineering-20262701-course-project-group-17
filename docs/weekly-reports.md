@@ -30,36 +30,36 @@
 12. All: Review each other's PRs within 24 hours
 
 ## Part 2. Progress Tracking
-**Evaluation date**: _date_
+**Evaluation date**: 11/22/2026
 
 1. [done] Max: GitHub Actions workflow and build badge (committed directly to `main` before branch protection was set up)
 2. [done] Kris: Quality gates and coding standard ([PR #5](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/5))
 3. [done] Kris: Single CI workflow with PIT ([PR #7](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/7))
 4. [done] Cindy: Game Setup requirements ([PR #6](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/6))
-5. [in review] Kris: Design doc and chess rules summary (_link_)
-6. [not started] All: Branch protection, project board, and instructor meeting
-7. [in progress] Kris: `Position`, BVA written and draft PR open (_link_)
-8. [in progress] Kris: `Piece`, BVA written and draft PR open (_link_)
-9. [not started] Max: `Board` (_link_)
-10. [not started] Cindy: `Player` + `Game` (_link_)
-11. [not started] Cindy: Swing UI (_link_)
+5. [done] Kris: Design doc and chess rules summary ([PR #8](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/8))
+6. [in progress] All: Branch protection, project board, and instructor meeting
+7. [in review] Kris: `Position`, BVA ([PR #9](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/9)) and TDD (PR: _link_)
+8. [in review] Kris: `Piece`, BVA ([PR #10](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/10)) and TDD (PR: _link_)
+9. [done] Max: `Board` and `Board.createStandard()`, BVA ([PR #11](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/11)) and TDD ([PR #13](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/13)). Max added placeholder `Position` and `Piece` classes with the agreed signatures so `Board` didn't have to wait for Kris's branches.
+10. [in progress] Cindy: `Player` BVA done ([PR #12](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/12)); `Player` TDD and `Game` not started
+11. [not started] Cindy: Swing UI
 
-**Retrospective**: _What went well, and what we want to change next week._
+**Retrospective**: We started the Week 4 work late, so most of it happened in the last few days. The quality gates paid off early. CI ran Checkstyle, 100% coverage, and PIT on every PR, and reviewers caught real gaps in the BVA files, like a missing self-reference case for `equals` and a test where row and col were equal and couldn't catch a swap. Max's placeholder classes worked well, because they let `Board` go through TDD without waiting on `Position` and `Piece`. Next week we want to start each class as soon as the plan is set instead of near the deadline, review PRs within a day, and get `Player`, `Game`, and the UI moving earlier, since they sit at the end of the dependency chain.
 
 ## Part 3. Individual Progress
 ### Kris
-- PRs created: [#5](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/5), [#7](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/7)
-- PRs merged: [#5](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/5), [#7](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/7)
+- PRs created: [#5](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/5), [#7](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/7), [#8](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/8), [#9](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/9), [#10](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/10), `Position` TDD (_link_), `Piece` TDD (_link_)
+- PRs merged: [#5](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/5), [#7](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/7), [#8](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/8), [#9](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/9), [#10](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/10)
 - PRs reviewed: _links_
 
 ### Max
-- PRs created: _links_
-- PRs merged: _links_
+- PRs created: [#11](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/11), [#13](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/13)
+- PRs merged: [#11](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/11), [#13](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/13)
 - PRs reviewed: _links_
 
 ### Cindy
-- PRs created: [#6](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/6)
-- PRs merged: [#6](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/6)
+- PRs created: [#6](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/6), [#12](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/12)
+- PRs merged: [#6](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/6), [#12](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/pull/12)
 - PRs reviewed: _links_
 
 # Week 5 (10/26/2026-11/01/2026)
