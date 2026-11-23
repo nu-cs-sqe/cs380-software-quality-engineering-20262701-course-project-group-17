@@ -79,4 +79,10 @@ public class PositionTest {
     public void hashCode_equalPositions_returnsSameValue() {
         assertEquals(new Position(3, 4).hashCode(), new Position(3, 4).hashCode());
     }
+
+    @ParameterizedTest
+    @CsvSource({"0, 0, 0", "0, 1, 1", "1, 0, 8", "7, 7, 63"})
+    public void hashCode_anySquare_returnsSquareIndex(int row, int col, int expectedIndex) {
+        assertEquals(expectedIndex, new Position(row, col).hashCode());
+    }
 }
