@@ -51,4 +51,34 @@ public class PieceTest {
 
         assertEquals("other must not be null", exception.getMessage());
     }
+
+    @Test
+    public void equals_sameTypeAndColor_returnsTrue() {
+        assertEquals(new Piece(ROOK, BLACK), new Piece(ROOK, BLACK));
+    }
+
+    @Test
+    public void equals_differentType_returnsFalse() {
+        assertNotEquals(new Piece(ROOK, BLACK), new Piece(BISHOP, BLACK));
+    }
+
+    @Test
+    public void equals_differentColor_returnsFalse() {
+        assertNotEquals(new Piece(ROOK, BLACK), new Piece(ROOK, WHITE));
+    }
+
+    @Test
+    public void equals_null_returnsFalse() {
+        assertNotEquals(new Piece(ROOK, BLACK), null);
+    }
+
+    @Test
+    public void equals_differentClass_returnsFalse() {
+        assertNotEquals(new Piece(ROOK, BLACK), ROOK);
+    }
+
+    @Test
+    public void hashCode_equalPieces_returnsSameValue() {
+        assertEquals(new Piece(QUEEN, WHITE).hashCode(), new Piece(QUEEN, WHITE).hashCode());
+    }
 }
