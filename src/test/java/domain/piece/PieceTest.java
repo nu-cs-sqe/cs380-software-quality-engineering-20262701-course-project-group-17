@@ -15,4 +15,20 @@ public class PieceTest {
         assertEquals(KING, whiteKing.getType());
         assertEquals(WHITE, whiteKing.getColor());
     }
+
+    @Test
+    public void constructor_nullType_throwsNullPointerException() {
+        NullPointerException exception =
+                assertThrows(NullPointerException.class, () -> new Piece(null, WHITE));
+
+        assertEquals("type must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void constructor_nullColor_throwsNullPointerException() {
+        NullPointerException exception =
+                assertThrows(NullPointerException.class, () -> new Piece(KING, null));
+
+        assertEquals("color must not be null", exception.getMessage());
+    }
 }
