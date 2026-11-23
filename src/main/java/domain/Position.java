@@ -32,4 +32,18 @@ public final class Position {
     public int getCol() {
         return col;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Position)) {
+            return false;
+        }
+        Position that = (Position) other;
+        return row == that.row && col == that.col;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

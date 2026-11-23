@@ -26,17 +26,17 @@ All tests are in `src/test/java/domain/PositionTest.java`.
 ### Method under test: `equals(Object other)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC14 | a Position(3,4) compared with itself | `true` | `equals_sameInstance_returnsTrue` | Not yet |
-| TC7 | two separate Position(3,4) instances | `true` | `equals_sameRowAndCol_returnsTrue` | Not yet |
-| TC8 | (3,4) compared with (2,4) | `false` | `equals_differentRow_returnsFalse` | Not yet |
-| TC9 | (3,4) compared with (3,5) | `false` | `equals_differentCol_returnsFalse` | Not yet |
-| TC10 | (3,4) compared with `null` | `false` | `equals_null_returnsFalse` | Not yet |
-| TC11 | (3,4) compared with the string "3,4" | `false` | `equals_differentType_returnsFalse` | Not yet |
+| TC14 | a Position(3,4) compared with itself | `true` | `equals_sameInstance_returnsTrue` | :white_check_mark: |
+| TC7 | two separate Position(3,4) instances | `true` | `equals_sameRowAndCol_returnsTrue` | :white_check_mark: |
+| TC8 | (3,4) compared with (2,4) | `false` | `equals_differentRow_returnsFalse` | :white_check_mark: |
+| TC9 | (3,4) compared with (3,5) | `false` | `equals_differentCol_returnsFalse` | :white_check_mark: |
+| TC10 | (3,4) compared with `null` | `false` | `equals_null_returnsFalse` | :white_check_mark: |
+| TC11 | (3,4) compared with the string "3,4" | `false` | `equals_differentType_returnsFalse` | :white_check_mark: |
 
 ### Method under test: `hashCode()`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC12 | two separate Position(3,4) instances | the same hash code | `hashCode_equalPositions_returnsSameValue` | Not yet |
+| TC12 | two separate Position(3,4) instances | the same hash code | `hashCode_equalPositions_returnsSameValue` | :white_check_mark: |
 | TC13 | (0,0), (0,1), (1,0), (7,7) | 0, 1, 8, 63 (the square index, `row * 8 + col`) | `hashCode_anySquare_returnsSquareIndex` | Not yet |
 
 TC14 and TC15 were added during review, so they sit next to the cases they relate to rather than in numeric order. TC15 catches an implementation that mixes up `row` and `col`, which TC1 and TC2 can't detect because both of their coordinates are equal. TC14 checks that `equals` is reflexive. `equals` deliberately has no `this == other` shortcut: the field comparison already returns `true` for the same instance, and PIT would report a removed shortcut as a surviving equivalent mutant.
