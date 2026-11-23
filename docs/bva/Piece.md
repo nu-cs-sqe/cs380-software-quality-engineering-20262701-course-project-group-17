@@ -18,8 +18,8 @@ All tests are in `src/test/java/domain/piece/PieceTest.java`.
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
 | TC1 | KING, WHITE | `getType()` is KING and `getColor()` is WHITE | `constructor_validTypeAndColor_storesBoth` | :white_check_mark: |
-| TC2 | `null`, WHITE | `NullPointerException`: "type must not be null" | `constructor_nullType_throwsNullPointerException` | Not yet |
-| TC3 | KING, `null` | `NullPointerException`: "color must not be null" | `constructor_nullColor_throwsNullPointerException` | Not yet |
+| TC2 | `null`, WHITE | `NullPointerException`: "type must not be null" | `constructor_nullType_throwsNullPointerException` | :white_check_mark: |
+| TC3 | KING, `null` | `NullPointerException`: "color must not be null" | `constructor_nullColor_throwsNullPointerException` | :white_check_mark: |
 
 ### Method under test: `isSameColorAs(Piece other)`
 | ID | State / Input | Expected output | Test method | Implemented? |
