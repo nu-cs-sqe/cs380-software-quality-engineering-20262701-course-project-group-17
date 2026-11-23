@@ -42,7 +42,6 @@ public class BoardTest {
         assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(0, 0)));
     }
 
-
     @Test
     public void isEmpty_occupiedSquare_returnsFalse() {
         Board board = new Board();
@@ -50,7 +49,6 @@ public class BoardTest {
 
         assertFalse(board.isEmpty(new Position(3, 4)));
     }
-
 
     @Test
     public void placePiece_upperCorner_pieceIsStored() {
@@ -70,7 +68,6 @@ public class BoardTest {
         assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(0, 7)));
         assertTrue(board.isEmpty(new Position(7, 0)));
     }
-
 
     @Test
     public void placePiece_rowSevenColZero_doesNotSwapRowAndCol() {
@@ -116,7 +113,6 @@ public class BoardTest {
         assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(readAt));
     }
 
-
     @Test
     public void placePiece_nullPosition_throwsNullPointerException() {
         Board board = new Board();
@@ -126,7 +122,6 @@ public class BoardTest {
 
         assertEquals("position must not be null", exception.getMessage());
     }
-
 
     @Test
     public void placePiece_nullPiece_throwsNullPointerException() {
@@ -138,7 +133,6 @@ public class BoardTest {
         assertEquals("piece must not be null", exception.getMessage());
     }
 
-
     @Test
     public void getPiece_occupiedSquare_returnsPiece() {
         Board board = new Board();
@@ -146,9 +140,7 @@ public class BoardTest {
 
         Optional<Piece> piece = board.getPiece(new Position(3, 4));
 
-        assertTrue(piece.isPresent());
-        assertEquals(PieceType.KING, piece.get().getType());
-        assertEquals(PieceColor.WHITE, piece.get().getColor());
+        assertPiece(PieceType.KING, PieceColor.WHITE, piece);
     }
 
     @Test
@@ -159,7 +151,6 @@ public class BoardTest {
         assertEquals(Optional.empty(), board.getPiece(new Position(3, 5)));
     }
 
-
     @Test
     public void getPiece_nullPosition_throwsNullPointerException() {
         Board board = new Board();
@@ -169,7 +160,6 @@ public class BoardTest {
 
         assertEquals("position must not be null", exception.getMessage());
     }
-
 
     @Test
     public void isEmpty_emptySquare_returnsTrue() {
@@ -266,9 +256,9 @@ public class BoardTest {
     }
 
     private static void assertPiece(PieceType type, PieceColor color, Optional<Piece> actual) {
-        Piece piece = actual.orElseThrow();
-        assertEquals(type, piece.getType());
-        assertEquals(color, piece.getColor());
+        assertTrue(actual.isPresent(), "expected a " + color + " " + type + " but the square was empty");
+        assertEquals(type, actual.get().getType());
+        assertEquals(color, actual.get().getColor());
     }
 
     private static int countAllPieces(Board board) {
