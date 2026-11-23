@@ -23,4 +23,18 @@ public final class Piece {
         Objects.requireNonNull(other, "other must not be null");
         return color == other.color;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Piece)) {
+            return false;
+        }
+        Piece that = (Piece) other;
+        return type == that.type && color == that.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }
