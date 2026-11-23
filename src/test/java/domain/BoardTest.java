@@ -3,6 +3,8 @@ package domain;
 import domain.piece.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,10 +19,8 @@ public class BoardTest {
     public void constructor_newBoard_allSquaresAreEmpty() {
         Board board = new Board();
 
-        for (int row = 0; row <= 7; row++) {
-            for (int col = 0; col <= 7; col++) {
-                assertTrue(board.isEmpty(new Position(row, col)));
-            }
+        for (Position position : allPositions()) {
+            assertTrue(board.isEmpty(position));
         }
     }
 
@@ -28,10 +28,8 @@ public class BoardTest {
     public void constructor_newBoard_getPieceReturnsEmptyForAllSquares() {
         Board board = new Board();
 
-        for (int row = 0; row <= 7; row++) {
-            for (int col = 0; col <= 7; col++) {
-                assertEquals(Optional.empty(), board.getPiece(new Position(row, col)));
-            }
+        for (Position position : allPositions()) {
+            assertEquals(Optional.empty(), board.getPiece(position));
         }
     }
 
@@ -195,7 +193,7 @@ public class BoardTest {
     public void createStandard_rowZero_hasBlackBackRank() {
         Board board = Board.createStandard();
 
-        for (int col = 0; col <= 7; col++) {
+        for (int col = 0; col < Position.BOARD_SIZE; col++) {
             assertPiece(BACK_RANK[col], PieceColor.BLACK, board.getPiece(new Position(0, col)));
         }
     }
@@ -204,7 +202,7 @@ public class BoardTest {
     public void createStandard_rowOne_hasBlackPawns() {
         Board board = Board.createStandard();
 
-        for (int col = 0; col <= 7; col++) {
+        for (int col = 0; col < Position.BOARD_SIZE; col++) {
             assertPiece(PieceType.PAWN, PieceColor.BLACK, board.getPiece(new Position(1, col)));
         }
     }
@@ -214,7 +212,7 @@ public class BoardTest {
         Board board = Board.createStandard();
 
         for (int row = 2; row <= 5; row++) {
-            for (int col = 0; col <= 7; col++) {
+            for (int col = 0; col < Position.BOARD_SIZE; col++) {
                 assertTrue(board.isEmpty(new Position(row, col)));
             }
         }
@@ -224,7 +222,7 @@ public class BoardTest {
     public void createStandard_rowSix_hasWhitePawns() {
         Board board = Board.createStandard();
 
-        for (int col = 0; col <= 7; col++) {
+        for (int col = 0; col < Position.BOARD_SIZE; col++) {
             assertPiece(PieceType.PAWN, PieceColor.WHITE, board.getPiece(new Position(6, col)));
         }
     }
@@ -233,7 +231,7 @@ public class BoardTest {
     public void createStandard_rowSeven_hasWhiteBackRank() {
         Board board = Board.createStandard();
 
-        for (int col = 0; col <= 7; col++) {
+        for (int col = 0; col < Position.BOARD_SIZE; col++) {
             assertPiece(BACK_RANK[col], PieceColor.WHITE, board.getPiece(new Position(7, col)));
         }
     }
@@ -275,11 +273,9 @@ public class BoardTest {
 
     private static int countAllPieces(Board board) {
         int count = 0;
-        for (int row = 0; row <= 7; row++) {
-            for (int col = 0; col <= 7; col++) {
-                if (!board.isEmpty(new Position(row, col))) {
-                    count++;
-                }
+        for (Position position : allPositions()) {
+            if (!board.isEmpty(position)) {
+                count++;
             }
         }
         return count;
@@ -287,14 +283,22 @@ public class BoardTest {
 
     private static int countPieces(Board board, PieceType type, PieceColor color) {
         int count = 0;
-        for (int row = 0; row <= 7; row++) {
-            for (int col = 0; col <= 7; col++) {
-                Optional<Piece> piece = board.getPiece(new Position(row, col));
-                if (piece.isPresent() && piece.get().getType() == type && piece.get().getColor() == color) {
-                    count++;
-                }
+        for (Position position : allPositions()) {
+            Optional<Piece> piece = board.getPiece(position);
+            if (piece.isPresent() && piece.get().getType() == type && piece.get().getColor() == color) {
+                count++;
             }
         }
         return count;
+    }
+
+    private static List<Position> allPositions() {
+        List<Position> positions = new ArrayList<>();
+        for (int row = 0; row < Position.BOARD_SIZE; row++) {
+            for (int col = 0; col < Position.BOARD_SIZE; col++) {
+                positions.add(new Position(row, col));
+            }
+        }
+        return positions;
     }
 }
