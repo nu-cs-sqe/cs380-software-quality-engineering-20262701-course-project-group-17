@@ -37,6 +37,6 @@ All tests are in `src/test/java/domain/PositionTest.java`.
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
 | TC12 | two separate Position(3,4) instances | the same hash code | `hashCode_equalPositions_returnsSameValue` | :white_check_mark: |
-| TC13 | (0,0), (0,1), (1,0), (7,7) | 0, 1, 8, 63 (the square index, `row * 8 + col`) | `hashCode_anySquare_returnsSquareIndex` | Not yet |
+| TC13 | (0,0), (0,1), (1,0), (7,7) | 0, 1, 8, 63 (the square index, `row * 8 + col`) | `hashCode_anySquare_returnsSquareIndex` | :white_check_mark: |
 
 TC14 and TC15 were added during review, so they sit next to the cases they relate to rather than in numeric order. TC15 catches an implementation that mixes up `row` and `col`, which TC1 and TC2 can't detect because both of their coordinates are equal. TC14 checks that `equals` is reflexive. `equals` deliberately has no `this == other` shortcut: the field comparison already returns `true` for the same instance, and PIT would report a removed shortcut as a surviving equivalent mutant.

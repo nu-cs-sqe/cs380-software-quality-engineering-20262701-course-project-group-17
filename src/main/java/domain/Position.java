@@ -44,6 +44,6 @@ public final class Position {
 
     @Override
     public int hashCode() {
-        return 0;
+        return row * BOARD_SIZE + col;
     }
 }
