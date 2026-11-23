@@ -1,6 +1,8 @@
 package domain.piece;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static domain.piece.PieceColor.*;
 import static domain.piece.PieceType.*;
@@ -80,5 +82,11 @@ public class PieceTest {
     @Test
     public void hashCode_equalPieces_returnsSameValue() {
         assertEquals(new Piece(QUEEN, WHITE).hashCode(), new Piece(QUEEN, WHITE).hashCode());
+    }
+
+    @ParameterizedTest
+    @CsvSource({"KING, WHITE, 0", "KING, BLACK, 1", "QUEEN, WHITE, 2", "PAWN, BLACK, 11"})
+    public void hashCode_anyPiece_returnsPieceIndex(PieceType type, PieceColor color, int expectedIndex) {
+        assertEquals(expectedIndex, new Piece(type, color).hashCode());
     }
 }
