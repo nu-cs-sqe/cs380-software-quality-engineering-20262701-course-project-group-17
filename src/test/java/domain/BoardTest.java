@@ -285,11 +285,15 @@ public class BoardTest {
         int count = 0;
         for (Position position : allPositions()) {
             Optional<Piece> piece = board.getPiece(position);
-            if (piece.isPresent() && piece.get().getType() == type && piece.get().getColor() == color) {
+            if (piece.isPresent() && isTypeAndColor(piece.get(), type, color)) {
                 count++;
             }
         }
         return count;
+    }
+
+    private static boolean isTypeAndColor(Piece piece, PieceType type, PieceColor color) {
+        return piece.getType() == type && piece.getColor() == color;
     }
 
     private static List<Position> allPositions() {
