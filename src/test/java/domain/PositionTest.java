@@ -33,4 +33,13 @@ public class PositionTest {
 
         assertEquals("row must be between 0 and 7, but was " + row, exception.getMessage());
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 8})
+    public void constructor_colOffBoard_throwsIllegalArgumentException(int col) {
+        IllegalArgumentException exception =
+                assertThrows(IllegalArgumentException.class, () -> new Position(0, col));
+
+        assertEquals("col must be between 0 and 7, but was " + col, exception.getMessage());
+    }
 }
