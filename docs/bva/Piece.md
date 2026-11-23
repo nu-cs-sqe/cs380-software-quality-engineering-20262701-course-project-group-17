@@ -17,7 +17,7 @@ All tests are in `src/test/java/domain/piece/PieceTest.java`.
 ### Method under test: `Piece(PieceType type, PieceColor color)`, `getType()`, `getColor()`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | KING, WHITE | `getType()` is KING and `getColor()` is WHITE | `constructor_validTypeAndColor_storesBoth` | Not yet |
+| TC1 | KING, WHITE | `getType()` is KING and `getColor()` is WHITE | `constructor_validTypeAndColor_storesBoth` | :white_check_mark: |
 | TC2 | `null`, WHITE | `NullPointerException`: "type must not be null" | `constructor_nullType_throwsNullPointerException` | Not yet |
 | TC3 | KING, `null` | `NullPointerException`: "color must not be null" | `constructor_nullColor_throwsNullPointerException` | Not yet |
 
