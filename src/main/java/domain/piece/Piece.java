@@ -18,4 +18,9 @@ public final class Piece {
     public PieceColor getColor() {
         return color;
     }
+
+    public boolean isSameColorAs(Piece other) {
+        Objects.requireNonNull(other, "other must not be null");
+        return color == other.color;
+    }
 }

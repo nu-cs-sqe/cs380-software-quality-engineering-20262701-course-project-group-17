@@ -24,9 +24,9 @@ All tests are in `src/test/java/domain/piece/PieceTest.java`.
 ### Method under test: `isSameColorAs(Piece other)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC4 | white king compared with a white pawn | `true` | `isSameColorAs_sameColor_returnsTrue` | Not yet |
-| TC5 | white king compared with a black king | `false` | `isSameColorAs_differentColor_returnsFalse` | Not yet |
-| TC13 | white king compared with `null` | `NullPointerException`: "other must not be null" | `isSameColorAs_null_throwsNullPointerException` | Not yet |
+| TC4 | white king compared with a white pawn | `true` | `isSameColorAs_sameColor_returnsTrue` | :white_check_mark: |
+| TC5 | white king compared with a black king | `false` | `isSameColorAs_differentColor_returnsFalse` | :white_check_mark: |
+| TC13 | white king compared with `null` | `NullPointerException`: "other must not be null" | `isSameColorAs_null_throwsNullPointerException` | :white_check_mark: |
 
 ### Method under test: `equals(Object other)`
 | ID | State / Input | Expected output | Test method | Implemented? |
