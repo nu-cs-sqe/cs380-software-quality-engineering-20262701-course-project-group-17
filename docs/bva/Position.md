@@ -15,9 +15,9 @@ All tests are in `src/test/java/domain/PositionTest.java`.
 ### Method under test: `Position(int row, int col)`, `getRow()`, `getCol()`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | row 0, col 0 (lower boundary) | `getRow()` is 0 and `getCol()` is 0 | `constructor_onBoardBoundaries_storesRowAndCol` | Not yet |
-| TC2 | row 7, col 7 (upper boundary) | `getRow()` is 7 and `getCol()` is 7 | `constructor_onBoardBoundaries_storesRowAndCol` | Not yet |
-| TC15 | row 3, col 4 (row and col differ) | `getRow()` is 3 and `getCol()` is 4 | `constructor_differentRowAndCol_keepsThemApart` | Not yet |
+| TC1 | row 0, col 0 (lower boundary) | `getRow()` is 0 and `getCol()` is 0 | `constructor_onBoardBoundaries_storesRowAndCol` | :white_check_mark: |
+| TC2 | row 7, col 7 (upper boundary) | `getRow()` is 7 and `getCol()` is 7 | `constructor_onBoardBoundaries_storesRowAndCol` | :white_check_mark: |
+| TC15 | row 3, col 4 (row and col differ) | `getRow()` is 3 and `getCol()` is 4 | `constructor_differentRowAndCol_keepsThemApart` | :white_check_mark: |
 | TC3 | row -1, col 0 | `IllegalArgumentException`: "row must be between 0 and 7, but was -1" | `constructor_rowOffBoard_throwsIllegalArgumentException` | Not yet |
 | TC4 | row 8, col 0 | `IllegalArgumentException`: "row must be between 0 and 7, but was 8" | `constructor_rowOffBoard_throwsIllegalArgumentException` | Not yet |
 | TC5 | row 0, col -1 | `IllegalArgumentException`: "col must be between 0 and 7, but was -1" | `constructor_colOffBoard_throwsIllegalArgumentException` | Not yet |
