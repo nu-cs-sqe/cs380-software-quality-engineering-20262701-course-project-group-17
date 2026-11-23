@@ -24,4 +24,13 @@ public class PositionTest {
         assertEquals(3, position.getRow());
         assertEquals(4, position.getCol());
     }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 8})
+    public void constructor_rowOffBoard_throwsIllegalArgumentException(int row) {
+        IllegalArgumentException exception =
+                assertThrows(IllegalArgumentException.class, () -> new Position(row, 0));
+
+        assertEquals("row must be between 0 and 7, but was " + row, exception.getMessage());
+    }
 }
