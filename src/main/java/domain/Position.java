@@ -10,7 +10,7 @@ public final class Position {
 
     public Position(int row, int col) {
         this.row = requireOnBoard(row, "row");
-        this.col = col;
+        this.col = requireOnBoard(col, "col");
     }
 
     private static int requireOnBoard(int index, String axis) {

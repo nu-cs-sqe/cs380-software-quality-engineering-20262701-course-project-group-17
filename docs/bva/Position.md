@@ -20,8 +20,8 @@ All tests are in `src/test/java/domain/PositionTest.java`.
 | TC15 | row 3, col 4 (row and col differ) | `getRow()` is 3 and `getCol()` is 4 | `constructor_differentRowAndCol_keepsThemApart` | :white_check_mark: |
 | TC3 | row -1, col 0 | `IllegalArgumentException`: "row must be between 0 and 7, but was -1" | `constructor_rowOffBoard_throwsIllegalArgumentException` | :white_check_mark: |
 | TC4 | row 8, col 0 | `IllegalArgumentException`: "row must be between 0 and 7, but was 8" | `constructor_rowOffBoard_throwsIllegalArgumentException` | :white_check_mark: |
-| TC5 | row 0, col -1 | `IllegalArgumentException`: "col must be between 0 and 7, but was -1" | `constructor_colOffBoard_throwsIllegalArgumentException` | Not yet |
-| TC6 | row 0, col 8 | `IllegalArgumentException`: "col must be between 0 and 7, but was 8" | `constructor_colOffBoard_throwsIllegalArgumentException` | Not yet |
+| TC5 | row 0, col -1 | `IllegalArgumentException`: "col must be between 0 and 7, but was -1" | `constructor_colOffBoard_throwsIllegalArgumentException` | :white_check_mark: |
+| TC6 | row 0, col 8 | `IllegalArgumentException`: "col must be between 0 and 7, but was 8" | `constructor_colOffBoard_throwsIllegalArgumentException` | :white_check_mark: |
 
 ### Method under test: `equals(Object other)`
 | ID | State / Input | Expected output | Test method | Implemented? |
