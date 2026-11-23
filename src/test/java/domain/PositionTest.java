@@ -42,4 +42,41 @@ public class PositionTest {
 
         assertEquals("col must be between 0 and 7, but was " + col, exception.getMessage());
     }
+
+    @Test
+    public void equals_sameInstance_returnsTrue() {
+        Position position = new Position(3, 4);
+
+        assertTrue(position.equals(position));
+    }
+
+    @Test
+    public void equals_sameRowAndCol_returnsTrue() {
+        assertEquals(new Position(3, 4), new Position(3, 4));
+    }
+
+    @Test
+    public void equals_differentRow_returnsFalse() {
+        assertNotEquals(new Position(3, 4), new Position(2, 4));
+    }
+
+    @Test
+    public void equals_differentCol_returnsFalse() {
+        assertNotEquals(new Position(3, 4), new Position(3, 5));
+    }
+
+    @Test
+    public void equals_null_returnsFalse() {
+        assertNotEquals(new Position(3, 4), null);
+    }
+
+    @Test
+    public void equals_differentType_returnsFalse() {
+        assertNotEquals(new Position(3, 4), "3,4");
+    }
+
+    @Test
+    public void hashCode_equalPositions_returnsSameValue() {
+        assertEquals(new Position(3, 4).hashCode(), new Position(3, 4).hashCode());
+    }
 }
