@@ -3,6 +3,8 @@ package domain.piece;
 import java.util.Objects;
 
 public final class Piece {
+    private static final int COLOR_COUNT = PieceColor.values().length;
+
     private final PieceType type;
     private final PieceColor color;
 
@@ -35,6 +37,6 @@ public final class Piece {
 
     @Override
     public int hashCode() {
-        return 0;
+        return type.ordinal() * COLOR_COUNT + color.ordinal();
     }
 }

@@ -41,6 +41,6 @@ All tests are in `src/test/java/domain/piece/PieceTest.java`.
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
 | TC11 | two separate white queens | the same hash code | `hashCode_equalPieces_returnsSameValue` | :white_check_mark: |
-| TC12 | (KING, WHITE), (KING, BLACK), (QUEEN, WHITE), (PAWN, BLACK) | 0, 1, 2, 11 (the piece index, `type.ordinal() * 2 + color.ordinal()`) | `hashCode_anyPiece_returnsPieceIndex` | Not yet |
+| TC12 | (KING, WHITE), (KING, BLACK), (QUEEN, WHITE), (PAWN, BLACK) | 0, 1, 2, 11 (the piece index, `type.ordinal() * 2 + color.ordinal()`) | `hashCode_anyPiece_returnsPieceIndex` | :white_check_mark: |
 
 TC13 was added during review, so it sits with the other `isSameColorAs` cases rather than in numeric order. TC12 checks exact values instead of only "different hash codes". Enum hash codes can change from run to run, so a test built on them could fail at random. A fixed formula based on enum order gives each of the 12 pieces its own index, from 0 to 11, the same way `Position` numbers its 64 squares.
