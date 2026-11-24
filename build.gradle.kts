@@ -4,6 +4,7 @@ plugins {
     id("jacoco")
     id("checkstyle")
     id("info.solidsoft.pitest") version "1.15.0"
+    id("com.github.spotbugs") version "6.0.26"
 }
 
 group = "nu.csse.sqe"
@@ -45,6 +46,20 @@ checkstyle {
     configFile = file("config/checkstyle/checkstyle.xml")
     isIgnoreFailures = false
     maxWarnings = 0
+}
+
+spotbugs {
+    toolVersion = "4.8.6"
+    ignoreFailures = false
+    effort = com.github.spotbugs.snom.Effort.MAX
+    reportLevel = com.github.spotbugs.snom.Confidence.LOW
+    excludeFilter = file("config/spotbugs/exclude.xml")
+}
+
+tasks.withType<com.github.spotbugs.snom.SpotBugsTask>().configureEach {
+    reports.create("html") {
+        required = true
+    }
 }
 
 val coverageExclusions = listOf("ui/**", "**/*Type.class", "**/*Color.class")

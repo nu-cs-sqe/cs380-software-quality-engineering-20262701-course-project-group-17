@@ -14,16 +14,16 @@ A two-player desktop chess game with a Java Swing GUI.
 - Gradle 8.10 (wrapper included)
 - JUnit 5.10, EasyMock 5.4
 - Java Swing
-- Checkstyle 10.12, JaCoCo 0.8.11, PIT 1.15
+- Checkstyle 10.12, SpotBugs 4.8, JaCoCo 0.8.11, PIT 1.15
 
 ## Commands
 | What | Command |
 |------|---------|
 | Run the game | `./gradlew run` |
-| Tests + style + 100% coverage gate | `./gradlew check` |
+| Tests, Checkstyle, SpotBugs, and the 100% coverage gate | `./gradlew check` |
 | Mutation testing | `./gradlew pitest` |
 
-Reports: `build/reports/tests`, `build/reports/jacoco`, `build/reports/checkstyle`, `build/reports/pitest`.
+Reports: `build/reports/tests`, `build/reports/jacoco`, `build/reports/checkstyle`, `build/reports/spotbugs`, `build/reports/pitest`.
 
 ## Documentation
 - Rules: [docs/requirements/game-rules.md](docs/requirements/game-rules.md)
@@ -38,5 +38,7 @@ Reports: `build/reports/tests`, `build/reports/jacoco`, `build/reports/checkstyl
 `ui.*` (View classes and `Main`) and enums are excluded, as the rubric allows.
 ### Mutation Testing
 `ui.*` and enums are excluded. No equivalent mutants so far.
+### Static Analysis
+SpotBugs checks all main and test code. No exclusions in `config/spotbugs/exclude.xml` so far.
 ### Others
 N/A

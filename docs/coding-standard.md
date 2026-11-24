@@ -41,6 +41,8 @@ We follow Robert C. Martin's *Clean Code*. Checkstyle enforces the parts a tool 
 - Test both sides of every boundary (T5). Coverage and mutation testing confirm that we did.
 
 ## Quality gates (all run in CI)
+- Checkstyle reports no violations.
+- SpotBugs reports no bugs in main or test code. It runs at maximum effort and reports every confidence level, so even a low-confidence warning fails the build. If a warning is a false positive, exclude that one pattern in `config/spotbugs/exclude.xml` and explain why in the README under Exceptions.
 - Every non-view, non-enum class has a BVA file in `docs/bva/`, and every test case in it has a test.
 - `domain` has 100% line and branch coverage (JaCoCo).
 - `domain` has 100% of mutants killed (PIT). Any equivalent mutant goes in the README under Exceptions.
