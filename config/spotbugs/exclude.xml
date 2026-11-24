@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Each exclusion needs a matching entry in the README under Exceptions. -->
+<FindBugsFilter>
+</FindBugsFilter>
