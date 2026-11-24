@@ -30,7 +30,7 @@ jobs:
         with:
           gradle-version: 8.10
 
-      - name: Build, test, Checkstyle, and coverage gate
+      - name: Build, test, Checkstyle, SpotBugs, and coverage gate
         run: ./gradlew build
 
       - name: Mutation testing
@@ -45,4 +45,5 @@ jobs:
             build/reports/tests/
             build/reports/jacoco/
             build/reports/checkstyle/
+            build/reports/spotbugs/
             build/reports/pitest/
