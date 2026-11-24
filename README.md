@@ -38,5 +38,7 @@ Reports: `build/reports/tests`, `build/reports/jacoco`, `build/reports/checkstyl
 `ui.*` (View classes and `Main`) and enums are excluded, as the rubric allows.
 ### Mutation Testing
 `ui.*` and enums are excluded. No equivalent mutants so far.
+### Static Analysis
+SpotBugs checks all main and test code. No exclusions in `config/spotbugs/exclude.xml` so far.
 ### Others
 N/A
