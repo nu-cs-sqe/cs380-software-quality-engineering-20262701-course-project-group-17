@@ -18,7 +18,8 @@ public class PieceSelection {
     }
 
     public void select(Position position, PieceColor turn) {
-        throw new UnsupportedOperationException("not implemented yet");
+        selected = Optional.of(position);
+        highlights = legalMoves.from(board, position);
     }
 
     public Optional<Position> getSelected() {
