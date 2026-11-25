@@ -18,8 +18,10 @@ public class PieceSelection {
     }
 
     public void select(Position position, PieceColor turn) {
-        selected = Optional.of(position);
-        highlights = legalMoves.from(board, position);
+        if (!board.isEmpty(position)) {
+            selected = Optional.of(position);
+            highlights = legalMoves.from(board, position);
+        }
     }
 
     public Optional<Position> getSelected() {
