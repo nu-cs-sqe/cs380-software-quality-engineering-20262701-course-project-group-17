@@ -42,7 +42,7 @@ public class PieceSelection {
 
     private void selectPiece(Position position) {
         selected = Optional.of(position);
-        highlights = legalMoves.from(board, position);
+        highlights = Set.copyOf(legalMoves.from(board, position));
     }
 
     public Optional<Position> getSelected() {

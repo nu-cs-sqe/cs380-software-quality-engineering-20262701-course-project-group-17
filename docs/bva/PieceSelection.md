@@ -52,7 +52,7 @@ All tests will be in `src/test/java/domain/PieceSelectionTest.java`.
 ### Method under test: `getHighlights()`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC21 | (6,4) is selected; add (3,3) to the returned set | `UnsupportedOperationException` | `getHighlights_modifyReturnedSet_throwsUnsupportedOperationException` | :x: |
-| TC22 | (6,4) is selected; add (3,3) to the set the mock returned | `getHighlights()` is still {(5,4), (4,4)} | `getHighlights_mockSetChangedLater_staysUnchanged` | :x: |
+| TC21 | (6,4) is selected; add (3,3) to the returned set | `UnsupportedOperationException` | `getHighlights_modifyReturnedSet_throwsUnsupportedOperationException` | :white_check_mark: |
+| TC22 | (6,4) is selected; add (3,3) to the set the mock returned | `getHighlights()` is still {(5,4), (4,4)} | `getHighlights_mockSetChangedLater_staysUnchanged` | :white_check_mark: |
 
 TC8 to TC10, TC14 and TC15 use a strict mock with `verify`, so they fail if `select` asks for legal moves when it shouldn't. TC21 and TC22 check that the highlights can't be changed from outside, so the class stores a copy of the legal moves.
