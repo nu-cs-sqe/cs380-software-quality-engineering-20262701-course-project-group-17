@@ -24,7 +24,7 @@ All tests will be in `src/test/java/domain/PieceSelectionTest.java`.
 ### Methods under test: `PieceSelection(Board board, LegalMoves legalMoves)`, `getSelected()`, `getHighlights()`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | new selection on the standard board | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `constructor_newSelection_nothingSelected` | :x: |
+| TC1 | new selection on the standard board | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `constructor_newSelection_nothingSelected` | :white_check_mark: |
 | TC2 | construct with `null`, mock | `NullPointerException`: "board must not be null" | `constructor_nullBoard_throwsNullPointerException` | :x: |
 | TC3 | construct with the standard board, `null` | `NullPointerException`: "legalMoves must not be null" | `constructor_nullLegalMoves_throwsNullPointerException` | :x: |
 
