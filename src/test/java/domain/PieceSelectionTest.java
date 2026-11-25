@@ -4,6 +4,7 @@ import domain.piece.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -255,6 +256,29 @@ public class PieceSelectionTest {
                 () -> selection.select(WHITE_PAWN, null));
 
         assertEquals("turn must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void getHighlights_modifyReturnedSet_throwsUnsupportedOperationException() {
+        expectMoves(WHITE_PAWN, new HashSet<>(WHITE_PAWN_MOVES));
+        PieceSelection selection = newSelection();
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        Set<Position> highlights = selection.getHighlights();
+
+        assertThrows(UnsupportedOperationException.class, () -> highlights.add(new Position(3, 3)));
+    }
+
+    @Test
+    public void getHighlights_mockSetChangedLater_staysUnchanged() {
+        Set<Position> moves = new HashSet<>(WHITE_PAWN_MOVES);
+        expectMoves(WHITE_PAWN, moves);
+        PieceSelection selection = newSelection();
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        moves.add(new Position(3, 3));
+
+        assertEquals(WHITE_PAWN_MOVES, selection.getHighlights());
     }
 
     private void expectMoves(Position position, Set<Position> moves) {
