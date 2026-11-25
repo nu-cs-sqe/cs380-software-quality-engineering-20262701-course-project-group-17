@@ -237,6 +237,26 @@ public class PieceSelectionTest {
         }
     }
 
+    @Test
+    public void select_nullPosition_throwsNullPointerException() {
+        PieceSelection selection = newSelection();
+
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> selection.select(null, PieceColor.WHITE));
+
+        assertEquals("position must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void select_nullTurn_throwsNullPointerException() {
+        PieceSelection selection = newSelection();
+
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> selection.select(WHITE_PAWN, null));
+
+        assertEquals("turn must not be null", exception.getMessage());
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andReturn(moves);
     }
