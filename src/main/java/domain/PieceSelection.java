@@ -18,7 +18,10 @@ public class PieceSelection {
     }
 
     public void select(Position position, PieceColor turn) {
-        if (isOwnPiece(position, turn)) {
+        if (selected.equals(Optional.of(position))) {
+            selected = Optional.empty();
+            highlights = Set.of();
+        } else if (isOwnPiece(position, turn)) {
             selected = Optional.of(position);
             highlights = legalMoves.from(board, position);
         }
