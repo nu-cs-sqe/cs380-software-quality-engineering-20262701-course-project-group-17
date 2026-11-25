@@ -28,6 +28,22 @@ public class PieceSelectionTest {
         verify(legalMoves);
     }
 
+    @Test
+    public void constructor_nullBoard_throwsNullPointerException() {
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> new PieceSelection(null, legalMoves));
+
+        assertEquals("board must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void constructor_nullLegalMoves_throwsNullPointerException() {
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> new PieceSelection(board, null));
+
+        assertEquals("legalMoves must not be null", exception.getMessage());
+    }
+
     private PieceSelection newSelection() {
         replay(legalMoves);
         return new PieceSelection(board, legalMoves);
