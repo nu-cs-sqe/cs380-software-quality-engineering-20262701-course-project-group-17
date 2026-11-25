@@ -118,6 +118,27 @@ public class PieceSelectionTest {
         verify(legalMoves);
     }
 
+    @Test
+    public void select_whitePieceOnBlackTurn_doesNothing() {
+        PieceSelection selection = newSelection();
+
+        selection.select(WHITE_PAWN, PieceColor.BLACK);
+
+        assertNothingSelected(selection);
+        verify(legalMoves);
+    }
+
+    @Test
+    public void select_separateEqualPosition_selectsPiece() {
+        expectMoves(new Position(6, 4), WHITE_PAWN_MOVES);
+        PieceSelection selection = newSelection();
+
+        selection.select(new Position(6, 4), PieceColor.WHITE);
+
+        assertEquals(Optional.of(new Position(6, 4)), selection.getSelected());
+        verify(legalMoves);
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andReturn(moves);
     }

@@ -37,8 +37,8 @@ All tests will be in `src/test/java/domain/PieceSelectionTest.java`.
 | TC7 | empty board with a white pawn on (6,4) and a black pawn on (4,4); `WHITE` selects (6,4); mock returns {(5,4)} (1 move) | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4)} | `select_pieceWithOneMove_highlightsOneSquare` | :white_check_mark: |
 | TC8 | standard board, nothing selected; `WHITE` selects the empty square (4,4) | `getSelected()` is `Optional.empty()`; the mock is never called | `select_emptySquare_doesNothing` | :white_check_mark: |
 | TC9 | standard board, nothing selected; `WHITE` selects the black pawn on (1,4) | `getSelected()` is `Optional.empty()`; the mock is never called | `select_opponentPiece_doesNothing` | :white_check_mark: |
-| TC10 | standard board, nothing selected; `BLACK` selects the white pawn on (6,4) | `getSelected()` is `Optional.empty()`; the mock is never called | `select_whitePieceOnBlackTurn_doesNothing` | :x: |
-| TC11 | standard board; select with one `new Position(6,4)`, read with a separate `new Position(6,4)` | `getSelected()` contains (6,4) | `select_separateEqualPosition_selectsPiece` | :x: |
+| TC10 | standard board, nothing selected; `BLACK` selects the white pawn on (6,4) | `getSelected()` is `Optional.empty()`; the mock is never called | `select_whitePieceOnBlackTurn_doesNothing` | :white_check_mark: |
+| TC11 | standard board; select with one `new Position(6,4)`, read with a separate `new Position(6,4)` | `getSelected()` contains (6,4) | `select_separateEqualPosition_selectsPiece` | :white_check_mark: |
 | TC12 | (6,4) is selected; `WHITE` selects (6,4) again | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `select_selectedPieceAgain_deselects` | :x: |
 | TC13 | (6,4) is selected; `WHITE` selects the white knight on (7,6); mock returns {(5,5), (5,7)} | `getSelected()` contains (7,6) and `getHighlights()` is {(5,5), (5,7)} | `select_otherOwnPiece_switchesSelection` | :x: |
 | TC14 | (6,4) is selected; `WHITE` selects the empty square (3,3) | `getSelected()` still contains (6,4) and `getHighlights()` is still {(5,4), (4,4)} | `select_emptySquareWhileSelected_keepsSelection` | :x: |
