@@ -5,11 +5,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
+import java.util.Set;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PieceSelectionTest {
+    private static final Position WHITE_PAWN = new Position(6, 4);
+    private static final Set<Position> WHITE_PAWN_MOVES = Set.of(new Position(5, 4), new Position(4, 4));
 
     private Board board;
     private LegalMoves legalMoves;
@@ -44,9 +47,29 @@ public class PieceSelectionTest {
         assertEquals("legalMoves must not be null", exception.getMessage());
     }
 
+    @Test
+    public void select_ownPiece_selectsPieceAndHighlightsMoves() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        PieceSelection selection = newSelection();
+
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        assertSelected(WHITE_PAWN, WHITE_PAWN_MOVES, selection);
+        verify(legalMoves);
+    }
+
+    private void expectMoves(Position position, Set<Position> moves) {
+        expect(legalMoves.from(board, position)).andReturn(moves);
+    }
+
     private PieceSelection newSelection() {
         replay(legalMoves);
         return new PieceSelection(board, legalMoves);
+    }
+
+    private void assertSelected(Position expected, Set<Position> expectedHighlights, PieceSelection selection) {
+        assertEquals(Optional.of(expected), selection.getSelected());
+        assertEquals(expectedHighlights, selection.getHighlights());
     }
 
     private void assertNothingSelected(PieceSelection selection) {
