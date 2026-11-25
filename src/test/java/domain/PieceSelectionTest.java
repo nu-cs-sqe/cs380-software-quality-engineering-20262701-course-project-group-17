@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PieceSelectionTest {
     private static final Position WHITE_PAWN = new Position(6, 4);
     private static final Set<Position> WHITE_PAWN_MOVES = Set.of(new Position(5, 4), new Position(4, 4));
+    private static final Position BLACK_PAWN = new Position(1, 4);
 
     private Board board;
     private LegalMoves legalMoves;
@@ -102,6 +103,16 @@ public class PieceSelectionTest {
         PieceSelection selection = newSelection();
 
         selection.select(new Position(4, 4), PieceColor.WHITE);
+
+        assertNothingSelected(selection);
+        verify(legalMoves);
+    }
+
+    @Test
+    public void select_opponentPiece_doesNothing() {
+        PieceSelection selection = newSelection();
+
+        selection.select(BLACK_PAWN, PieceColor.WHITE);
 
         assertNothingSelected(selection);
         verify(legalMoves);
