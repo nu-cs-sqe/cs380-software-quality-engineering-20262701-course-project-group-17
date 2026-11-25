@@ -18,10 +18,14 @@ public class PieceSelection {
     }
 
     public void select(Position position, PieceColor turn) {
-        if (board.getPiece(position).filter(piece -> piece.getColor() == turn).isPresent()) {
+        if (isOwnPiece(position, turn)) {
             selected = Optional.of(position);
             highlights = legalMoves.from(board, position);
         }
+    }
+
+    private boolean isOwnPiece(Position position, PieceColor turn) {
+        return board.getPiece(position).filter(piece -> piece.getColor() == turn).isPresent();
     }
 
     public Optional<Position> getSelected() {
