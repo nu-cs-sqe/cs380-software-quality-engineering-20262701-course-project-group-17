@@ -139,6 +139,18 @@ public class PieceSelectionTest {
         verify(legalMoves);
     }
 
+    @Test
+    public void select_selectedPieceAgain_deselects() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        PieceSelection selection = newSelection();
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        assertNothingSelected(selection);
+        verify(legalMoves);
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andReturn(moves);
     }
