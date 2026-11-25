@@ -97,6 +97,16 @@ public class PieceSelectionTest {
         verify(legalMoves);
     }
 
+    @Test
+    public void select_emptySquare_doesNothing() {
+        PieceSelection selection = newSelection();
+
+        selection.select(new Position(4, 4), PieceColor.WHITE);
+
+        assertNothingSelected(selection);
+        verify(legalMoves);
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andReturn(moves);
     }
