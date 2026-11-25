@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PieceSelectionTest {
     private static final Position WHITE_PAWN = new Position(6, 4);
     private static final Set<Position> WHITE_PAWN_MOVES = Set.of(new Position(5, 4), new Position(4, 4));
+    private static final Position WHITE_KNIGHT = new Position(7, 6);
+    private static final Set<Position> WHITE_KNIGHT_MOVES = Set.of(new Position(5, 5), new Position(5, 7));
     private static final Position BLACK_PAWN = new Position(1, 4);
 
     private Board board;
@@ -149,6 +151,90 @@ public class PieceSelectionTest {
 
         assertNothingSelected(selection);
         verify(legalMoves);
+    }
+
+    @Test
+    public void select_otherOwnPiece_switchesSelection() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        expectMoves(WHITE_KNIGHT, WHITE_KNIGHT_MOVES);
+        PieceSelection selection = newSelection();
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        selection.select(WHITE_KNIGHT, PieceColor.WHITE);
+
+        assertSelected(WHITE_KNIGHT, WHITE_KNIGHT_MOVES, selection);
+        verify(legalMoves);
+    }
+
+    @Test
+    public void select_emptySquareWhileSelected_keepsSelection() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        PieceSelection selection = newSelection();
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        selection.select(new Position(3, 3), PieceColor.WHITE);
+
+        assertSelected(WHITE_PAWN, WHITE_PAWN_MOVES, selection);
+        verify(legalMoves);
+    }
+
+    @Test
+    public void select_opponentPieceWhileSelected_keepsSelection() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        PieceSelection selection = newSelection();
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        selection.select(BLACK_PAWN, PieceColor.WHITE);
+
+        assertSelected(WHITE_PAWN, WHITE_PAWN_MOVES, selection);
+        verify(legalMoves);
+    }
+
+    @Test
+    public void select_afterDeselect_selectsAgain() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        PieceSelection selection = newSelection();
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        assertSelected(WHITE_PAWN, WHITE_PAWN_MOVES, selection);
+        verify(legalMoves);
+    }
+
+    @Test
+    public void select_switchedPieceAgain_deselects() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        expectMoves(WHITE_KNIGHT, WHITE_KNIGHT_MOVES);
+        PieceSelection selection = newSelection();
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+        selection.select(WHITE_KNIGHT, PieceColor.WHITE);
+
+        selection.select(WHITE_KNIGHT, PieceColor.WHITE);
+
+        assertNothingSelected(selection);
+        verify(legalMoves);
+    }
+
+    @Test
+    public void select_anySequence_boardIsUnchanged() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        expectMoves(WHITE_KNIGHT, WHITE_KNIGHT_MOVES);
+        PieceSelection selection = newSelection();
+
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+        selection.select(WHITE_KNIGHT, PieceColor.WHITE);
+        selection.select(WHITE_KNIGHT, PieceColor.WHITE);
+
+        Board standard = Board.createStandard();
+        for (int row = 0; row < Position.BOARD_SIZE; row++) {
+            for (int col = 0; col < Position.BOARD_SIZE; col++) {
+                Position position = new Position(row, col);
+                assertEquals(standard.getPiece(position), board.getPiece(position));
+            }
+        }
     }
 
     private void expectMoves(Position position, Set<Position> moves) {

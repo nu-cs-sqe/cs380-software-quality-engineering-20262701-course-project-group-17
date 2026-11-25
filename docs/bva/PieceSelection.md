@@ -40,12 +40,12 @@ All tests will be in `src/test/java/domain/PieceSelectionTest.java`.
 | TC10 | standard board, nothing selected; `BLACK` selects the white pawn on (6,4) | `getSelected()` is `Optional.empty()`; the mock is never called | `select_whitePieceOnBlackTurn_doesNothing` | :white_check_mark: |
 | TC11 | standard board; select with one `new Position(6,4)`, read with a separate `new Position(6,4)` | `getSelected()` contains (6,4) | `select_separateEqualPosition_selectsPiece` | :white_check_mark: |
 | TC12 | (6,4) is selected; `WHITE` selects (6,4) again | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `select_selectedPieceAgain_deselects` | :white_check_mark: |
-| TC13 | (6,4) is selected; `WHITE` selects the white knight on (7,6); mock returns {(5,5), (5,7)} | `getSelected()` contains (7,6) and `getHighlights()` is {(5,5), (5,7)} | `select_otherOwnPiece_switchesSelection` | :x: |
-| TC14 | (6,4) is selected; `WHITE` selects the empty square (3,3) | `getSelected()` still contains (6,4) and `getHighlights()` is still {(5,4), (4,4)} | `select_emptySquareWhileSelected_keepsSelection` | :x: |
-| TC15 | (6,4) is selected; `WHITE` selects the black pawn on (1,4) | `getSelected()` still contains (6,4) and `getHighlights()` is still {(5,4), (4,4)} | `select_opponentPieceWhileSelected_keepsSelection` | :x: |
-| TC16 | (6,4) was selected and then deselected; `WHITE` selects (6,4) again | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4), (4,4)} | `select_afterDeselect_selectsAgain` | :x: |
-| TC17 | (6,4) is selected, then (7,6); `WHITE` selects (7,6) again | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `select_switchedPieceAgain_deselects` | :x: |
-| TC18 | standard board; select (6,4), then (7,6), then (7,6) again | all 64 squares match a fresh `Board.createStandard()` | `select_anySequence_boardIsUnchanged` | :x: |
+| TC13 | (6,4) is selected; `WHITE` selects the white knight on (7,6); mock returns {(5,5), (5,7)} | `getSelected()` contains (7,6) and `getHighlights()` is {(5,5), (5,7)} | `select_otherOwnPiece_switchesSelection` | :white_check_mark: |
+| TC14 | (6,4) is selected; `WHITE` selects the empty square (3,3) | `getSelected()` still contains (6,4) and `getHighlights()` is still {(5,4), (4,4)} | `select_emptySquareWhileSelected_keepsSelection` | :white_check_mark: |
+| TC15 | (6,4) is selected; `WHITE` selects the black pawn on (1,4) | `getSelected()` still contains (6,4) and `getHighlights()` is still {(5,4), (4,4)} | `select_opponentPieceWhileSelected_keepsSelection` | :white_check_mark: |
+| TC16 | (6,4) was selected and then deselected; `WHITE` selects (6,4) again | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4), (4,4)} | `select_afterDeselect_selectsAgain` | :white_check_mark: |
+| TC17 | (6,4) is selected, then (7,6); `WHITE` selects (7,6) again | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `select_switchedPieceAgain_deselects` | :white_check_mark: |
+| TC18 | standard board; select (6,4), then (7,6), then (7,6) again | all 64 squares match a fresh `Board.createStandard()` | `select_anySequence_boardIsUnchanged` | :white_check_mark: |
 | TC19 | construct with the standard board, mock; `select(null, WHITE)` | `NullPointerException`: "position must not be null" | `select_nullPosition_throwsNullPointerException` | :x: |
 | TC20 | construct with the standard board, mock; `select((6,4), null)` | `NullPointerException`: "turn must not be null" | `select_nullTurn_throwsNullPointerException` | :x: |
 
