@@ -18,7 +18,7 @@ public class PieceSelection {
     }
 
     public void select(Position position, PieceColor turn) {
-        if (!board.isEmpty(position)) {
+        if (board.getPiece(position).filter(piece -> piece.getColor() == turn).isPresent()) {
             selected = Optional.of(position);
             highlights = legalMoves.from(board, position);
         }
