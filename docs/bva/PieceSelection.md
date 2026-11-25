@@ -32,9 +32,9 @@ All tests will be in `src/test/java/domain/PieceSelectionTest.java`.
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
 | TC4 | standard board, nothing selected; `WHITE` selects the white pawn on (6,4); mock returns {(5,4), (4,4)} | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4), (4,4)} | `select_ownPiece_selectsPieceAndHighlightsMoves` | :white_check_mark: |
-| TC5 | standard board, nothing selected; `BLACK` selects the black knight on (0,6); mock returns {(2,5), (2,7)} | `getSelected()` contains (0,6) and `getHighlights()` is {(2,5), (2,7)} | `select_blackPieceOnBlackTurn_selectsPiece` | :x: |
-| TC6 | standard board, nothing selected; `WHITE` selects the white rook on (7,0); mock returns {} (0 moves) | `getSelected()` contains (7,0) and `getHighlights()` is empty | `select_pieceWithNoMoves_selectsWithNoHighlights` | :x: |
-| TC7 | empty board with a white pawn on (6,4) and a black pawn on (4,4); `WHITE` selects (6,4); mock returns {(5,4)} (1 move) | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4)} | `select_pieceWithOneMove_highlightsOneSquare` | :x: |
+| TC5 | standard board, nothing selected; `BLACK` selects the black knight on (0,6); mock returns {(2,5), (2,7)} | `getSelected()` contains (0,6) and `getHighlights()` is {(2,5), (2,7)} | `select_blackPieceOnBlackTurn_selectsPiece` | :white_check_mark: |
+| TC6 | standard board, nothing selected; `WHITE` selects the white rook on (7,0); mock returns {} (0 moves) | `getSelected()` contains (7,0) and `getHighlights()` is empty | `select_pieceWithNoMoves_selectsWithNoHighlights` | :white_check_mark: |
+| TC7 | empty board with a white pawn on (6,4) and a black pawn on (4,4); `WHITE` selects (6,4); mock returns {(5,4)} (1 move) | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4)} | `select_pieceWithOneMove_highlightsOneSquare` | :white_check_mark: |
 | TC8 | standard board, nothing selected; `WHITE` selects the empty square (4,4) | `getSelected()` is `Optional.empty()`; the mock is never called | `select_emptySquare_doesNothing` | :x: |
 | TC9 | standard board, nothing selected; `WHITE` selects the black pawn on (1,4) | `getSelected()` is `Optional.empty()`; the mock is never called | `select_opponentPiece_doesNothing` | :x: |
 | TC10 | standard board, nothing selected; `BLACK` selects the white pawn on (6,4) | `getSelected()` is `Optional.empty()`; the mock is never called | `select_whitePieceOnBlackTurn_doesNothing` | :x: |

@@ -58,6 +58,45 @@ public class PieceSelectionTest {
         verify(legalMoves);
     }
 
+    @Test
+    public void select_blackPieceOnBlackTurn_selectsPiece() {
+        Position blackKnight = new Position(0, 6);
+        Set<Position> blackKnightMoves = Set.of(new Position(2, 5), new Position(2, 7));
+        expectMoves(blackKnight, blackKnightMoves);
+        PieceSelection selection = newSelection();
+
+        selection.select(blackKnight, PieceColor.BLACK);
+
+        assertSelected(blackKnight, blackKnightMoves, selection);
+        verify(legalMoves);
+    }
+
+    @Test
+    public void select_pieceWithNoMoves_selectsWithNoHighlights() {
+        Position whiteRook = new Position(7, 0);
+        expectMoves(whiteRook, Set.of());
+        PieceSelection selection = newSelection();
+
+        selection.select(whiteRook, PieceColor.WHITE);
+
+        assertSelected(whiteRook, Set.of(), selection);
+        verify(legalMoves);
+    }
+
+    @Test
+    public void select_pieceWithOneMove_highlightsOneSquare() {
+        board = new Board();
+        board.placePiece(WHITE_PAWN, new Piece(PieceType.PAWN, PieceColor.WHITE));
+        board.placePiece(new Position(4, 4), new Piece(PieceType.PAWN, PieceColor.BLACK));
+        expectMoves(WHITE_PAWN, Set.of(new Position(5, 4)));
+        PieceSelection selection = newSelection();
+
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        assertSelected(WHITE_PAWN, Set.of(new Position(5, 4)), selection);
+        verify(legalMoves);
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andReturn(moves);
     }
