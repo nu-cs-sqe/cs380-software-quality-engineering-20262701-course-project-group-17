@@ -1,0 +1,29 @@
+@startuml
+title Select a Piece - Class Diagram
+
+package domain {
+    interface LegalMoves {
+        + from(board: Board, position: Position): Set<Position>
+    }
+
+    class PieceSelection {
+        - board: Board
+        - legalMoves: LegalMoves
+        - selected: Optional<Position>
+        - highlights: Set<Position>
+        + PieceSelection(board: Board, legalMoves: LegalMoves)
+        + select(position: Position, turn: PieceColor): void
+        + getSelected(): Optional<Position>
+        + getHighlights(): Set<Position>
+    }
+
+    class Board
+    class Position
+}
+
+PieceSelection --> Board
+PieceSelection --> LegalMoves
+PieceSelection ..> Position
+LegalMoves ..> Board
+LegalMoves ..> Position
+@enduml
