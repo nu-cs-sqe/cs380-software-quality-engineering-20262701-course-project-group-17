@@ -46,8 +46,8 @@ All tests will be in `src/test/java/domain/PieceSelectionTest.java`.
 | TC16 | (6,4) was selected and then deselected; `WHITE` selects (6,4) again | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4), (4,4)} | `select_afterDeselect_selectsAgain` | :white_check_mark: |
 | TC17 | (6,4) is selected, then (7,6); `WHITE` selects (7,6) again | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `select_switchedPieceAgain_deselects` | :white_check_mark: |
 | TC18 | standard board; select (6,4), then (7,6), then (7,6) again | all 64 squares match a fresh `Board.createStandard()` | `select_anySequence_boardIsUnchanged` | :white_check_mark: |
-| TC19 | construct with the standard board, mock; `select(null, WHITE)` | `NullPointerException`: "position must not be null" | `select_nullPosition_throwsNullPointerException` | :x: |
-| TC20 | construct with the standard board, mock; `select((6,4), null)` | `NullPointerException`: "turn must not be null" | `select_nullTurn_throwsNullPointerException` | :x: |
+| TC19 | construct with the standard board, mock; `select(null, WHITE)` | `NullPointerException`: "position must not be null" | `select_nullPosition_throwsNullPointerException` | :white_check_mark: |
+| TC20 | construct with the standard board, mock; `select((6,4), null)` | `NullPointerException`: "turn must not be null" | `select_nullTurn_throwsNullPointerException` | :white_check_mark: |
 
 ### Method under test: `getHighlights()`
 | ID | State / Input | Expected output | Test method | Implemented? |

@@ -18,6 +18,8 @@ public class PieceSelection {
     }
 
     public void select(Position position, PieceColor turn) {
+        Objects.requireNonNull(position, "position must not be null");
+        Objects.requireNonNull(turn, "turn must not be null");
         if (isSelected(position)) {
             deselect();
         } else if (isOwnPiece(position, turn)) {
