@@ -18,17 +18,29 @@ public class PieceSelection {
     }
 
     public void select(Position position, PieceColor turn) {
-        if (selected.equals(Optional.of(position))) {
-            selected = Optional.empty();
-            highlights = Set.of();
+        if (isSelected(position)) {
+            deselect();
         } else if (isOwnPiece(position, turn)) {
-            selected = Optional.of(position);
-            highlights = legalMoves.from(board, position);
+            selectPiece(position);
         }
+    }
+
+    private boolean isSelected(Position position) {
+        return selected.equals(Optional.of(position));
+    }
+
+    private void deselect() {
+        selected = Optional.empty();
+        highlights = Set.of();
     }
 
     private boolean isOwnPiece(Position position, PieceColor turn) {
         return board.getPiece(position).filter(piece -> piece.getColor() == turn).isPresent();
+    }
+
+    private void selectPiece(Position position) {
+        selected = Optional.of(position);
+        highlights = legalMoves.from(board, position);
     }
 
     public Optional<Position> getSelected() {
