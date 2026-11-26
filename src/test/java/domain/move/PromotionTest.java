@@ -91,6 +91,18 @@ public class PromotionTest {
         assertEquals(Optional.of(new Piece(KNIGHT, BLACK)), board.getPiece(at(7, 4)));
     }
 
+    @ParameterizedTest
+    @EnumSource(value = PieceType.class, names = {"KING", "PAWN"})
+    public void promote_choiceNotAllowed_throwsAndLeavesThePawn(PieceType choice) {
+        place(at(0, 3), PAWN, WHITE);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> Promotion.promote(board, at(0, 3), choice));
+
+        assertEquals("a pawn can only be promoted to a queen, rook, bishop, or knight", exception.getMessage());
+        assertEquals(Optional.of(new Piece(PAWN, WHITE)), board.getPiece(at(0, 3)));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
