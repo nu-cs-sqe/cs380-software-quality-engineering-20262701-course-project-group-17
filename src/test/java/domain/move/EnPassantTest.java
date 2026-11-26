@@ -38,6 +38,16 @@ public class EnPassantTest {
         assertEquals(Optional.empty(), EnPassant.destination(board, at(3, 4), new Move(at(2, 3), at(3, 3))));
     }
 
+    @Test
+    public void destination_pawnNotBeside_returnsEmpty() {
+        place(at(3, 3), PAWN, BLACK);
+        place(at(3, 5), PAWN, WHITE);
+        place(at(4, 4), PAWN, WHITE);
+
+        assertEquals(Optional.empty(), EnPassant.destination(board, at(3, 5), BLACK_DOUBLE_STEP));
+        assertEquals(Optional.empty(), EnPassant.destination(board, at(4, 4), BLACK_DOUBLE_STEP));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
