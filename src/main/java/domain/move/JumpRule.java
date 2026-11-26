@@ -25,6 +25,10 @@ final class JumpRule implements MoveRule {
         return new JumpRule(KNIGHT_JUMPS);
     }
 
+    static JumpRule king() {
+        return new JumpRule(Direction.ALL);
+    }
+
     @Override
     public Set<Position> destinations(Board board, Position from, PieceColor color) {
         return jumps.stream()
