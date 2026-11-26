@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-import java.util.HashSet;
 import java.util.Set;
 
+import static domain.move.PositionSets.squares;
 import static domain.piece.PieceColor.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -125,13 +125,5 @@ public class JumpRuleTest {
 
     private void placePawn(int row, int col, PieceColor color) {
         board.placePiece(new Position(row, col), new Piece(PieceType.PAWN, color));
-    }
-
-    private static Set<Position> squares(int... rowColPairs) {
-        Set<Position> result = new HashSet<>();
-        for (int i = 0; i < rowColPairs.length; i += 2) {
-            result.add(new Position(rowColPairs[i], rowColPairs[i + 1]));
-        }
-        return result;
     }
 }
