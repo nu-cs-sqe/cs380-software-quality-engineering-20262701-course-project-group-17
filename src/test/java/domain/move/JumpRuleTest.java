@@ -82,8 +82,19 @@ public class JumpRuleTest {
         assertEquals(squares(1, 2, 1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
     }
 
+    @Test
+    public void king_center_hasEightMoves() {
+        Set<Position> moves = kingMoves(CENTER, WHITE);
+
+        assertEquals(squares(2, 2, 2, 3, 2, 4, 3, 2, 3, 4, 4, 2, 4, 3, 4, 4), moves);
+    }
+
     private Set<Position> knightMoves(Position from, PieceColor color) {
         return JumpRule.knight().destinations(board, from, color);
+    }
+
+    private Set<Position> kingMoves(Position from, PieceColor color) {
+        return JumpRule.king().destinations(board, from, color);
     }
 
     private void placePawn(int row, int col, PieceColor color) {
