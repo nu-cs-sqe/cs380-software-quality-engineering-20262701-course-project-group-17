@@ -22,8 +22,8 @@ All tests are in `src/test/java/domain/move/PawnRuleTest.java`.
 ### Forward moves
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | white pawn on (5,3) (one row after its start), empty board | (4,3) | `pawn_afterStartRow_movesOneSquare` | Not yet |
-| TC2 | black pawn on (2,3) (one row after its start), empty board | (3,3) | `pawn_afterStartRow_movesOneSquare` | Not yet |
+| TC1 | white pawn on (5,3) (one row after its start), empty board | (4,3) | `pawn_afterStartRow_movesOneSquare` | :white_check_mark: |
+| TC2 | black pawn on (2,3) (one row after its start), empty board | (3,3) | `pawn_afterStartRow_movesOneSquare` | :white_check_mark: |
 | TC3 | white pawn on (6,3) (its start row), empty board | (5,3), (4,3) | `pawn_onStartRow_canMoveOneOrTwoSquares` | Not yet |
 | TC4 | black pawn on (1,3) (its start row), empty board | (2,3), (3,3) | `pawn_onStartRow_canMoveOneOrTwoSquares` | Not yet |
 | TC5 | white pawn on (1,3) (Black's start row) | (0,3) only | `pawn_onOtherSidesStartRow_movesOneSquare` | Not yet |
