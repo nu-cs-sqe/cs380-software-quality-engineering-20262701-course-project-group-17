@@ -58,6 +58,17 @@ public class PromotionTest {
         assertFalse(Promotion.isDue(board, at(0, 3)));
     }
 
+    @Test
+    public void isDue_nullArgument_throwsNullPointerException() {
+        NullPointerException nullBoard =
+                assertThrows(NullPointerException.class, () -> Promotion.isDue(null, at(0, 3)));
+        NullPointerException nullPosition =
+                assertThrows(NullPointerException.class, () -> Promotion.isDue(board, null));
+
+        assertEquals("board must not be null", nullBoard.getMessage());
+        assertEquals("position must not be null", nullPosition.getMessage());
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
