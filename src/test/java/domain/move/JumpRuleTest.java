@@ -52,6 +52,36 @@ public class JumpRuleTest {
         assertEquals(squares(1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
     }
 
+    @Test
+    public void knight_enemyOnTarget_canCapture() {
+        placePawn(1, 2, BLACK);
+
+        Set<Position> moves = JumpRule.knight().destinations(board, CENTER, WHITE);
+
+        assertEquals(squares(1, 2, 1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
+    }
+
+    @Test
+    public void knight_blackKnight_capturesWhiteAndAvoidsBlack() {
+        placePawn(1, 2, WHITE);
+        placePawn(5, 4, BLACK);
+
+        Set<Position> moves = JumpRule.knight().destinations(board, CENTER, BLACK);
+
+        assertEquals(squares(1, 2, 1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2), moves);
+    }
+
+    @Test
+    public void knight_surroundedByOwnPieces_jumpsOver() {
+        for (Position neighbour : squares(2, 2, 2, 3, 2, 4, 3, 2, 3, 4, 4, 2, 4, 3, 4, 4)) {
+            placePawn(neighbour.getRow(), neighbour.getCol(), WHITE);
+        }
+
+        Set<Position> moves = JumpRule.knight().destinations(board, CENTER, WHITE);
+
+        assertEquals(squares(1, 2, 1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
+    }
+
     private void placePawn(int row, int col, PieceColor color) {
         board.placePiece(new Position(row, col), new Piece(PieceType.PAWN, color));
     }
