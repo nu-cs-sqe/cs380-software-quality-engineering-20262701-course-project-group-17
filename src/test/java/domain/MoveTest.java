@@ -29,4 +29,15 @@ public class MoveTest {
 
         assertEquals("to must not be null", exception.getMessage());
     }
+
+    @Test
+    public void constructor_sameSquare_throwsIllegalArgumentException() {
+        IllegalArgumentException sameInstance =
+                assertThrows(IllegalArgumentException.class, () -> new Move(TO, TO));
+        IllegalArgumentException equalSquare =
+                assertThrows(IllegalArgumentException.class, () -> new Move(TO, new Position(3, 3)));
+
+        assertEquals("a move must change square", sameInstance.getMessage());
+        assertEquals("a move must change square", equalSquare.getMessage());
+    }
 }
