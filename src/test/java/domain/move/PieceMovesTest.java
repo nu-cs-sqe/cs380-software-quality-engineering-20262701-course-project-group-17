@@ -3,6 +3,7 @@ package domain.move;
 import domain.Board;
 import domain.Position;
 import domain.piece.*;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -27,5 +28,13 @@ public class PieceMovesTest {
 
         assertEquals(moveCount, moves.size());
         assertEquals(reachesAhead, moves.contains(AHEAD_OF_CENTER));
+    }
+
+    @Test
+    public void from_emptySquare_throwsIllegalArgumentException() {
+        IllegalArgumentException exception =
+                assertThrows(IllegalArgumentException.class, () -> pieceMoves.from(board, CENTER));
+
+        assertEquals("position must hold a piece", exception.getMessage());
     }
 }
