@@ -13,4 +13,8 @@ final class Squares {
                 .filter(piece -> piece.getColor() != color)
                 .isPresent();
     }
+
+    static boolean isEmptyOrEnemy(Board board, Position position, PieceColor color) {
+        return board.isEmpty(position) || isEnemy(board, position, color);
+    }
 }

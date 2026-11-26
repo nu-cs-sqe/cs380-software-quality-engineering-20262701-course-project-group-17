@@ -24,6 +24,6 @@ All tests are in `src/test/java/domain/move/SquaresTest.java`.
 ### Method under test: `isEmptyOrEnemy(Board board, Position position, PieceColor color)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC5 | empty square, `WHITE` | `true` | `isEmptyOrEnemy_emptySquare_returnsTrue` | Not yet |
-| TC6 | black piece on the square, `WHITE` | `true` | `isEmptyOrEnemy_otherColor_returnsTrue` | Not yet |
-| TC7 | black piece on the square, `BLACK` | `false` | `isEmptyOrEnemy_sameColor_returnsFalse` | Not yet |
+| TC5 | empty square, `WHITE` | `true` | `isEmptyOrEnemy_emptySquare_returnsTrue` | :white_check_mark: |
+| TC6 | black piece on the square, `WHITE` | `true` | `isEmptyOrEnemy_otherColor_returnsTrue` | :white_check_mark: |
+| TC7 | black piece on the square, `BLACK` | `false` | `isEmptyOrEnemy_sameColor_returnsFalse` | :white_check_mark: |
