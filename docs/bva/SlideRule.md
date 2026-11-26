@@ -22,8 +22,8 @@ All tests are in `src/test/java/domain/move/SlideRuleTest.java`.
 |----|---------------|-----------------|-------------|--------------|
 | TC1 | white rook on (3,3) | the 14 squares of row 3 and col 3, except (3,3) | `rook_centerOfEmptyBoard_hasFourteenMoves` | :white_check_mark: |
 | TC2 | white rook on (0,0) | the 14 squares of row 0 and col 0, except (0,0) | `rook_cornerOfEmptyBoard_hasFourteenMoves` | :white_check_mark: |
-| TC3 | white bishop on (3,3) | the 13 squares on its two diagonals | `bishop_centerOfEmptyBoard_hasThirteenMoves` | Not yet |
-| TC4 | white bishop on (0,0) | the 7 squares (1,1) to (7,7) | `bishop_cornerOfEmptyBoard_hasSevenMoves` | Not yet |
+| TC3 | white bishop on (3,3) | the 13 squares on its two diagonals | `bishop_centerOfEmptyBoard_hasThirteenMoves` | :white_check_mark: |
+| TC4 | white bishop on (0,0) | the 7 squares (1,1) to (7,7) | `bishop_cornerOfEmptyBoard_hasSevenMoves` | :white_check_mark: |
 | TC5 | white queen on (3,3) | the 27 squares from TC1 and TC3 together | `queen_centerOfEmptyBoard_hasTwentySevenMoves` | Not yet |
 
 ### Method under test: `destinations(...)` with pieces in the way
