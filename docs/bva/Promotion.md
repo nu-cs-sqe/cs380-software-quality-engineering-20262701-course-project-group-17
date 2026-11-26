@@ -29,7 +29,7 @@ All tests are in `src/test/java/domain/move/PromotionTest.java`.
 | TC5 | black pawn on (6,3) | `false` | `isDue_pawnOneRowShort_returnsFalse` | :white_check_mark: |
 | TC6 | white pawn on (7,3) (Black's last row) | `false` | `isDue_pawnOnOtherSidesLastRow_returnsFalse` | :white_check_mark: |
 | TC7 | black pawn on (0,3) (White's last row) | `false` | `isDue_pawnOnOtherSidesLastRow_returnsFalse` | :white_check_mark: |
-| TC8 | white queen on (0,3) | `false` | `isDue_notAPawn_returnsFalse` | Not yet |
+| TC8 | white queen on (0,3) | `false` | `isDue_notAPawn_returnsFalse` | :white_check_mark: |
 | TC9 | nothing on (0,3) | `false` | `isDue_emptySquare_returnsFalse` | :white_check_mark: |
 | TC10 | `board` or `position` is `null` | `NullPointerException`: "board must not be null" / "position must not be null" | `isDue_nullArgument_throwsNullPointerException` | Not yet |
 

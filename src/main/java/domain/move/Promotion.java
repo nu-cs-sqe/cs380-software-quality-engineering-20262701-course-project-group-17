@@ -19,6 +19,7 @@ public final class Promotion {
 
     public static boolean isDue(Board board, Position position) {
         return board.getPiece(position)
+                .filter(piece -> piece.getType() == PieceType.PAWN)
                 .filter(piece -> isOnLastRow(piece, position))
                 .isPresent();
     }
