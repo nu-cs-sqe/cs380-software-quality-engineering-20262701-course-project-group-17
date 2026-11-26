@@ -18,7 +18,7 @@ All tests are in `src/test/java/domain/move/PromotionTest.java`.
 ### Constant: `CHOICES`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | `CHOICES` | QUEEN, ROOK, BISHOP, KNIGHT, in that order | `choices_inDialogOrder_areQueenRookBishopKnight` | Not yet |
+| TC1 | `CHOICES` | QUEEN, ROOK, BISHOP, KNIGHT, in that order | `choices_inDialogOrder_areQueenRookBishopKnight` | :white_check_mark: |
 
 ### Method under test: `isDue(Board board, Position position)`
 | ID | State / Input | Expected output | Test method | Implemented? |
