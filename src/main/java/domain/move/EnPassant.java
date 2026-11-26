@@ -29,6 +29,7 @@ public final class EnPassant {
     }
 
     public static Position capturedPawn(Move enPassantMove) {
+        Objects.requireNonNull(enPassantMove, "enPassantMove must not be null");
         return new Position(enPassantMove.getFrom().getRow(), enPassantMove.getTo().getCol());
     }
 
