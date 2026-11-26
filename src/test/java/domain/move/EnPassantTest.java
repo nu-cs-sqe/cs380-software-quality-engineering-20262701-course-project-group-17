@@ -5,6 +5,7 @@ import domain.Move;
 import domain.Position;
 import domain.piece.*;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.Optional;
 
@@ -96,11 +97,26 @@ public class EnPassantTest {
         assertEquals(Optional.empty(), EnPassant.destination(board, at(3, 4), new Move(at(0, 1), at(2, 2))));
     }
 
+    @Test
+    public void destination_nullArgument_throwsNullPointerException() {
+        Position from = at(3, 4);
+
+        assertNullMessage("board must not be null", () -> EnPassant.destination(null, from, BLACK_DOUBLE_STEP));
+        assertNullMessage("from must not be null", () -> EnPassant.destination(board, null, BLACK_DOUBLE_STEP));
+        assertNullMessage("lastMove must not be null", () -> EnPassant.destination(board, from, null));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
 
     private static Position at(int row, int col) {
         return new Position(row, col);
+    }
+
+    private static void assertNullMessage(String expectedMessage, Executable call) {
+        NullPointerException exception = assertThrows(NullPointerException.class, call);
+
+        assertEquals(expectedMessage, exception.getMessage());
     }
 }
