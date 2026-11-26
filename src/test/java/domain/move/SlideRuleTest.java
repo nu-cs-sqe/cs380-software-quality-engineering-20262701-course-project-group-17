@@ -59,4 +59,23 @@ public class SlideRuleTest {
         assertEquals(expected, moves);
         assertEquals(27, moves.size());
     }
+
+    @Test
+    public void rook_ownPieceInTheWay_stopsOneSquareBefore() {
+        placePawn(3, 5, WHITE);
+
+        Set<Position> moves = SlideRule.rook().destinations(board, CENTER, WHITE);
+
+        assertEquals(without(ROOK_FROM_CENTER, squares(3, 5, 3, 6, 3, 7)), moves);
+    }
+
+    private void placePawn(int row, int col, PieceColor color) {
+        board.placePiece(new Position(row, col), new Piece(PieceType.PAWN, color));
+    }
+
+    private static Set<Position> without(Set<Position> all, Set<Position> removed) {
+        Set<Position> result = new HashSet<>(all);
+        result.removeAll(removed);
+        return result;
+    }
 }
