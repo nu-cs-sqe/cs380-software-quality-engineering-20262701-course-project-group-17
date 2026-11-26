@@ -17,11 +17,16 @@ public final class EnPassant {
     public static Optional<Position> destination(Board board, Position from, Move lastMove) {
         return board.getPiece(from)
                 .filter(pawn -> isDoubleStep(lastMove))
+                .filter(pawn -> isBeside(from, lastMove.getTo()))
                 .flatMap(pawn -> from.translate(diagonalToward(lastMove.getTo(), from, pawn)));
     }
 
     private static boolean isDoubleStep(Move move) {
         return Math.abs(move.getFrom().getRow() - move.getTo().getRow()) == DOUBLE_STEP;
+    }
+
+    private static boolean isBeside(Position from, Position other) {
+        return from.getRow() == other.getRow() && Math.abs(from.getCol() - other.getCol()) == 1;
     }
 
     private static Direction diagonalToward(Position enemyPawn, Position from, Piece pawn) {

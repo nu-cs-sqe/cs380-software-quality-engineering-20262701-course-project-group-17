@@ -25,8 +25,8 @@ All tests are in `src/test/java/domain/move/EnPassantTest.java`.
 | TC2 | white pawn on (3,2); black pawn just moved (1,3) to (3,3) | `Optional.of(Position(2,3))` | `destination_enemyPawnDoubleStepBeside_returnsSkippedSquare` | :white_check_mark: |
 | TC3 | black pawn on (4,4); white pawn just moved (6,3) to (4,3) | `Optional.of(Position(5,3))` | `destination_enemyPawnDoubleStepBeside_returnsSkippedSquare` | :white_check_mark: |
 | TC4 | white pawn on (3,4); black pawn just moved (2,3) to (3,3) (single step) | `Optional.empty()` | `destination_singleStep_returnsEmpty` | :white_check_mark: |
-| TC5 | white pawn on (3,5); black pawn just moved (1,3) to (3,3) (two columns away) | `Optional.empty()` | `destination_pawnNotBeside_returnsEmpty` | Not yet |
-| TC6 | white pawn on (4,4); black pawn just moved (1,3) to (3,3) (next row) | `Optional.empty()` | `destination_pawnNotBeside_returnsEmpty` | Not yet |
+| TC5 | white pawn on (3,5); black pawn just moved (1,3) to (3,3) (two columns away) | `Optional.empty()` | `destination_pawnNotBeside_returnsEmpty` | :white_check_mark: |
+| TC6 | white pawn on (4,4); black pawn just moved (1,3) to (3,3) (next row) | `Optional.empty()` | `destination_pawnNotBeside_returnsEmpty` | :white_check_mark: |
 | TC7 | white pawn on (3,4); black rook just moved (1,3) to (3,3) | `Optional.empty()` | `destination_lastMoveNotByAPawn_returnsEmpty` | Not yet |
 | TC8 | white pawn on (3,4); a black pawn on (3,3) got there by the last move (1,2) to (3,3), which isn't straight | `Optional.empty()` | `destination_lastMoveNotStraight_returnsEmpty` | Not yet |
 | TC9 | white pawn on (3,4); white pawn on (3,3) after the last move (1,3) to (3,3) | `Optional.empty()` | `destination_ownPawnMoved_returnsEmpty` | Not yet |
