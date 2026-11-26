@@ -53,4 +53,4 @@ Added for piece movement ([design/piece-movement.md](../design/piece-movement.md
 | TC19 | (7,3) translated by (1,0) (past row 7) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | :white_check_mark: |
 | TC20 | (3,0) translated by (0,-1) (past col 0) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | :white_check_mark: |
 | TC21 | (3,7) translated by (0,1) (past col 7) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | :white_check_mark: |
-| TC22 | (3,4) translated by `null` | `NullPointerException`: "direction must not be null" | `translate_nullDirection_throwsNullPointerException` | Not yet |
+| TC22 | (3,4) translated by `null` | `NullPointerException`: "direction must not be null" | `translate_nullDirection_throwsNullPointerException` | :white_check_mark: |

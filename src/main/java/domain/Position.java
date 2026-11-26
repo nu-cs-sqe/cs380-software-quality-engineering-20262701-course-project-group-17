@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public final class Position {
@@ -36,6 +37,7 @@ public final class Position {
     }
 
     public Optional<Position> translate(Direction direction) {
+        Objects.requireNonNull(direction, "direction must not be null");
         int newRow = row + direction.getRowDelta();
         int newCol = col + direction.getColDelta();
         if (isOffBoard(newRow) || isOffBoard(newCol)) {
