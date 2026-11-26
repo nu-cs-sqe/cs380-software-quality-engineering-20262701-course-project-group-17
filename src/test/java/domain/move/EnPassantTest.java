@@ -48,6 +48,14 @@ public class EnPassantTest {
         assertEquals(Optional.empty(), EnPassant.destination(board, at(4, 4), BLACK_DOUBLE_STEP));
     }
 
+    @Test
+    public void destination_lastMoveNotByAPawn_returnsEmpty() {
+        place(at(3, 3), ROOK, BLACK);
+        place(at(3, 4), PAWN, WHITE);
+
+        assertEquals(Optional.empty(), EnPassant.destination(board, at(3, 4), BLACK_DOUBLE_STEP));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
