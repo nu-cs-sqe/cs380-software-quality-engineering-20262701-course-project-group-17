@@ -1,12 +1,14 @@
 package domain;
 
+import java.util.Objects;
+
 public final class Move {
     private final Position from;
     private final Position to;
 
     public Move(Position from, Position to) {
-        this.from = from;
-        this.to = to;
+        this.from = Objects.requireNonNull(from, "from must not be null");
+        this.to = Objects.requireNonNull(to, "to must not be null");
     }
 
     public Position getFrom() {
