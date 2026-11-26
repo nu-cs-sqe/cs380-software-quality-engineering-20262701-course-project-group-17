@@ -1,0 +1,80 @@
+@startuml
+title Piece Movement - Class Diagram
+
+package domain {
+    class Position {
+        + translate(direction: Direction): Optional<Position>
+    }
+
+    class Direction {
+        + {static} ORTHOGONAL: List<Direction>
+        + {static} DIAGONAL: List<Direction>
+        - rowDelta: int
+        - colDelta: int
+        + Direction(rowDelta: int, colDelta: int)
+        + getRowDelta(): int
+        + getColDelta(): int
+    }
+
+    class Move {
+        - from: Position
+        - to: Position
+        + Move(from: Position, to: Position)
+        + getFrom(): Position
+        + getTo(): Position
+    }
+
+    class Board
+}
+
+package domain.move {
+    interface MoveRule {
+        + destinations(board: Board, from: Position, color: PieceColor): Set<Position>
+    }
+
+    class Squares {
+        ~ {static} isEnemy(board: Board, position: Position, color: PieceColor): boolean
+        ~ {static} isEmptyOrEnemy(board: Board, position: Position, color: PieceColor): boolean
+    }
+
+    class JumpRule {
+        ~ {static} knight(): JumpRule
+        ~ {static} king(): JumpRule
+    }
+
+    class SlideRule {
+        ~ {static} rook(): SlideRule
+        ~ {static} bishop(): SlideRule
+        ~ {static} queen(): SlideRule
+    }
+
+    class PawnRule
+
+    class PieceMoves {
+        + from(board: Board, position: Position): Set<Position>
+    }
+
+    class EnPassant {
+        + {static} destination(board: Board, from: Position, lastMove: Move): Optional<Position>
+        + {static} capturedPawn(enPassantMove: Move): Position
+    }
+
+    class Promotion {
+        + {static} CHOICES: List<PieceType>
+        + {static} isDue(board: Board, position: Position): boolean
+        + {static} promote(board: Board, position: Position, choice: PieceType): void
+    }
+}
+
+MoveRule <|.. JumpRule
+MoveRule <|.. SlideRule
+MoveRule <|.. PawnRule
+PieceMoves --> MoveRule
+JumpRule ..> Squares
+SlideRule ..> Squares
+PawnRule ..> Squares
+MoveRule ..> Board
+Position ..> Direction
+EnPassant ..> Move
+Promotion ..> Board
+@enduml
