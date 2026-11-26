@@ -36,7 +36,12 @@ public final class Position {
     }
 
     public Optional<Position> translate(Direction direction) {
-        return Optional.of(new Position(row + direction.getRowDelta(), col + direction.getColDelta()));
+        int newRow = row + direction.getRowDelta();
+        int newCol = col + direction.getColDelta();
+        if (isOffBoard(newRow) || isOffBoard(newCol)) {
+            return Optional.empty();
+        }
+        return Optional.of(new Position(newRow, newCol));
     }
 
     @Override
