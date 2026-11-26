@@ -33,16 +33,17 @@ final class SlideRule implements MoveRule {
     @Override
     public Set<Position> destinations(Board board, Position from, PieceColor color) {
         return directions.stream()
-                .flatMap(direction -> slide(from, direction).stream())
+                .flatMap(direction -> slide(board, from, direction).stream())
+                .filter(to -> Squares.isEmptyOrEnemy(board, to, color))
                 .collect(Collectors.toUnmodifiableSet());
     }
 
-    private static List<Position> slide(Position from, Direction direction) {
+    private static List<Position> slide(Board board, Position from, Direction direction) {
         List<Position> reached = new ArrayList<>();
         Optional<Position> next = from.translate(direction);
         while (next.isPresent()) {
             reached.add(next.get());
-            next = next.get().translate(direction);
+            next = next.filter(board::isEmpty).flatMap(square -> square.translate(direction));
         }
         return reached;
     }

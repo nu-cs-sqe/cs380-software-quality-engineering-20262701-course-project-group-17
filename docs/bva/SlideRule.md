@@ -29,7 +29,7 @@ All tests are in `src/test/java/domain/move/SlideRuleTest.java`.
 ### Method under test: `destinations(...)` with pieces in the way
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC6 | white rook on (3,3), white pawn on (3,5) (distance 2) | TC1 without (3,5), (3,6), (3,7): 11 squares, and (3,4) is the last one to the right | `rook_ownPieceInTheWay_stopsOneSquareBefore` | Not yet |
+| TC6 | white rook on (3,3), white pawn on (3,5) (distance 2) | TC1 without (3,5), (3,6), (3,7): 11 squares, and (3,4) is the last one to the right | `rook_ownPieceInTheWay_stopsOneSquareBefore` | :white_check_mark: |
 | TC7 | white rook on (3,3), black pawn on (3,5) (distance 2) | TC1 without (3,6), (3,7): 12 squares, with (3,5) as a capture | `rook_enemyInTheWay_capturesAndStops` | Not yet |
 | TC8 | white rook on (3,3), white pawns on (2,3), (4,3), (3,2), (3,4) (distance 1 on every side) | no moves | `rook_boxedInByOwnPieces_hasNoMoves` | Not yet |
 | TC9 | black bishop on (3,3), black pawn on (1,1), white pawn on (5,5) | 10 squares: (2,2), (4,4), (5,5), (2,4), (1,5), (0,6), (4,2), (5,1), (6,0), and nothing past (1,1) or (5,5) | `bishop_blackBishop_stopsAtOwnAndCapturesWhite` | Not yet |
