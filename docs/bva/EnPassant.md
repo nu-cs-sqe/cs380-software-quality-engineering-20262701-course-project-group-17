@@ -33,7 +33,7 @@ All tests are in `src/test/java/domain/move/EnPassantTest.java`.
 | TC10 | white knight on (3,4); black pawn just moved (1,3) to (3,3) | `Optional.empty()` | `destination_notAPawn_returnsEmpty` | :white_check_mark: |
 | TC11 | nothing on (3,4); black pawn just moved (1,3) to (3,3) | `Optional.empty()` | `destination_emptySquare_returnsEmpty` | :white_check_mark: |
 | TC12 | white pawn on (3,4); black pawn on (3,3) moved there earlier, and the last move was a black knight (0,1) to (2,2) | `Optional.empty()` | `destination_doubleStepNotTheLastMove_returnsEmpty` | :white_check_mark: |
-| TC13 | `board`, `from`, or `lastMove` is `null` | `NullPointerException` naming the argument: "board must not be null", "from must not be null", "lastMove must not be null" | `destination_nullArgument_throwsNullPointerException` | Not yet |
+| TC13 | `board`, `from`, or `lastMove` is `null` | `NullPointerException` naming the argument: "board must not be null", "from must not be null", "lastMove must not be null" | `destination_nullArgument_throwsNullPointerException` | :white_check_mark: |
 
 ### Method under test: `capturedPawn(Move enPassantMove)`
 | ID | State / Input | Expected output | Test method | Implemented? |

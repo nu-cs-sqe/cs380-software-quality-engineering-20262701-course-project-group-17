@@ -8,6 +8,7 @@ import domain.piece.Piece;
 import domain.piece.PieceColor;
 import domain.piece.PieceType;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public final class EnPassant {
@@ -17,6 +18,9 @@ public final class EnPassant {
     }
 
     public static Optional<Position> destination(Board board, Position from, Move lastMove) {
+        Objects.requireNonNull(board, "board must not be null");
+        Objects.requireNonNull(from, "from must not be null");
+        Objects.requireNonNull(lastMove, "lastMove must not be null");
         return board.getPiece(from)
                 .filter(EnPassant::isPawn)
                 .filter(pawn -> isEnemyPawnDoubleStep(board, lastMove, pawn.getColor()))
