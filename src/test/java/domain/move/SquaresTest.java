@@ -34,6 +34,25 @@ public class SquaresTest {
         assertFalse(Squares.isEnemy(board, TARGET, PieceColor.WHITE));
     }
 
+    @Test
+    public void isEmptyOrEnemy_emptySquare_returnsTrue() {
+        assertTrue(Squares.isEmptyOrEnemy(board, TARGET, PieceColor.WHITE));
+    }
+
+    @Test
+    public void isEmptyOrEnemy_otherColor_returnsTrue() {
+        board.placePiece(TARGET, new Piece(PieceType.PAWN, PieceColor.BLACK));
+
+        assertTrue(Squares.isEmptyOrEnemy(board, TARGET, PieceColor.WHITE));
+    }
+
+    @Test
+    public void isEmptyOrEnemy_sameColor_returnsFalse() {
+        board.placePiece(TARGET, new Piece(PieceType.PAWN, PieceColor.BLACK));
+
+        assertFalse(Squares.isEmptyOrEnemy(board, TARGET, PieceColor.BLACK));
+    }
+
     private static PieceColor opposite(PieceColor color) {
         return color == PieceColor.WHITE ? PieceColor.BLACK : PieceColor.WHITE;
     }
