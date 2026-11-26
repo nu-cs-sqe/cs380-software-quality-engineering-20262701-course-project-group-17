@@ -19,12 +19,12 @@ Unit tests are in `src/test/java/domain/move/PieceMovesTest.java`. The integrati
 ### Method under test: `from(Board board, Position position)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | white king alone on (3,3) | 8 moves, including (2,3) | `from_eachPieceTypeAlone_usesItsOwnRule` | Not yet |
-| TC2 | white queen alone on (3,3) | 27 moves | `from_eachPieceTypeAlone_usesItsOwnRule` | Not yet |
-| TC3 | white rook alone on (3,3) | 14 moves | `from_eachPieceTypeAlone_usesItsOwnRule` | Not yet |
-| TC4 | white bishop alone on (3,3) | 13 moves | `from_eachPieceTypeAlone_usesItsOwnRule` | Not yet |
-| TC5 | white knight alone on (3,3) | 8 moves, not including (2,3) | `from_eachPieceTypeAlone_usesItsOwnRule` | Not yet |
-| TC6 | white pawn alone on (3,3) | 1 move, (2,3) | `from_eachPieceTypeAlone_usesItsOwnRule` | Not yet |
+| TC1 | white king alone on (3,3) | 8 moves, including (2,3) | `from_eachPieceTypeAlone_usesItsOwnRule` | :white_check_mark: |
+| TC2 | white queen alone on (3,3) | 27 moves | `from_eachPieceTypeAlone_usesItsOwnRule` | :white_check_mark: |
+| TC3 | white rook alone on (3,3) | 14 moves | `from_eachPieceTypeAlone_usesItsOwnRule` | :white_check_mark: |
+| TC4 | white bishop alone on (3,3) | 13 moves | `from_eachPieceTypeAlone_usesItsOwnRule` | :white_check_mark: |
+| TC5 | white knight alone on (3,3) | 8 moves, not including (2,3) | `from_eachPieceTypeAlone_usesItsOwnRule` | :white_check_mark: |
+| TC6 | white pawn alone on (3,3) | 1 move, (2,3) | `from_eachPieceTypeAlone_usesItsOwnRule` | :white_check_mark: |
 | TC7 | an empty square | `IllegalArgumentException`: "position must hold a piece" | `from_emptySquare_throwsIllegalArgumentException` | Not yet |
 | TC8 | `board` is `null` | `NullPointerException`: "board must not be null" | `from_nullBoard_throwsNullPointerException` | Not yet |
 | TC9 | `position` is `null` | `NullPointerException`: "position must not be null" | `from_nullPosition_throwsNullPointerException` | Not yet |
