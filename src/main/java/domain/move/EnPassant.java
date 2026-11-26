@@ -5,6 +5,7 @@ import domain.Direction;
 import domain.Move;
 import domain.Position;
 import domain.piece.Piece;
+import domain.piece.PieceColor;
 import domain.piece.PieceType;
 
 import java.util.Optional;
@@ -17,13 +18,15 @@ public final class EnPassant {
 
     public static Optional<Position> destination(Board board, Position from, Move lastMove) {
         return board.getPiece(from)
-                .filter(pawn -> isPawnDoubleStep(board, lastMove))
+                .filter(pawn -> isEnemyPawnDoubleStep(board, lastMove, pawn.getColor()))
                 .filter(pawn -> isBeside(from, lastMove.getTo()))
                 .flatMap(pawn -> from.translate(diagonalToward(lastMove.getTo(), from, pawn)));
     }
 
-    private static boolean isPawnDoubleStep(Board board, Move move) {
-        return isDoubleStep(move) && board.getPiece(move.getTo()).filter(EnPassant::isPawn).isPresent();
+    private static boolean isEnemyPawnDoubleStep(Board board, Move move, PieceColor color) {
+        return isDoubleStep(move) && board.getPiece(move.getTo())
+                .filter(piece -> isPawn(piece) && piece.getColor() != color)
+                .isPresent();
     }
 
     private static boolean isPawn(Piece piece) {
