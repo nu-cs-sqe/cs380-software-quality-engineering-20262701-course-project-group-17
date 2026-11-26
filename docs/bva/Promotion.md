@@ -39,5 +39,5 @@ All tests are in `src/test/java/domain/move/PromotionTest.java`.
 | TC11 | white pawn on (0,3); each of QUEEN, ROOK, BISHOP, KNIGHT | (0,3) holds a white piece of the chosen type | `promote_allowedChoice_replacesThePawn` | :white_check_mark: |
 | TC12 | black pawn on (7,4); KNIGHT | (7,4) holds a black knight | `promote_blackPawn_keepsItsColor` | :white_check_mark: |
 | TC13 | white pawn on (0,3); KING or PAWN | `IllegalArgumentException`: "a pawn can only be promoted to a queen, rook, bishop, or knight", and (0,3) still holds the white pawn | `promote_choiceNotAllowed_throwsAndLeavesThePawn` | :white_check_mark: |
-| TC14 | white pawn on (1,3) (not due); QUEEN | `IllegalArgumentException`: "position must hold a pawn on its last row", and (1,3) still holds the white pawn | `promote_noPromotionDue_throwsAndLeavesTheBoard` | Not yet |
+| TC14 | white pawn on (1,3) (not due); QUEEN | `IllegalArgumentException`: "position must hold a pawn on its last row", and (1,3) still holds the white pawn | `promote_noPromotionDue_throwsAndLeavesTheBoard` | :white_check_mark: |
 | TC15 | `board`, `position`, or `choice` is `null` | `NullPointerException` naming the argument | `promote_nullArgument_throwsNullPointerException` | Not yet |

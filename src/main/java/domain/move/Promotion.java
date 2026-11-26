@@ -36,6 +36,9 @@ public final class Promotion {
         if (!CHOICES.contains(choice)) {
             throw new IllegalArgumentException("a pawn can only be promoted to a queen, rook, bishop, or knight");
         }
+        if (!isDue(board, position)) {
+            throw new IllegalArgumentException("position must hold a pawn on its last row");
+        }
         PieceColor color = board.getPiece(position).orElseThrow().getColor();
         board.placePiece(position, new Piece(choice, color));
     }
