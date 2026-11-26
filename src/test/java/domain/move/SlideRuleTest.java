@@ -16,6 +16,9 @@ public class SlideRuleTest {
     private static final Set<Position> ROOK_FROM_CENTER = squares(
             3, 0, 3, 1, 3, 2, 3, 4, 3, 5, 3, 6, 3, 7,
             0, 3, 1, 3, 2, 3, 4, 3, 5, 3, 6, 3, 7, 3);
+    private static final Set<Position> BISHOP_FROM_CENTER = squares(
+            2, 2, 1, 1, 0, 0, 4, 4, 5, 5, 6, 6, 7, 7,
+            2, 4, 1, 5, 0, 6, 4, 2, 5, 1, 6, 0);
 
     private final Board board = new Board();
 
@@ -31,5 +34,17 @@ public class SlideRuleTest {
                 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0);
 
         assertEquals(expected, SlideRule.rook().destinations(board, new Position(0, 0), WHITE));
+    }
+
+    @Test
+    public void bishop_centerOfEmptyBoard_hasThirteenMoves() {
+        assertEquals(BISHOP_FROM_CENTER, SlideRule.bishop().destinations(board, CENTER, WHITE));
+    }
+
+    @Test
+    public void bishop_cornerOfEmptyBoard_hasSevenMoves() {
+        Set<Position> expected = squares(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7);
+
+        assertEquals(expected, SlideRule.bishop().destinations(board, new Position(0, 0), WHITE));
     }
 }
