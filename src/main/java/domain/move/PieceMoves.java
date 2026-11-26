@@ -7,6 +7,7 @@ import domain.piece.PieceType;
 
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 public final class PieceMoves {
@@ -22,6 +23,8 @@ public final class PieceMoves {
     }
 
     public Set<Position> from(Board board, Position position) {
+        Objects.requireNonNull(board, "board must not be null");
+        Objects.requireNonNull(position, "position must not be null");
         Piece piece = board.getPiece(position)
                 .orElseThrow(() -> new IllegalArgumentException("position must hold a piece"));
         return rules.get(piece.getType()).destinations(board, position, piece.getColor());

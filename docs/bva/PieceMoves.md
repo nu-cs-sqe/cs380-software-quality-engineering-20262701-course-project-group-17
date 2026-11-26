@@ -26,8 +26,8 @@ Unit tests are in `src/test/java/domain/move/PieceMovesTest.java`. The integrati
 | TC5 | white knight alone on (3,3) | 8 moves, not including (2,3) | `from_eachPieceTypeAlone_usesItsOwnRule` | :white_check_mark: |
 | TC6 | white pawn alone on (3,3) | 1 move, (2,3) | `from_eachPieceTypeAlone_usesItsOwnRule` | :white_check_mark: |
 | TC7 | an empty square | `IllegalArgumentException`: "position must hold a piece" | `from_emptySquare_throwsIllegalArgumentException` | :white_check_mark: |
-| TC8 | `board` is `null` | `NullPointerException`: "board must not be null" | `from_nullBoard_throwsNullPointerException` | Not yet |
-| TC9 | `position` is `null` | `NullPointerException`: "position must not be null" | `from_nullPosition_throwsNullPointerException` | Not yet |
+| TC8 | `board` is `null` | `NullPointerException`: "board must not be null" | `from_nullBoard_throwsNullPointerException` | :white_check_mark: |
+| TC9 | `position` is `null` | `NullPointerException`: "position must not be null" | `from_nullPosition_throwsNullPointerException` | :white_check_mark: |
 | TC10 | the returned set | adding to it throws `UnsupportedOperationException` | `from_result_cannotBeChanged` | Not yet |
 
 ### Integration: every rule on the standard starting board
