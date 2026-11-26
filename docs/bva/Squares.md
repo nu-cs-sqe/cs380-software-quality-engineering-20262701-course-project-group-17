@@ -16,10 +16,10 @@ All tests are in `src/test/java/domain/move/SquaresTest.java`.
 ### Method under test: `isEnemy(Board board, Position position, PieceColor color)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | empty square, `WHITE` | `false` | `isEnemy_emptySquare_returnsFalse` | Not yet |
-| TC2 | black piece on the square, `WHITE` | `true` | `isEnemy_otherColor_returnsTrue` | Not yet |
-| TC3 | white piece on the square, `BLACK` | `true` | `isEnemy_otherColor_returnsTrue` | Not yet |
-| TC4 | white piece on the square, `WHITE` | `false` | `isEnemy_sameColor_returnsFalse` | Not yet |
+| TC1 | empty square, `WHITE` | `false` | `isEnemy_emptySquare_returnsFalse` | :white_check_mark: |
+| TC2 | black piece on the square, `WHITE` | `true` | `isEnemy_otherColor_returnsTrue` | :white_check_mark: |
+| TC3 | white piece on the square, `BLACK` | `true` | `isEnemy_otherColor_returnsTrue` | :white_check_mark: |
+| TC4 | white piece on the square, `WHITE` | `false` | `isEnemy_sameColor_returnsFalse` | :white_check_mark: |
 
 ### Method under test: `isEmptyOrEnemy(Board board, Position position, PieceColor color)`
 | ID | State / Input | Expected output | Test method | Implemented? |
