@@ -34,7 +34,8 @@ public final class EnPassant {
     }
 
     private static boolean isDoubleStep(Move move) {
-        return Math.abs(move.getFrom().getRow() - move.getTo().getRow()) == DOUBLE_STEP;
+        return Math.abs(move.getFrom().getRow() - move.getTo().getRow()) == DOUBLE_STEP
+                && move.getFrom().getCol() == move.getTo().getCol();
     }
 
     private static boolean isBeside(Position from, Position other) {
