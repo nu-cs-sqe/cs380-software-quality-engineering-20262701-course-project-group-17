@@ -7,6 +7,7 @@ import domain.piece.PieceColor;
 import domain.piece.PieceType;
 
 import java.util.List;
+import java.util.Objects;
 
 public final class Promotion {
     public static final List<PieceType> CHOICES = List.of(
@@ -18,6 +19,8 @@ public final class Promotion {
     }
 
     public static boolean isDue(Board board, Position position) {
+        Objects.requireNonNull(board, "board must not be null");
+        Objects.requireNonNull(position, "position must not be null");
         return board.getPiece(position)
                 .filter(piece -> piece.getType() == PieceType.PAWN)
                 .filter(piece -> isOnLastRow(piece, position))
