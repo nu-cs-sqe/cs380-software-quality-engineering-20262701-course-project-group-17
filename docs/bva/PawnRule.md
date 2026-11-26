@@ -26,12 +26,12 @@ All tests are in `src/test/java/domain/move/PawnRuleTest.java`.
 | TC2 | black pawn on (2,3) (one row after its start), empty board | (3,3) | `pawn_afterStartRow_movesOneSquare` | :white_check_mark: |
 | TC3 | white pawn on (6,3) (its start row), empty board | (5,3), (4,3) | `pawn_onStartRow_canMoveOneOrTwoSquares` | :white_check_mark: |
 | TC4 | black pawn on (1,3) (its start row), empty board | (2,3), (3,3) | `pawn_onStartRow_canMoveOneOrTwoSquares` | :white_check_mark: |
-| TC5 | white pawn on (1,3) (Black's start row) | (0,3) only | `pawn_onOtherSidesStartRow_movesOneSquare` | Not yet |
-| TC6 | black pawn on (6,3) (White's start row) | (7,3) only | `pawn_onOtherSidesStartRow_movesOneSquare` | Not yet |
+| TC5 | white pawn on (1,3) (Black's start row) | (0,3) only | `pawn_onOtherSidesStartRow_movesOneSquare` | :white_check_mark: |
+| TC6 | black pawn on (6,3) (White's start row) | (7,3) only | `pawn_onOtherSidesStartRow_movesOneSquare` | :white_check_mark: |
 | TC7 | white pawn on (6,3), any piece on (5,3) | no moves | `pawn_squareAheadTaken_cannotMoveForward` | Not yet |
 | TC8 | white pawn on (6,3), any piece on (4,3) | (5,3) only | `pawn_twoAheadTaken_movesOneSquare` | Not yet |
-| TC9 | white pawn on (0,3) (last row) | no moves | `pawn_onLastRow_hasNoMoves` | Not yet |
-| TC10 | black pawn on (7,3) (last row) | no moves | `pawn_onLastRow_hasNoMoves` | Not yet |
+| TC9 | white pawn on (0,3) (last row) | no moves | `pawn_onLastRow_hasNoMoves` | :white_check_mark: |
+| TC10 | black pawn on (7,3) (last row) | no moves | `pawn_onLastRow_hasNoMoves` | :white_check_mark: |
 
 ### Captures
 | ID | State / Input | Expected output | Test method | Implemented? |

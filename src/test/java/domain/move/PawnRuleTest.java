@@ -26,6 +26,18 @@ public class PawnRuleTest {
         assertEquals(squares(2, 3, 3, 3), pawnMoves(1, 3, BLACK));
     }
 
+    @Test
+    public void pawn_onOtherSidesStartRow_movesOneSquare() {
+        assertEquals(squares(0, 3), pawnMoves(1, 3, WHITE));
+        assertEquals(squares(7, 3), pawnMoves(6, 3, BLACK));
+    }
+
+    @Test
+    public void pawn_onLastRow_hasNoMoves() {
+        assertEquals(Set.of(), pawnMoves(0, 3, WHITE));
+        assertEquals(Set.of(), pawnMoves(7, 3, BLACK));
+    }
+
     private Set<Position> pawnMoves(int row, int col, PieceColor color) {
         return new PawnRule().destinations(board, new Position(row, col), color);
     }
