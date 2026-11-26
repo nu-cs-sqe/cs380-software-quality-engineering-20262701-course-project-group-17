@@ -26,6 +26,6 @@ Added for king movement (issue [#22](https://github.com/nu-cs-sqe/cs380-software
 
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC5 | (3,3) translated by every direction in `ORTHOGONAL` | (2,3), (4,3), (3,2), (3,4) | `orthogonal_fromCenter_reachesTheFourStraightNeighbours` | Not yet |
-| TC6 | (3,3) translated by every direction in `DIAGONAL` | (2,2), (2,4), (4,2), (4,4) | `diagonal_fromCenter_reachesTheFourDiagonalNeighbours` | Not yet |
-| TC7 | (3,3) translated by every direction in `ALL` | all 8 neighbours of (3,3), and no square twice (the list has 8 entries) | `all_fromCenter_reachesAllEightNeighbours` | Not yet |
+| TC5 | (3,3) translated by every direction in `ORTHOGONAL` | (2,3), (4,3), (3,2), (3,4) | `orthogonal_fromCenter_reachesTheFourStraightNeighbours` | :white_check_mark: |
+| TC6 | (3,3) translated by every direction in `DIAGONAL` | (2,2), (2,4), (4,2), (4,4) | `diagonal_fromCenter_reachesTheFourDiagonalNeighbours` | :white_check_mark: |
+| TC7 | (3,3) translated by every direction in `ALL` | all 8 neighbours of (3,3), and no square twice (the list has 8 entries) | `all_fromCenter_reachesAllEightNeighbours` | :white_check_mark: |
