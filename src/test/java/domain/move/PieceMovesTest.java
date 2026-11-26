@@ -6,6 +6,7 @@ import domain.piece.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import java.util.Set;
 
@@ -52,5 +53,15 @@ public class PieceMovesTest {
                 assertThrows(NullPointerException.class, () -> pieceMoves.from(board, null));
 
         assertEquals("position must not be null", exception.getMessage());
+    }
+
+    @ParameterizedTest
+    @EnumSource(PieceType.class)
+    public void from_result_cannotBeChanged(PieceType type) {
+        board.placePiece(CENTER, new Piece(type, PieceColor.WHITE));
+
+        Set<Position> moves = pieceMoves.from(board, CENTER);
+
+        assertThrows(UnsupportedOperationException.class, () -> moves.add(CENTER));
     }
 }

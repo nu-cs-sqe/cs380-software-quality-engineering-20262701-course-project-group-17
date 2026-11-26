@@ -28,7 +28,7 @@ Unit tests are in `src/test/java/domain/move/PieceMovesTest.java`. The integrati
 | TC7 | an empty square | `IllegalArgumentException`: "position must hold a piece" | `from_emptySquare_throwsIllegalArgumentException` | :white_check_mark: |
 | TC8 | `board` is `null` | `NullPointerException`: "board must not be null" | `from_nullBoard_throwsNullPointerException` | :white_check_mark: |
 | TC9 | `position` is `null` | `NullPointerException`: "position must not be null" | `from_nullPosition_throwsNullPointerException` | :white_check_mark: |
-| TC10 | the returned set | adding to it throws `UnsupportedOperationException` | `from_result_cannotBeChanged` | Not yet |
+| TC10 | the returned set | adding to it throws `UnsupportedOperationException` | `from_result_cannotBeChanged` | :white_check_mark: |
 
 ### Integration: every rule on the standard starting board
 | ID | State / Input | Expected output | Test method | Implemented? |
