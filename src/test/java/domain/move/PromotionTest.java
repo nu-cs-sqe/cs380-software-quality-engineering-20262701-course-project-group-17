@@ -103,6 +103,17 @@ public class PromotionTest {
         assertEquals(Optional.of(new Piece(PAWN, WHITE)), board.getPiece(at(0, 3)));
     }
 
+    @Test
+    public void promote_noPromotionDue_throwsAndLeavesTheBoard() {
+        place(at(1, 3), PAWN, WHITE);
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> Promotion.promote(board, at(1, 3), QUEEN));
+
+        assertEquals("position must hold a pawn on its last row", exception.getMessage());
+        assertEquals(Optional.of(new Piece(PAWN, WHITE)), board.getPiece(at(1, 3)));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
