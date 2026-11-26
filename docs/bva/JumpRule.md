@@ -25,7 +25,7 @@ All tests are in `src/test/java/domain/move/JumpRuleTest.java`.
 | TC3 | white knight on (7,7), empty board | (5,6), (6,5) | `knight_corner_hasTwoMoves` | :white_check_mark: |
 | TC4 | white knight on (1,1), empty board | (0,3), (2,3), (3,0), (3,2) | `knight_nextToCorner_hasFourMoves` | :white_check_mark: |
 | TC5 | white knight on (0,3), empty board | (1,1), (1,5), (2,2), (2,4) | `knight_edge_hasFourMoves` | :white_check_mark: |
-| TC6 | white knight on (3,3), white pawn on (1,2) | the 7 other squares from TC1; (1,2) is missing | `knight_ownPieceOnTarget_cannotLandThere` | Not yet |
+| TC6 | white knight on (3,3), white pawn on (1,2) | the 7 other squares from TC1; (1,2) is missing | `knight_ownPieceOnTarget_cannotLandThere` | :white_check_mark: |
 | TC7 | white knight on (3,3), black pawn on (1,2) | all 8 squares from TC1, including (1,2) | `knight_enemyOnTarget_canCapture` | Not yet |
 | TC8 | black knight on (3,3), white pawn on (1,2) and black pawn on (5,4) | the 8 squares from TC1 without (5,4) | `knight_blackKnight_capturesWhiteAndAvoidsBlack` | Not yet |
 | TC9 | white knight on (3,3) with white pawns on all 8 squares around it | all 8 squares from TC1 | `knight_surroundedByOwnPieces_jumpsOver` | Not yet |

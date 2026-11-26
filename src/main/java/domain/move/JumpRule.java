@@ -30,6 +30,7 @@ final class JumpRule implements MoveRule {
         return jumps.stream()
                 .map(from::translate)
                 .flatMap(Optional::stream)
+                .filter(to -> Squares.isEmptyOrEnemy(board, to, color))
                 .collect(Collectors.toUnmodifiableSet());
     }
 }
