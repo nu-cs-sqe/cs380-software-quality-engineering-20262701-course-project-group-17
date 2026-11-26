@@ -36,8 +36,8 @@ The king uses the same jump logic with the 8 one-square steps, so its boundaries
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
 | TC10 | white king on (3,3), empty board | the 8 neighbours (2,2), (2,3), (2,4), (3,2), (3,4), (4,2), (4,3), (4,4) | `king_center_hasEightMoves` | :white_check_mark: |
-| TC11 | white king on (0,0), empty board | (0,1), (1,0), (1,1) | `king_corner_hasThreeMoves` | Not yet |
-| TC12 | white king on (7,7), empty board | (6,6), (6,7), (7,6) | `king_corner_hasThreeMoves` | Not yet |
-| TC13 | white king on (0,3), empty board | (0,2), (0,4), (1,2), (1,3), (1,4) | `king_edge_hasFiveMoves` | Not yet |
-| TC14 | white king on (3,3), white pawn on (2,3), black pawn on (4,4) | the 8 neighbours without (2,3); (4,4) is a capture | `king_ownAndEnemyNeighbours_capturesOnlyTheEnemy` | Not yet |
-| TC15 | black king on (3,3), black pawn on (2,3), white pawn on (4,4) | the same 7 squares as TC14 | `king_ownAndEnemyNeighbours_capturesOnlyTheEnemy` | Not yet |
+| TC11 | white king on (0,0), empty board | (0,1), (1,0), (1,1) | `king_corner_hasThreeMoves` | :white_check_mark: |
+| TC12 | white king on (7,7), empty board | (6,6), (6,7), (7,6) | `king_corner_hasThreeMoves` | :white_check_mark: |
+| TC13 | white king on (0,3), empty board | (0,2), (0,4), (1,2), (1,3), (1,4) | `king_edge_hasFiveMoves` | :white_check_mark: |
+| TC14 | white king on (3,3), white pawn on (2,3), black pawn on (4,4) | the 8 neighbours without (2,3); (4,4) is a capture | `king_ownAndEnemyNeighbours_capturesOnlyTheEnemy` | :white_check_mark: |
+| TC15 | black king on (3,3), black pawn on (2,3), white pawn on (4,4) | the same 7 squares as TC14 | `king_ownAndEnemyNeighbours_capturesOnlyTheEnemy` | :white_check_mark: |
