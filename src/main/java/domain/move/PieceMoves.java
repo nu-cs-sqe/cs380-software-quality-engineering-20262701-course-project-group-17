@@ -22,7 +22,8 @@ public final class PieceMoves {
     }
 
     public Set<Position> from(Board board, Position position) {
-        Piece piece = board.getPiece(position).get();
+        Piece piece = board.getPiece(position)
+                .orElseThrow(() -> new IllegalArgumentException("position must hold a piece"));
         return rules.get(piece.getType()).destinations(board, position, piece.getColor());
     }
 }
