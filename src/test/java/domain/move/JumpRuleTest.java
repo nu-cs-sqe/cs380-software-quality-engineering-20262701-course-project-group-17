@@ -18,27 +18,27 @@ public class JumpRuleTest {
 
     @Test
     public void knight_center_hasEightMoves() {
-        Set<Position> moves = JumpRule.knight().destinations(board, CENTER, WHITE);
+        Set<Position> moves = knightMoves(CENTER, WHITE);
 
         assertEquals(squares(1, 2, 1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
     }
 
     @Test
     public void knight_corner_hasTwoMoves() {
-        assertEquals(squares(1, 2, 2, 1), JumpRule.knight().destinations(board, new Position(0, 0), WHITE));
-        assertEquals(squares(5, 6, 6, 5), JumpRule.knight().destinations(board, new Position(7, 7), WHITE));
+        assertEquals(squares(1, 2, 2, 1), knightMoves(new Position(0, 0), WHITE));
+        assertEquals(squares(5, 6, 6, 5), knightMoves(new Position(7, 7), WHITE));
     }
 
     @Test
     public void knight_nextToCorner_hasFourMoves() {
-        Set<Position> moves = JumpRule.knight().destinations(board, new Position(1, 1), WHITE);
+        Set<Position> moves = knightMoves(new Position(1, 1), WHITE);
 
         assertEquals(squares(0, 3, 2, 3, 3, 0, 3, 2), moves);
     }
 
     @Test
     public void knight_edge_hasFourMoves() {
-        Set<Position> moves = JumpRule.knight().destinations(board, new Position(0, 3), WHITE);
+        Set<Position> moves = knightMoves(new Position(0, 3), WHITE);
 
         assertEquals(squares(1, 1, 1, 5, 2, 2, 2, 4), moves);
     }
@@ -47,7 +47,7 @@ public class JumpRuleTest {
     public void knight_ownPieceOnTarget_cannotLandThere() {
         placePawn(1, 2, WHITE);
 
-        Set<Position> moves = JumpRule.knight().destinations(board, CENTER, WHITE);
+        Set<Position> moves = knightMoves(CENTER, WHITE);
 
         assertEquals(squares(1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
     }
@@ -56,7 +56,7 @@ public class JumpRuleTest {
     public void knight_enemyOnTarget_canCapture() {
         placePawn(1, 2, BLACK);
 
-        Set<Position> moves = JumpRule.knight().destinations(board, CENTER, WHITE);
+        Set<Position> moves = knightMoves(CENTER, WHITE);
 
         assertEquals(squares(1, 2, 1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
     }
@@ -66,7 +66,7 @@ public class JumpRuleTest {
         placePawn(1, 2, WHITE);
         placePawn(5, 4, BLACK);
 
-        Set<Position> moves = JumpRule.knight().destinations(board, CENTER, BLACK);
+        Set<Position> moves = knightMoves(CENTER, BLACK);
 
         assertEquals(squares(1, 2, 1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2), moves);
     }
@@ -77,9 +77,13 @@ public class JumpRuleTest {
             placePawn(neighbour.getRow(), neighbour.getCol(), WHITE);
         }
 
-        Set<Position> moves = JumpRule.knight().destinations(board, CENTER, WHITE);
+        Set<Position> moves = knightMoves(CENTER, WHITE);
 
         assertEquals(squares(1, 2, 1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
+    }
+
+    private Set<Position> knightMoves(Position from, PieceColor color) {
+        return JumpRule.knight().destinations(board, from, color);
     }
 
     private void placePawn(int row, int col, PieceColor color) {
