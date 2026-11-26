@@ -31,4 +31,9 @@ public final class Promotion {
         int lastRow = piece.getColor() == PieceColor.WHITE ? WHITE_LAST_ROW : BLACK_LAST_ROW;
         return position.getRow() == lastRow;
     }
+
+    public static void promote(Board board, Position position, PieceType choice) {
+        PieceColor color = board.getPiece(position).orElseThrow().getColor();
+        board.placePiece(position, new Piece(choice, color));
+    }
 }
