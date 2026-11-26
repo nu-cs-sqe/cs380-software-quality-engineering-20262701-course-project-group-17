@@ -24,8 +24,8 @@ All tests are in `src/test/java/domain/move/PawnRuleTest.java`.
 |----|---------------|-----------------|-------------|--------------|
 | TC1 | white pawn on (5,3) (one row after its start), empty board | (4,3) | `pawn_afterStartRow_movesOneSquare` | :white_check_mark: |
 | TC2 | black pawn on (2,3) (one row after its start), empty board | (3,3) | `pawn_afterStartRow_movesOneSquare` | :white_check_mark: |
-| TC3 | white pawn on (6,3) (its start row), empty board | (5,3), (4,3) | `pawn_onStartRow_canMoveOneOrTwoSquares` | Not yet |
-| TC4 | black pawn on (1,3) (its start row), empty board | (2,3), (3,3) | `pawn_onStartRow_canMoveOneOrTwoSquares` | Not yet |
+| TC3 | white pawn on (6,3) (its start row), empty board | (5,3), (4,3) | `pawn_onStartRow_canMoveOneOrTwoSquares` | :white_check_mark: |
+| TC4 | black pawn on (1,3) (its start row), empty board | (2,3), (3,3) | `pawn_onStartRow_canMoveOneOrTwoSquares` | :white_check_mark: |
 | TC5 | white pawn on (1,3) (Black's start row) | (0,3) only | `pawn_onOtherSidesStartRow_movesOneSquare` | Not yet |
 | TC6 | black pawn on (6,3) (White's start row) | (7,3) only | `pawn_onOtherSidesStartRow_movesOneSquare` | Not yet |
 | TC7 | white pawn on (6,3), any piece on (5,3) | no moves | `pawn_squareAheadTaken_cannotMoveForward` | Not yet |
