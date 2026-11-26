@@ -33,7 +33,7 @@ Unit tests are in `src/test/java/domain/move/PieceMovesTest.java`. The integrati
 ### Integration: every rule on the standard starting board
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC11 | every white piece on the starting board | 20 moves in total (16 pawn moves and 4 knight moves) | `startingPosition_eachSide_hasTwentyMoves` | Not yet |
-| TC12 | every black piece on the starting board | 20 moves in total | `startingPosition_eachSide_hasTwentyMoves` | Not yet |
-| TC13 | the white knight on (7,1) | (5,0), (5,2) | `startingPosition_whiteKnight_jumpsOverThePawns` | Not yet |
-| TC14 | the white rook (7,0), bishop (7,2), queen (7,3) and king (7,4) | no moves; their own pieces box them in | `startingPosition_backRankExceptKnights_hasNoMoves` | Not yet |
+| TC11 | every white piece on the starting board | 20 moves in total (16 pawn moves and 4 knight moves) | `startingPosition_eachSide_hasTwentyMoves` | :white_check_mark: |
+| TC12 | every black piece on the starting board | 20 moves in total | `startingPosition_eachSide_hasTwentyMoves` | :white_check_mark: |
+| TC13 | the white knight on (7,1) | (5,0), (5,2) | `startingPosition_whiteKnight_jumpsOverThePawns` | :white_check_mark: |
+| TC14 | the white rook (7,0), bishop (7,2), queen (7,3) and king (7,4) | no moves; their own pieces box them in | `startingPosition_backRankExceptKnights_hasNoMoves` | :white_check_mark: |
