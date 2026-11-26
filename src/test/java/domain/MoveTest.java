@@ -15,4 +15,18 @@ public class MoveTest {
         assertEquals(FROM, move.getFrom());
         assertEquals(TO, move.getTo());
     }
+
+    @Test
+    public void constructor_nullFrom_throwsNullPointerException() {
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> new Move(null, TO));
+
+        assertEquals("from must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void constructor_nullTo_throwsNullPointerException() {
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> new Move(FROM, null));
+
+        assertEquals("to must not be null", exception.getMessage());
+    }
 }
