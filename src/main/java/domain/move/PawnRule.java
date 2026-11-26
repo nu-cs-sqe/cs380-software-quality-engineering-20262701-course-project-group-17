@@ -17,10 +17,11 @@ final class PawnRule implements MoveRule {
     @Override
     public Set<Position> destinations(Board board, Position from, PieceColor color) {
         Direction forward = new Direction(forwardStep(color), 0);
-        Optional<Position> oneStep = from.translate(forward);
+        Optional<Position> oneStep = from.translate(forward).filter(board::isEmpty);
         Optional<Position> twoSteps = oneStep
                 .filter(square -> isOnStartRow(from, color))
-                .flatMap(square -> square.translate(forward));
+                .flatMap(square -> square.translate(forward))
+                .filter(board::isEmpty);
         return Stream.of(oneStep, twoSteps)
                 .flatMap(Optional::stream)
                 .collect(Collectors.toUnmodifiableSet());

@@ -28,8 +28,8 @@ All tests are in `src/test/java/domain/move/PawnRuleTest.java`.
 | TC4 | black pawn on (1,3) (its start row), empty board | (2,3), (3,3) | `pawn_onStartRow_canMoveOneOrTwoSquares` | :white_check_mark: |
 | TC5 | white pawn on (1,3) (Black's start row) | (0,3) only | `pawn_onOtherSidesStartRow_movesOneSquare` | :white_check_mark: |
 | TC6 | black pawn on (6,3) (White's start row) | (7,3) only | `pawn_onOtherSidesStartRow_movesOneSquare` | :white_check_mark: |
-| TC7 | white pawn on (6,3), any piece on (5,3) | no moves | `pawn_squareAheadTaken_cannotMoveForward` | Not yet |
-| TC8 | white pawn on (6,3), any piece on (4,3) | (5,3) only | `pawn_twoAheadTaken_movesOneSquare` | Not yet |
+| TC7 | white pawn on (6,3), any piece on (5,3) | no moves | `pawn_squareAheadTaken_cannotMoveForward` | :white_check_mark: |
+| TC8 | white pawn on (6,3), any piece on (4,3) | (5,3) only | `pawn_twoAheadTaken_movesOneSquare` | :white_check_mark: |
 | TC9 | white pawn on (0,3) (last row) | no moves | `pawn_onLastRow_hasNoMoves` | :white_check_mark: |
 | TC10 | black pawn on (7,3) (last row) | no moves | `pawn_onLastRow_hasNoMoves` | :white_check_mark: |
 
@@ -39,7 +39,7 @@ All tests are in `src/test/java/domain/move/PawnRuleTest.java`.
 | TC11 | white pawn on (4,3), black pawns on (3,2) and (3,4) | (3,3), (3,2), (3,4) | `pawn_enemiesDiagonallyAhead_canCaptureBoth` | Not yet |
 | TC12 | black pawn on (3,3), white pawns on (4,2) and (4,4) | (4,3), (4,2), (4,4) | `pawn_enemiesDiagonallyAhead_canCaptureBoth` | Not yet |
 | TC13 | white pawn on (4,3), white pawns on (3,2) and (3,4) | (3,3) only | `pawn_ownPiecesDiagonallyAhead_cannotCapture` | Not yet |
-| TC14 | white pawn on (4,3), black pawn on (3,3) straight ahead | no moves | `pawn_enemyStraightAhead_cannotCapture` | Not yet |
+| TC14 | white pawn on (4,3), black pawn on (3,3) straight ahead | no moves | `pawn_enemyStraightAhead_cannotCapture` | :white_check_mark: |
 | TC15 | white pawn on (4,0), black pawn on (3,1) | (3,0), (3,1) | `pawn_onEdgeCol_capturesOnlyInward` | Not yet |
 | TC16 | white pawn on (4,7), black pawn on (3,6) | (3,7), (3,6) | `pawn_onEdgeCol_capturesOnlyInward` | Not yet |
 | TC17 | white pawn on (4,3), black pawns on (5,2) and (5,4) (diagonally behind) | (3,3) only | `pawn_enemiesBehind_cannotCaptureBackward` | Not yet |
