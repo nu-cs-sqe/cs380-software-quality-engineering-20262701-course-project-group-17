@@ -28,6 +28,10 @@ public final class EnPassant {
                 .flatMap(pawn -> from.translate(diagonalToward(lastMove.getTo(), from, pawn)));
     }
 
+    public static Position capturedPawn(Move enPassantMove) {
+        return new Position(enPassantMove.getFrom().getRow(), enPassantMove.getTo().getCol());
+    }
+
     private static boolean isEnemyPawnDoubleStep(Board board, Move move, PieceColor color) {
         return isDoubleStep(move) && board.getPiece(move.getTo())
                 .filter(piece -> isPawn(piece) && piece.getColor() != color)

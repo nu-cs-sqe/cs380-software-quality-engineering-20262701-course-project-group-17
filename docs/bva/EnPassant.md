@@ -38,6 +38,6 @@ All tests are in `src/test/java/domain/move/EnPassantTest.java`.
 ### Method under test: `capturedPawn(Move enPassantMove)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC14 | white capture (3,4) to (2,3) | (3,3) | `capturedPawn_enPassantMove_isBesideTheStartSquare` | Not yet |
-| TC15 | black capture (4,4) to (5,5) | (4,5) | `capturedPawn_enPassantMove_isBesideTheStartSquare` | Not yet |
+| TC14 | white capture (3,4) to (2,3) | (3,3) | `capturedPawn_enPassantMove_isBesideTheStartSquare` | :white_check_mark: |
+| TC15 | black capture (4,4) to (5,5) | (4,5) | `capturedPawn_enPassantMove_isBesideTheStartSquare` | :white_check_mark: |
 | TC16 | `null` | `NullPointerException`: "enPassantMove must not be null" | `capturedPawn_nullMove_throwsNullPointerException` | Not yet |
