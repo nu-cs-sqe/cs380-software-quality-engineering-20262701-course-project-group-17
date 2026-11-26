@@ -5,6 +5,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -100,5 +101,19 @@ public class PositionTest {
         Position corner = new Position(0, 0);
 
         assertEquals(Optional.of(new Position(7, 7)), corner.translate(new Direction(7, 7)));
+    }
+
+    @ParameterizedTest
+    @MethodSource("stepsOffEachEdge")
+    public void translate_stepOffBoard_returnsEmpty(Position edge, Direction step) {
+        assertEquals(Optional.empty(), edge.translate(step));
+    }
+
+    private static Stream<Arguments> stepsOffEachEdge() {
+        return Stream.of(
+                Arguments.of(new Position(0, 3), new Direction(-1, 0)),
+                Arguments.of(new Position(7, 3), new Direction(1, 0)),
+                Arguments.of(new Position(3, 0), new Direction(0, -1)),
+                Arguments.of(new Position(3, 7), new Direction(0, 1)));
     }
 }
