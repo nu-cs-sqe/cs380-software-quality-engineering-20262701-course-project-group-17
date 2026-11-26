@@ -30,7 +30,7 @@ All tests are in `src/test/java/domain/move/EnPassantTest.java`.
 | TC7 | white pawn on (3,4); black rook just moved (1,3) to (3,3) | `Optional.empty()` | `destination_lastMoveNotByAPawn_returnsEmpty` | :white_check_mark: |
 | TC8 | white pawn on (3,4); a black pawn on (3,3) got there by the last move (1,2) to (3,3), which isn't straight | `Optional.empty()` | `destination_lastMoveNotStraight_returnsEmpty` | :white_check_mark: |
 | TC9 | white pawn on (3,4); white pawn on (3,3) after the last move (1,3) to (3,3) | `Optional.empty()` | `destination_ownPawnMoved_returnsEmpty` | :white_check_mark: |
-| TC10 | white knight on (3,4); black pawn just moved (1,3) to (3,3) | `Optional.empty()` | `destination_notAPawn_returnsEmpty` | Not yet |
+| TC10 | white knight on (3,4); black pawn just moved (1,3) to (3,3) | `Optional.empty()` | `destination_notAPawn_returnsEmpty` | :white_check_mark: |
 | TC11 | nothing on (3,4); black pawn just moved (1,3) to (3,3) | `Optional.empty()` | `destination_emptySquare_returnsEmpty` | Not yet |
 | TC12 | white pawn on (3,4); black pawn on (3,3) moved there earlier, and the last move was a black knight (0,1) to (2,2) | `Optional.empty()` | `destination_doubleStepNotTheLastMove_returnsEmpty` | Not yet |
 | TC13 | `board`, `from`, or `lastMove` is `null` | `NullPointerException` naming the argument: "board must not be null", "from must not be null", "lastMove must not be null" | `destination_nullArgument_throwsNullPointerException` | Not yet |

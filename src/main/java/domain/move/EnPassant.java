@@ -18,6 +18,7 @@ public final class EnPassant {
 
     public static Optional<Position> destination(Board board, Position from, Move lastMove) {
         return board.getPiece(from)
+                .filter(EnPassant::isPawn)
                 .filter(pawn -> isEnemyPawnDoubleStep(board, lastMove, pawn.getColor()))
                 .filter(pawn -> isBeside(from, lastMove.getTo()))
                 .flatMap(pawn -> from.translate(diagonalToward(lastMove.getTo(), from, pawn)));
