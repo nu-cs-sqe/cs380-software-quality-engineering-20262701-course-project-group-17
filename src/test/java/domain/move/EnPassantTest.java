@@ -106,6 +106,12 @@ public class EnPassantTest {
         assertNullMessage("lastMove must not be null", () -> EnPassant.destination(board, from, null));
     }
 
+    @Test
+    public void capturedPawn_enPassantMove_isBesideTheStartSquare() {
+        assertEquals(at(3, 3), EnPassant.capturedPawn(new Move(at(3, 4), at(2, 3))));
+        assertEquals(at(4, 5), EnPassant.capturedPawn(new Move(at(4, 4), at(5, 5))));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
