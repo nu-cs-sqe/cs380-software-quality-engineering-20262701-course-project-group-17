@@ -112,6 +112,11 @@ public class EnPassantTest {
         assertEquals(at(4, 5), EnPassant.capturedPawn(new Move(at(4, 4), at(5, 5))));
     }
 
+    @Test
+    public void capturedPawn_nullMove_throwsNullPointerException() {
+        assertNullMessage("enPassantMove must not be null", () -> EnPassant.capturedPawn(null));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
