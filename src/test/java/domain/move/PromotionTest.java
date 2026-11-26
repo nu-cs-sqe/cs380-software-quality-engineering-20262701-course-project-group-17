@@ -51,6 +51,13 @@ public class PromotionTest {
         assertFalse(Promotion.isDue(board, at(0, 3)));
     }
 
+    @Test
+    public void isDue_notAPawn_returnsFalse() {
+        place(at(0, 3), QUEEN, WHITE);
+
+        assertFalse(Promotion.isDue(board, at(0, 3)));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
