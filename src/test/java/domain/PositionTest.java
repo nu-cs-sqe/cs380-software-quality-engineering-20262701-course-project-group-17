@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PositionTest {
@@ -84,5 +86,19 @@ public class PositionTest {
     @CsvSource({"0, 0, 0", "0, 1, 1", "1, 0, 8", "7, 7, 63"})
     public void hashCode_anySquare_returnsSquareIndex(int row, int col, int expectedIndex) {
         assertEquals(expectedIndex, new Position(row, col).hashCode());
+    }
+
+    @Test
+    public void translate_stepOnBoard_returnsNewPosition() {
+        Position position = new Position(3, 4);
+
+        assertEquals(Optional.of(new Position(4, 2)), position.translate(new Direction(1, -2)));
+    }
+
+    @Test
+    public void translate_cornerToCorner_returnsFarCorner() {
+        Position corner = new Position(0, 0);
+
+        assertEquals(Optional.of(new Position(7, 7)), corner.translate(new Direction(7, 7)));
     }
 }
