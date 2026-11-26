@@ -19,5 +19,5 @@ All tests are in `src/test/java/domain/MoveTest.java`.
 | TC1 | from (1,3), to (3,3) | `getFrom()` is (1,3) and `getTo()` is (3,3) | `constructor_twoSquares_keepsFromAndTo` | :white_check_mark: |
 | TC2 | `from` is `null` | `NullPointerException`: "from must not be null" | `constructor_nullFrom_throwsNullPointerException` | :white_check_mark: |
 | TC3 | `to` is `null` | `NullPointerException`: "to must not be null" | `constructor_nullTo_throwsNullPointerException` | :white_check_mark: |
-| TC4 | from and to are the same (3,3) instance | `IllegalArgumentException`: "a move must change square" | `constructor_sameSquare_throwsIllegalArgumentException` | Not yet |
-| TC5 | from (3,3) and a separate `Position(3,3)` as to | `IllegalArgumentException`: "a move must change square" | `constructor_sameSquare_throwsIllegalArgumentException` | Not yet |
+| TC4 | from and to are the same (3,3) instance | `IllegalArgumentException`: "a move must change square" | `constructor_sameSquare_throwsIllegalArgumentException` | :white_check_mark: |
+| TC5 | from (3,3) and a separate `Position(3,3)` as to | `IllegalArgumentException`: "a move must change square" | `constructor_sameSquare_throwsIllegalArgumentException` | :white_check_mark: |
