@@ -69,6 +69,46 @@ public class SlideRuleTest {
         assertEquals(without(ROOK_FROM_CENTER, squares(3, 5, 3, 6, 3, 7)), moves);
     }
 
+    @Test
+    public void rook_enemyInTheWay_capturesAndStops() {
+        placePawn(3, 5, BLACK);
+
+        Set<Position> moves = SlideRule.rook().destinations(board, CENTER, WHITE);
+
+        assertEquals(without(ROOK_FROM_CENTER, squares(3, 6, 3, 7)), moves);
+    }
+
+    @Test
+    public void rook_boxedInByOwnPieces_hasNoMoves() {
+        placePawn(2, 3, WHITE);
+        placePawn(4, 3, WHITE);
+        placePawn(3, 2, WHITE);
+        placePawn(3, 4, WHITE);
+
+        assertEquals(Set.of(), SlideRule.rook().destinations(board, CENTER, WHITE));
+    }
+
+    @Test
+    public void bishop_blackBishop_stopsAtOwnAndCapturesWhite() {
+        placePawn(1, 1, BLACK);
+        placePawn(5, 5, WHITE);
+
+        Set<Position> moves = SlideRule.bishop().destinations(board, CENTER, BLACK);
+
+        assertEquals(without(BISHOP_FROM_CENTER, squares(1, 1, 0, 0, 6, 6, 7, 7)), moves);
+    }
+
+    @Test
+    public void queen_enemyNextToIt_capturesAndStops() {
+        placePawn(2, 3, BLACK);
+        Set<Position> fromEmptyBoard = new HashSet<>(ROOK_FROM_CENTER);
+        fromEmptyBoard.addAll(BISHOP_FROM_CENTER);
+
+        Set<Position> moves = SlideRule.queen().destinations(board, CENTER, WHITE);
+
+        assertEquals(without(fromEmptyBoard, squares(1, 3, 0, 3)), moves);
+    }
+
     private void placePawn(int row, int col, PieceColor color) {
         board.placePiece(new Position(row, col), new Piece(PieceType.PAWN, color));
     }
