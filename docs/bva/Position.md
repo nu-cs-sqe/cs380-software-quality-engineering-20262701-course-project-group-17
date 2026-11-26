@@ -47,8 +47,8 @@ Added for piece movement ([design/piece-movement.md](../design/piece-movement.md
 
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC16 | (3,4) translated by (1,-2) | `Optional.of(Position(4,2))` | `translate_stepOnBoard_returnsNewPosition` | Not yet |
-| TC17 | (0,0) translated by (7,7) (lands exactly on the far corner) | `Optional.of(Position(7,7))` | `translate_cornerToCorner_returnsFarCorner` | Not yet |
+| TC16 | (3,4) translated by (1,-2) | `Optional.of(Position(4,2))` | `translate_stepOnBoard_returnsNewPosition` | :white_check_mark: |
+| TC17 | (0,0) translated by (7,7) (lands exactly on the far corner) | `Optional.of(Position(7,7))` | `translate_cornerToCorner_returnsFarCorner` | :white_check_mark: |
 | TC18 | (0,3) translated by (-1,0) (past row 0) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | Not yet |
 | TC19 | (7,3) translated by (1,0) (past row 7) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | Not yet |
 | TC20 | (3,0) translated by (0,-1) (past col 0) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | Not yet |

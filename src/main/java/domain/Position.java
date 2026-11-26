@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.Optional;
+
 public final class Position {
     public static final int BOARD_SIZE = 8;
     private static final int FIRST_INDEX = 0;
@@ -31,6 +33,10 @@ public final class Position {
 
     public int getCol() {
         return col;
+    }
+
+    public Optional<Position> translate(Direction direction) {
+        return Optional.of(new Position(row + direction.getRowDelta(), col + direction.getColDelta()));
     }
 
     @Override
