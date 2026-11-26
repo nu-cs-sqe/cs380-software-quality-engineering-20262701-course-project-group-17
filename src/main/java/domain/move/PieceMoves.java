@@ -1,0 +1,32 @@
+package domain.move;
+
+import domain.Board;
+import domain.Position;
+import domain.piece.Piece;
+import domain.piece.PieceType;
+
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
+public final class PieceMoves {
+    private final Map<PieceType, MoveRule> rules = new EnumMap<>(PieceType.class);
+
+    public PieceMoves() {
+        rules.put(PieceType.KING, JumpRule.king());
+        rules.put(PieceType.QUEEN, SlideRule.queen());
+        rules.put(PieceType.ROOK, SlideRule.rook());
+        rules.put(PieceType.BISHOP, SlideRule.bishop());
+        rules.put(PieceType.KNIGHT, JumpRule.knight());
+        rules.put(PieceType.PAWN, new PawnRule());
+    }
+
+    public Set<Position> from(Board board, Position position) {
+        Objects.requireNonNull(board, "board must not be null");
+        Objects.requireNonNull(position, "position must not be null");
+        Piece piece = board.getPiece(position)
+                .orElseThrow(() -> new IllegalArgumentException("position must hold a piece"));
+        return rules.get(piece.getType()).destinations(board, position, piece.getColor());
+    }
+}
