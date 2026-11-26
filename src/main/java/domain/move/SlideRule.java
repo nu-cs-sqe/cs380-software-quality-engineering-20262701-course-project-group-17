@@ -26,6 +26,10 @@ final class SlideRule implements MoveRule {
         return new SlideRule(Direction.DIAGONAL);
     }
 
+    static SlideRule queen() {
+        return new SlideRule(Direction.ALL);
+    }
+
     @Override
     public Set<Position> destinations(Board board, Position from, PieceColor color) {
         return directions.stream()
