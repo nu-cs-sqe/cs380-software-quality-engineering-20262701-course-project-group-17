@@ -23,4 +23,13 @@ public class SlideRuleTest {
     public void rook_centerOfEmptyBoard_hasFourteenMoves() {
         assertEquals(ROOK_FROM_CENTER, SlideRule.rook().destinations(board, CENTER, WHITE));
     }
+
+    @Test
+    public void rook_cornerOfEmptyBoard_hasFourteenMoves() {
+        Set<Position> expected = squares(
+                0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7,
+                1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0);
+
+        assertEquals(expected, SlideRule.rook().destinations(board, new Position(0, 0), WHITE));
+    }
 }
