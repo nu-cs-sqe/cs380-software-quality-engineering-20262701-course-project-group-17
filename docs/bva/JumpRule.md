@@ -1,6 +1,6 @@
 # BVA: `domain.move.JumpRule`
 
-A `JumpRule` moves a piece by one fixed step in each of its directions and ignores anything in between. `JumpRule.knight()` covers issue [#20](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/issues/20). The requirements are in [knight-movement.md](../requirements/knight-movement.md).
+A `JumpRule` moves a piece by one fixed step in each of its directions and ignores anything in between. `JumpRule.knight()` covers issue [#20](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/issues/20) and `JumpRule.king()` covers issue [#22](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/issues/22). The requirements are in [knight-movement.md](../requirements/knight-movement.md) and [king-movement.md](../requirements/king-movement.md).
 
 The method under test is `destinations(Board board, Position from, PieceColor color)`. It's package-private and trusts its caller (see [design/piece-movement.md](../design/piece-movement.md), decision 2), so there are no `null` cases here. `PieceMoves` tests those.
 
@@ -29,3 +29,15 @@ All tests are in `src/test/java/domain/move/JumpRuleTest.java`.
 | TC7 | white knight on (3,3), black pawn on (1,2) | all 8 squares from TC1, including (1,2) | `knight_enemyOnTarget_canCapture` | :white_check_mark: |
 | TC8 | black knight on (3,3), white pawn on (1,2) and black pawn on (5,4) | the 8 squares from TC1 without (5,4) | `knight_blackKnight_capturesWhiteAndAvoidsBlack` | :white_check_mark: |
 | TC9 | white knight on (3,3) with white pawns on all 8 squares around it | all 8 squares from TC1 | `knight_surroundedByOwnPieces_jumpsOver` | :white_check_mark: |
+
+### Method under test: `JumpRule.king().destinations(...)`
+The king uses the same jump logic with the 8 one-square steps, so its boundaries are the same kinds of squares: corners have the fewest moves (3), edges have 5, and the middle has the most (8).
+
+| ID | State / Input | Expected output | Test method | Implemented? |
+|----|---------------|-----------------|-------------|--------------|
+| TC10 | white king on (3,3), empty board | the 8 neighbours (2,2), (2,3), (2,4), (3,2), (3,4), (4,2), (4,3), (4,4) | `king_center_hasEightMoves` | Not yet |
+| TC11 | white king on (0,0), empty board | (0,1), (1,0), (1,1) | `king_corner_hasThreeMoves` | Not yet |
+| TC12 | white king on (7,7), empty board | (6,6), (6,7), (7,6) | `king_corner_hasThreeMoves` | Not yet |
+| TC13 | white king on (0,3), empty board | (0,2), (0,4), (1,2), (1,3), (1,4) | `king_edge_hasFiveMoves` | Not yet |
+| TC14 | white king on (3,3), white pawn on (2,3), black pawn on (4,4) | the 8 neighbours without (2,3); (4,4) is a capture | `king_ownAndEnemyNeighbours_capturesOnlyTheEnemy` | Not yet |
+| TC15 | black king on (3,3), black pawn on (2,3), white pawn on (4,4) | the same 7 squares as TC14 | `king_ownAndEnemyNeighbours_capturesOnlyTheEnemy` | Not yet |

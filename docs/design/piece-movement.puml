@@ -9,6 +9,7 @@ package domain {
     class Direction {
         + {static} ORTHOGONAL: List<Direction>
         + {static} DIAGONAL: List<Direction>
+        + {static} ALL: List<Direction>
         - rowDelta: int
         - colDelta: int
         + Direction(rowDelta: int, colDelta: int)

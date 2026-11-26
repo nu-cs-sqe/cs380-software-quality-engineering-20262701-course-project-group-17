@@ -10,7 +10,7 @@ A piece's moves are the squares it could move to by its own movement rule: empty
 ## Classes
 | Class | Package | Responsibility | Issue |
 |-------|---------|----------------|-------|
-| `Direction` | `domain` | Immutable step of `(rowDelta, colDelta)`. Rejects `(0, 0)`, which would never leave the square. Holds the shared `ORTHOGONAL` and `DIAGONAL` direction lists. | #20, #22 |
+| `Direction` | `domain` | Immutable step of `(rowDelta, colDelta)`. Rejects `(0, 0)`, which would never leave the square. Holds the shared direction lists: `ORTHOGONAL` (4 straight steps), `DIAGONAL` (4 diagonal steps) and `ALL` (all 8). | #20, #22 |
 | `Position.translate(Direction)` | `domain` | Returns the square one step away in that direction, or `Optional.empty()` if the step leaves the board. | #20 |
 | `MoveRule` (interface) | `domain.move` | `destinations(Board, Position, PieceColor)` returns where a piece of that color standing on that square can move. | #20 |
 | `Squares` | `domain.move` | Shared questions about a target square: `isEnemy` and `isEmptyOrEnemy`. | #20 |

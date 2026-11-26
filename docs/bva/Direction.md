@@ -20,3 +20,12 @@ All tests are in `src/test/java/domain/DirectionTest.java`.
 | TC2 | rowDelta 0, colDelta 2 (row delta at 0) | `getRowDelta()` is 0 and `getColDelta()` is 2 | `constructor_oneDeltaZero_isAllowed` | :white_check_mark: |
 | TC3 | rowDelta 1, colDelta 0 (col delta at 0) | `getRowDelta()` is 1 and `getColDelta()` is 0 | `constructor_oneDeltaZero_isAllowed` | :white_check_mark: |
 | TC4 | rowDelta 0, colDelta 0 | `IllegalArgumentException`: "a direction must move at least one square" | `constructor_zeroStep_throwsIllegalArgumentException` | :white_check_mark: |
+
+### Constants: `ORTHOGONAL`, `DIAGONAL`, `ALL`
+Added for king movement (issue [#22](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/issues/22)), and reused by the sliding pieces. `Direction` has no `equals`, so each list is checked by translating the center square (3,3) by every direction in it and comparing the squares it lands on.
+
+| ID | State / Input | Expected output | Test method | Implemented? |
+|----|---------------|-----------------|-------------|--------------|
+| TC5 | (3,3) translated by every direction in `ORTHOGONAL` | (2,3), (4,3), (3,2), (3,4) | `orthogonal_fromCenter_reachesTheFourStraightNeighbours` | Not yet |
+| TC6 | (3,3) translated by every direction in `DIAGONAL` | (2,2), (2,4), (4,2), (4,4) | `diagonal_fromCenter_reachesTheFourDiagonalNeighbours` | Not yet |
+| TC7 | (3,3) translated by every direction in `ALL` | all 8 neighbours of (3,3), and no square twice (the list has 8 entries) | `all_fromCenter_reachesAllEightNeighbours` | Not yet |
