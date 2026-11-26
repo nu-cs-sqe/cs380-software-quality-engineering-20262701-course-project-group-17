@@ -16,7 +16,7 @@ All tests are in `src/test/java/domain/DirectionTest.java`.
 ### Method under test: `Direction(int rowDelta, int colDelta)`, `getRowDelta()`, `getColDelta()`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | rowDelta -2, colDelta 1 (row and col differ) | `getRowDelta()` is -2 and `getColDelta()` is 1 | `constructor_knightJump_keepsRowAndColDeltas` | Not yet |
-| TC2 | rowDelta 0, colDelta 2 (row delta at 0) | `getRowDelta()` is 0 and `getColDelta()` is 2 | `constructor_oneDeltaZero_isAllowed` | Not yet |
-| TC3 | rowDelta 1, colDelta 0 (col delta at 0) | `getRowDelta()` is 1 and `getColDelta()` is 0 | `constructor_oneDeltaZero_isAllowed` | Not yet |
+| TC1 | rowDelta -2, colDelta 1 (row and col differ) | `getRowDelta()` is -2 and `getColDelta()` is 1 | `constructor_knightJump_keepsRowAndColDeltas` | :white_check_mark: |
+| TC2 | rowDelta 0, colDelta 2 (row delta at 0) | `getRowDelta()` is 0 and `getColDelta()` is 2 | `constructor_oneDeltaZero_isAllowed` | :white_check_mark: |
+| TC3 | rowDelta 1, colDelta 0 (col delta at 0) | `getRowDelta()` is 1 and `getColDelta()` is 0 | `constructor_oneDeltaZero_isAllowed` | :white_check_mark: |
 | TC4 | rowDelta 0, colDelta 0 | `IllegalArgumentException`: "a direction must move at least one square" | `constructor_zeroStep_throwsIllegalArgumentException` | Not yet |
