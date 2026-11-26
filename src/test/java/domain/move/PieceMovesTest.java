@@ -37,4 +37,20 @@ public class PieceMovesTest {
 
         assertEquals("position must hold a piece", exception.getMessage());
     }
+
+    @Test
+    public void from_nullBoard_throwsNullPointerException() {
+        NullPointerException exception =
+                assertThrows(NullPointerException.class, () -> pieceMoves.from(null, CENTER));
+
+        assertEquals("board must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void from_nullPosition_throwsNullPointerException() {
+        NullPointerException exception =
+                assertThrows(NullPointerException.class, () -> pieceMoves.from(board, null));
+
+        assertEquals("position must not be null", exception.getMessage());
+    }
 }
