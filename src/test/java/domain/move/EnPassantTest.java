@@ -80,6 +80,22 @@ public class EnPassantTest {
         assertEquals(Optional.empty(), EnPassant.destination(board, at(3, 4), BLACK_DOUBLE_STEP));
     }
 
+    @Test
+    public void destination_emptySquare_returnsEmpty() {
+        place(at(3, 3), PAWN, BLACK);
+
+        assertEquals(Optional.empty(), EnPassant.destination(board, at(3, 4), BLACK_DOUBLE_STEP));
+    }
+
+    @Test
+    public void destination_doubleStepNotTheLastMove_returnsEmpty() {
+        place(at(3, 3), PAWN, BLACK);
+        place(at(3, 4), PAWN, WHITE);
+        place(at(2, 2), KNIGHT, BLACK);
+
+        assertEquals(Optional.empty(), EnPassant.destination(board, at(3, 4), new Move(at(0, 1), at(2, 2))));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
