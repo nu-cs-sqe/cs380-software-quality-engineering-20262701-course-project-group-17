@@ -20,6 +20,12 @@ public class PawnRuleTest {
         assertEquals(squares(3, 3), pawnMoves(2, 3, BLACK));
     }
 
+    @Test
+    public void pawn_onStartRow_canMoveOneOrTwoSquares() {
+        assertEquals(squares(5, 3, 4, 3), pawnMoves(6, 3, WHITE));
+        assertEquals(squares(2, 3, 3, 3), pawnMoves(1, 3, BLACK));
+    }
+
     private Set<Position> pawnMoves(int row, int col, PieceColor color) {
         return new PawnRule().destinations(board, new Position(row, col), color);
     }
