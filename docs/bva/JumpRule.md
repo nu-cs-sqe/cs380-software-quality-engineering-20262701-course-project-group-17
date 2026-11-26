@@ -20,7 +20,7 @@ All tests are in `src/test/java/domain/move/JumpRuleTest.java`.
 ### Method under test: `JumpRule.knight().destinations(...)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | white knight on (3,3), empty board | the 8 squares (1,2), (1,4), (2,1), (2,5), (4,1), (4,5), (5,2), (5,4) | `knight_center_hasEightMoves` | Not yet |
+| TC1 | white knight on (3,3), empty board | the 8 squares (1,2), (1,4), (2,1), (2,5), (4,1), (4,5), (5,2), (5,4) | `knight_center_hasEightMoves` | :white_check_mark: |
 | TC2 | white knight on (0,0), empty board | (1,2), (2,1) | `knight_corner_hasTwoMoves` | Not yet |
 | TC3 | white knight on (7,7), empty board | (5,6), (6,5) | `knight_corner_hasTwoMoves` | Not yet |
 | TC4 | white knight on (1,1), empty board | (0,3), (2,3), (3,0), (3,2) | `knight_nextToCorner_hasFourMoves` | Not yet |
