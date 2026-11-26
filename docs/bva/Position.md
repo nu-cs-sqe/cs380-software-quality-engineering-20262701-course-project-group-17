@@ -5,6 +5,7 @@
 |-------|------|-------------|---------------|
 | `row` | interval | 0 to 7 | -1, 0, 3, 7, 8 |
 | `col` | interval | 0 to 7 | -1, 0, 4, 7, 8 |
+| `direction` in `translate` | `Direction` reference | any direction; not `null` | a step that lands on the board, steps that leave through each of the four edges, a long step from corner to corner, `null` |
 | `other` in `equals` | object reference | any object or null | the same instance, a separate instance with the same values, different row, different col, null, a different type |
 
 A position off the board is rejected with an `IllegalArgumentException`. Its message names the field and the bad value.
@@ -40,3 +41,16 @@ All tests are in `src/test/java/domain/PositionTest.java`.
 | TC13 | (0,0), (0,1), (1,0), (7,7) | 0, 1, 8, 63 (the square index, `row * 8 + col`) | `hashCode_anySquare_returnsSquareIndex` | :white_check_mark: |
 
 TC14 and TC15 were added during review, so they sit next to the cases they relate to rather than in numeric order. TC15 catches an implementation that mixes up `row` and `col`, which TC1 and TC2 can't detect because both of their coordinates are equal. TC14 checks that `equals` is reflexive. `equals` deliberately has no `this == other` shortcut: the field comparison already returns `true` for the same instance, and PIT would report a removed shortcut as a surviving equivalent mutant.
+
+### Method under test: `translate(Direction direction)`
+Added for piece movement ([design/piece-movement.md](../design/piece-movement.md)). The result is the square `(row + rowDelta, col + colDelta)`, or `Optional.empty()` if that square is off the board. Each edge is tested from the square right on it, so a check that is off by one in either direction fails.
+
+| ID | State / Input | Expected output | Test method | Implemented? |
+|----|---------------|-----------------|-------------|--------------|
+| TC16 | (3,4) translated by (1,-2) | `Optional.of(Position(4,2))` | `translate_stepOnBoard_returnsNewPosition` | :white_check_mark: |
+| TC17 | (0,0) translated by (7,7) (lands exactly on the far corner) | `Optional.of(Position(7,7))` | `translate_cornerToCorner_returnsFarCorner` | :white_check_mark: |
+| TC18 | (0,3) translated by (-1,0) (past row 0) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | :white_check_mark: |
+| TC19 | (7,3) translated by (1,0) (past row 7) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | :white_check_mark: |
+| TC20 | (3,0) translated by (0,-1) (past col 0) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | :white_check_mark: |
+| TC21 | (3,7) translated by (0,1) (past col 7) | `Optional.empty()` | `translate_stepOffBoard_returnsEmpty` | :white_check_mark: |
+| TC22 | (3,4) translated by `null` | `NullPointerException`: "direction must not be null" | `translate_nullDirection_throwsNullPointerException` | :white_check_mark: |
