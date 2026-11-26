@@ -20,7 +20,7 @@ All tests are in `src/test/java/domain/move/SlideRuleTest.java`.
 ### Method under test: `destinations(...)` on an empty board
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC1 | white rook on (3,3) | the 14 squares of row 3 and col 3, except (3,3) | `rook_centerOfEmptyBoard_hasFourteenMoves` | Not yet |
+| TC1 | white rook on (3,3) | the 14 squares of row 3 and col 3, except (3,3) | `rook_centerOfEmptyBoard_hasFourteenMoves` | :white_check_mark: |
 | TC2 | white rook on (0,0) | the 14 squares of row 0 and col 0, except (0,0) | `rook_cornerOfEmptyBoard_hasFourteenMoves` | Not yet |
 | TC3 | white bishop on (3,3) | the 13 squares on its two diagonals | `bishop_centerOfEmptyBoard_hasThirteenMoves` | Not yet |
 | TC4 | white bishop on (0,0) | the 7 squares (1,1) to (7,7) | `bishop_cornerOfEmptyBoard_hasSevenMoves` | Not yet |
