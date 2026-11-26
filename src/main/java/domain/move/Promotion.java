@@ -33,14 +33,22 @@ public final class Promotion {
     }
 
     public static void promote(Board board, Position position, PieceType choice) {
+        requireAllowedChoice(choice);
+        requireDue(board, position);
+        PieceColor color = board.getPiece(position).orElseThrow().getColor();
+        board.placePiece(position, new Piece(choice, color));
+    }
+
+    private static void requireAllowedChoice(PieceType choice) {
         Objects.requireNonNull(choice, "choice must not be null");
         if (!CHOICES.contains(choice)) {
             throw new IllegalArgumentException("a pawn can only be promoted to a queen, rook, bishop, or knight");
         }
+    }
+
+    private static void requireDue(Board board, Position position) {
         if (!isDue(board, position)) {
             throw new IllegalArgumentException("position must hold a pawn on its last row");
         }
-        PieceColor color = board.getPiece(position).orElseThrow().getColor();
-        board.placePiece(position, new Piece(choice, color));
     }
 }
