@@ -37,6 +37,20 @@ public class PromotionTest {
         assertFalse(Promotion.isDue(board, at(6, 3)));
     }
 
+    @Test
+    public void isDue_pawnOnOtherSidesLastRow_returnsFalse() {
+        place(at(7, 3), PAWN, WHITE);
+        place(at(0, 3), PAWN, BLACK);
+
+        assertFalse(Promotion.isDue(board, at(7, 3)));
+        assertFalse(Promotion.isDue(board, at(0, 3)));
+    }
+
+    @Test
+    public void isDue_emptySquare_returnsFalse() {
+        assertFalse(Promotion.isDue(board, at(0, 3)));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }

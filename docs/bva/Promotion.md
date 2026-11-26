@@ -27,10 +27,10 @@ All tests are in `src/test/java/domain/move/PromotionTest.java`.
 | TC3 | black pawn on (7,3) | `true` | `isDue_pawnOnItsLastRow_returnsTrue` | :white_check_mark: |
 | TC4 | white pawn on (1,3) | `false` | `isDue_pawnOneRowShort_returnsFalse` | :white_check_mark: |
 | TC5 | black pawn on (6,3) | `false` | `isDue_pawnOneRowShort_returnsFalse` | :white_check_mark: |
-| TC6 | white pawn on (7,3) (Black's last row) | `false` | `isDue_pawnOnOtherSidesLastRow_returnsFalse` | Not yet |
-| TC7 | black pawn on (0,3) (White's last row) | `false` | `isDue_pawnOnOtherSidesLastRow_returnsFalse` | Not yet |
+| TC6 | white pawn on (7,3) (Black's last row) | `false` | `isDue_pawnOnOtherSidesLastRow_returnsFalse` | :white_check_mark: |
+| TC7 | black pawn on (0,3) (White's last row) | `false` | `isDue_pawnOnOtherSidesLastRow_returnsFalse` | :white_check_mark: |
 | TC8 | white queen on (0,3) | `false` | `isDue_notAPawn_returnsFalse` | Not yet |
-| TC9 | nothing on (0,3) | `false` | `isDue_emptySquare_returnsFalse` | Not yet |
+| TC9 | nothing on (0,3) | `false` | `isDue_emptySquare_returnsFalse` | :white_check_mark: |
 | TC10 | `board` or `position` is `null` | `NullPointerException`: "board must not be null" / "position must not be null" | `isDue_nullArgument_throwsNullPointerException` | Not yet |
 
 ### Method under test: `promote(Board board, Position position, PieceType choice)`
