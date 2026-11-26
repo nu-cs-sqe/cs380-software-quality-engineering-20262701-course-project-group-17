@@ -24,4 +24,12 @@ public class DirectionTest {
         assertEquals(rowDelta, direction.getRowDelta());
         assertEquals(colDelta, direction.getColDelta());
     }
+
+    @Test
+    public void constructor_zeroStep_throwsIllegalArgumentException() {
+        IllegalArgumentException exception =
+                assertThrows(IllegalArgumentException.class, () -> new Direction(0, 0));
+
+        assertEquals("a direction must move at least one square", exception.getMessage());
+    }
 }
