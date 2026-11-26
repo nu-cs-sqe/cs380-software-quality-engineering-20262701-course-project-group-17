@@ -16,15 +16,26 @@ final class PawnRule implements MoveRule {
 
     @Override
     public Set<Position> destinations(Board board, Position from, PieceColor color) {
+        return Stream.concat(advances(board, from, color), captures(board, from, color))
+                .collect(Collectors.toUnmodifiableSet());
+    }
+
+    private static Stream<Position> advances(Board board, Position from, PieceColor color) {
         Direction forward = new Direction(forwardStep(color), 0);
         Optional<Position> oneStep = from.translate(forward).filter(board::isEmpty);
         Optional<Position> twoSteps = oneStep
                 .filter(square -> isOnStartRow(from, color))
                 .flatMap(square -> square.translate(forward))
                 .filter(board::isEmpty);
-        return Stream.of(oneStep, twoSteps)
+        return Stream.of(oneStep, twoSteps).flatMap(Optional::stream);
+    }
+
+    private static Stream<Position> captures(Board board, Position from, PieceColor color) {
+        int forward = forwardStep(color);
+        return Stream.of(new Direction(forward, -1), new Direction(forward, 1))
+                .map(from::translate)
                 .flatMap(Optional::stream)
-                .collect(Collectors.toUnmodifiableSet());
+                .filter(to -> Squares.isEnemy(board, to, color));
     }
 
     static int forwardStep(PieceColor color) {
