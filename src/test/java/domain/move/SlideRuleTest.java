@@ -5,6 +5,7 @@ import domain.Position;
 import domain.piece.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import static domain.move.PositionSets.squares;
@@ -46,5 +47,16 @@ public class SlideRuleTest {
         Set<Position> expected = squares(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7);
 
         assertEquals(expected, SlideRule.bishop().destinations(board, new Position(0, 0), WHITE));
+    }
+
+    @Test
+    public void queen_centerOfEmptyBoard_hasTwentySevenMoves() {
+        Set<Position> expected = new HashSet<>(ROOK_FROM_CENTER);
+        expected.addAll(BISHOP_FROM_CENTER);
+
+        Set<Position> moves = SlideRule.queen().destinations(board, CENTER, WHITE);
+
+        assertEquals(expected, moves);
+        assertEquals(27, moves.size());
     }
 }
