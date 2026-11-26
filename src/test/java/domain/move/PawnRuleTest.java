@@ -74,6 +74,31 @@ public class PawnRuleTest {
         assertEquals(squares(4, 3, 4, 2, 4, 4), pawnMoves(3, 3, BLACK));
     }
 
+    @Test
+    public void pawn_ownPiecesDiagonallyAhead_cannotCapture() {
+        placePawn(3, 2, WHITE);
+        placePawn(3, 4, WHITE);
+
+        assertEquals(squares(3, 3), pawnMoves(4, 3, WHITE));
+    }
+
+    @Test
+    public void pawn_onEdgeCol_capturesOnlyInward() {
+        placePawn(3, 1, BLACK);
+        placePawn(3, 6, BLACK);
+
+        assertEquals(squares(3, 0, 3, 1), pawnMoves(4, 0, WHITE));
+        assertEquals(squares(3, 7, 3, 6), pawnMoves(4, 7, WHITE));
+    }
+
+    @Test
+    public void pawn_enemiesBehind_cannotCaptureBackward() {
+        placePawn(5, 2, BLACK);
+        placePawn(5, 4, BLACK);
+
+        assertEquals(squares(3, 3), pawnMoves(4, 3, WHITE));
+    }
+
     private Set<Position> pawnMoves(int row, int col, PieceColor color) {
         return new PawnRule().destinations(board, new Position(row, col), color);
     }
