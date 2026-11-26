@@ -23,6 +23,26 @@ public class JumpRuleTest {
         assertEquals(squares(1, 2, 1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
     }
 
+    @Test
+    public void knight_corner_hasTwoMoves() {
+        assertEquals(squares(1, 2, 2, 1), JumpRule.knight().destinations(board, new Position(0, 0), WHITE));
+        assertEquals(squares(5, 6, 6, 5), JumpRule.knight().destinations(board, new Position(7, 7), WHITE));
+    }
+
+    @Test
+    public void knight_nextToCorner_hasFourMoves() {
+        Set<Position> moves = JumpRule.knight().destinations(board, new Position(1, 1), WHITE);
+
+        assertEquals(squares(0, 3, 2, 3, 3, 0, 3, 2), moves);
+    }
+
+    @Test
+    public void knight_edge_hasFourMoves() {
+        Set<Position> moves = JumpRule.knight().destinations(board, new Position(0, 3), WHITE);
+
+        assertEquals(squares(1, 1, 1, 5, 2, 2, 2, 4), moves);
+    }
+
     private static Set<Position> squares(int... rowColPairs) {
         Set<Position> result = new HashSet<>();
         for (int i = 0; i < rowColPairs.length; i += 2) {
