@@ -43,6 +43,19 @@ public class JumpRuleTest {
         assertEquals(squares(1, 1, 1, 5, 2, 2, 2, 4), moves);
     }
 
+    @Test
+    public void knight_ownPieceOnTarget_cannotLandThere() {
+        placePawn(1, 2, WHITE);
+
+        Set<Position> moves = JumpRule.knight().destinations(board, CENTER, WHITE);
+
+        assertEquals(squares(1, 4, 2, 1, 2, 5, 4, 1, 4, 5, 5, 2, 5, 4), moves);
+    }
+
+    private void placePawn(int row, int col, PieceColor color) {
+        board.placePiece(new Position(row, col), new Piece(PieceType.PAWN, color));
+    }
+
     private static Set<Position> squares(int... rowColPairs) {
         Set<Position> result = new HashSet<>();
         for (int i = 0; i < rowColPairs.length; i += 2) {
