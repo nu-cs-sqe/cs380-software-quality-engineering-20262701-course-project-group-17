@@ -82,6 +82,15 @@ public class PromotionTest {
         assertEquals(Optional.of(new Piece(choice, WHITE)), board.getPiece(at(0, 3)));
     }
 
+    @Test
+    public void promote_blackPawn_keepsItsColor() {
+        place(at(7, 4), PAWN, BLACK);
+
+        Promotion.promote(board, at(7, 4), KNIGHT);
+
+        assertEquals(Optional.of(new Piece(KNIGHT, BLACK)), board.getPiece(at(7, 4)));
+    }
+
     private void place(Position position, PieceType type, PieceColor color) {
         board.placePiece(position, new Piece(type, color));
     }
