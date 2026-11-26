@@ -33,6 +33,7 @@ public final class Promotion {
     }
 
     public static void promote(Board board, Position position, PieceType choice) {
+        Objects.requireNonNull(choice, "choice must not be null");
         if (!CHOICES.contains(choice)) {
             throw new IllegalArgumentException("a pawn can only be promoted to a queen, rook, bishop, or knight");
         }
