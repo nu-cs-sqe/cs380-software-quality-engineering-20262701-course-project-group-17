@@ -109,6 +109,16 @@ public class PositionTest {
         assertEquals(Optional.empty(), edge.translate(step));
     }
 
+    @Test
+    public void translate_nullDirection_throwsNullPointerException() {
+        Position position = new Position(3, 4);
+
+        NullPointerException exception =
+                assertThrows(NullPointerException.class, () -> position.translate(null));
+
+        assertEquals("direction must not be null", exception.getMessage());
+    }
+
     private static Stream<Arguments> stepsOffEachEdge() {
         return Stream.of(
                 Arguments.of(new Position(0, 3), new Direction(-1, 0)),
