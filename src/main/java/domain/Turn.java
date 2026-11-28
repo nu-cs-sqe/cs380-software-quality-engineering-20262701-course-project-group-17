@@ -22,7 +22,7 @@ public class Turn {
         if (selection.getHighlights().contains(position)) {
             board.movePiece(selection.getSelected().orElseThrow(), position);
             selection.clear();
-            currentColor = PieceColor.BLACK;
+            currentColor = currentColor == PieceColor.WHITE ? PieceColor.BLACK : PieceColor.WHITE;
         } else {
             selection.select(position, getCurrentColor());
         }
