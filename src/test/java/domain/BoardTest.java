@@ -295,6 +295,27 @@ public class BoardTest {
         assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(3, 4)));
     }
 
+    @Test
+    public void movePiece_nullFrom_throwsNullPointerException() {
+        Board board = new Board();
+
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> board.movePiece(null, new Position(3, 5)));
+
+        assertEquals("from must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void movePiece_nullTo_throwsNullPointerException() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> board.movePiece(new Position(3, 4), null));
+
+        assertEquals("to must not be null", exception.getMessage());
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
