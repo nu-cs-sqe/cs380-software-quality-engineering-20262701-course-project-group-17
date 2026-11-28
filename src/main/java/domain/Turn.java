@@ -14,17 +14,33 @@ public class Turn {
         this.selection = Objects.requireNonNull(selection, "selection must not be null");
     }
 
-    public PieceColor getCurrentColor() {
-        return currentColor;
+    public void click(Position position) {
+        if (isHighlighted(position)) {
+            moveSelectedPieceTo(position);
+            passTurn();
+        } else {
+            selection.select(position, currentColor);
+        }
     }
 
-    public void click(Position position) {
-        if (selection.getHighlights().contains(position)) {
-            board.movePiece(selection.getSelected().orElseThrow(), position);
-            selection.clear();
-            currentColor = currentColor == PieceColor.WHITE ? PieceColor.BLACK : PieceColor.WHITE;
-        } else {
-            selection.select(position, getCurrentColor());
-        }
+    private boolean isHighlighted(Position position) {
+        return selection.getHighlights().contains(position);
+    }
+
+    private void moveSelectedPieceTo(Position position) {
+        board.movePiece(selection.getSelected().orElseThrow(), position);
+        selection.clear();
+    }
+
+    private void passTurn() {
+        currentColor = isWhiteTurn() ? PieceColor.BLACK : PieceColor.WHITE;
+    }
+
+    private boolean isWhiteTurn() {
+        return currentColor == PieceColor.WHITE;
+    }
+
+    public PieceColor getCurrentColor() {
+        return currentColor;
     }
 }
