@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Turn {
     private final Board board;
     private final PieceSelection selection;
+    private PieceColor currentColor = PieceColor.WHITE;
 
     public Turn(Board board, PieceSelection selection) {
         this.board = Objects.requireNonNull(board, "board must not be null");
@@ -14,13 +15,14 @@ public class Turn {
     }
 
     public PieceColor getCurrentColor() {
-        return PieceColor.WHITE;
+        return currentColor;
     }
 
     public void click(Position position) {
         if (selection.getHighlights().contains(position)) {
             board.movePiece(selection.getSelected().orElseThrow(), position);
             selection.clear();
+            currentColor = PieceColor.BLACK;
         } else {
             selection.select(position, getCurrentColor());
         }
