@@ -173,6 +173,15 @@ public class TurnTest {
         assertEquals(PieceColor.BLACK, turn.getCurrentColor());
     }
 
+    @Test
+    public void click_nullPosition_throwsNullPointerException() {
+        Turn turn = newTurn();
+
+        NullPointerException exception = assertThrows(NullPointerException.class, () -> turn.click(null));
+
+        assertEquals("position must not be null", exception.getMessage());
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andStubReturn(moves);
     }
