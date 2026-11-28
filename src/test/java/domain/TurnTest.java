@@ -161,6 +161,18 @@ public class TurnTest {
         assertEquals(PieceColor.BLACK, turn.getCurrentColor());
     }
 
+    @Test
+    public void click_separateEqualPosition_movesPiece() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        Turn turn = newTurn();
+        turn.click(WHITE_PAWN);
+
+        turn.click(new Position(4, 4));
+
+        assertEquals(Optional.of(new Piece(PieceType.PAWN, PieceColor.WHITE)), board.getPiece(WHITE_PAWN_TARGET));
+        assertEquals(PieceColor.BLACK, turn.getCurrentColor());
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andStubReturn(moves);
     }
