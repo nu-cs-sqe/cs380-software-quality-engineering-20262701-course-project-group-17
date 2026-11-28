@@ -15,6 +15,7 @@ public class Turn {
     }
 
     public void click(Position position) {
+        Objects.requireNonNull(position, "position must not be null");
         if (isHighlighted(position)) {
             moveSelectedPieceTo(position);
             passTurn();
