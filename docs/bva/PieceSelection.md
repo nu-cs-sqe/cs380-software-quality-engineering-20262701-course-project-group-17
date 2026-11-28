@@ -1,6 +1,6 @@
 # BVA: `domain.PieceSelection`
 
-`PieceSelection` stores which piece the current player has selected and the squares that piece can move to. Its public methods are `PieceSelection(Board, LegalMoves)`, `select(Position, PieceColor)`, `getSelected()` and `getHighlights()`.
+`PieceSelection` stores which piece the current player has selected and the squares that piece can move to. Its public methods are `PieceSelection(Board, LegalMoves)`, `select(Position, PieceColor)`, `clear()`, `getSelected()` and `getHighlights()`. `clear()` was added for issue [#26](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/issues/26), so the selection can be emptied after a move.
 
 The behavior comes from the acceptance criteria in issue [#25 feature: select a piece](https://github.com/nu-cs-sqe/cs380-software-quality-engineering-20262701-course-project-group-17/issues/25). `LegalMoves` is an interface with no logic, so it doesn't get its own BVA file. In the tests it is an EasyMock mock.
 
@@ -56,3 +56,10 @@ All tests will be in `src/test/java/domain/PieceSelectionTest.java`.
 | TC22 | (6,4) is selected; add (3,3) to the set the mock returned | `getHighlights()` is still {(5,4), (4,4)} | `getHighlights_mockSetChangedLater_staysUnchanged` | :white_check_mark: |
 
 TC8 to TC10, TC14 and TC15 use a strict mock with `verify`, so they fail if `select` asks for legal moves when it shouldn't. TC21 and TC22 check that the highlights can't be changed from outside, so the class stores a copy of the legal moves.
+
+### Method under test: `clear()`
+| ID | State / Input | Expected output | Test method | Implemented? |
+|----|---------------|-----------------|-------------|--------------|
+| TC23 | (6,4) is selected; `clear()` | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `clear_pieceSelected_clearsSelectionAndHighlights` | ❌ |
+| TC24 | nothing selected; `clear()` | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `clear_nothingSelected_staysEmpty` | ❌ |
+| TC25 | (6,4) is selected; `clear()`, then `WHITE` selects (6,4) | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4), (4,4)} | `clear_thenSelectSamePiece_selectsAgain` | ❌ |

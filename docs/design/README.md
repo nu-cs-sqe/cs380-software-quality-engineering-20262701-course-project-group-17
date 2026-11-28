@@ -43,3 +43,18 @@ This design implements issue #25. The class diagram source is [select-piece.puml
 1. The turn is passed into `select` as a `PieceColor`, so `PieceSelection` doesn't depend on `Game` and can't change the turn.
 2. Legal moves sit behind the `LegalMoves` interface, so selection can be built and tested with an EasyMock mock before any movement rule exists.
 3. `getHighlights` returns an unmodifiable copy (`Set.copyOf`), so nothing outside can change the highlights.
+
+# Design: Move a Piece and Switch Turns
+
+This design implements issue #26. The class diagram source is [move-piece.puml](move-piece.puml).
+
+| Class | Responsibility | Owner |
+|-------|----------------|-------|
+| `Board` | New `movePiece(from, to)`: puts the piece on `to` and empties `from`. | Max |
+| `PieceSelection` | New `clear()`: empties the selection after a move. | Max |
+| `Turn` | Holds the current color (White first). `click(Position)` moves the selected piece when the square is highlighted, then clears the selection and passes the turn. Every other click is a selection. | Max |
+
+## Design decisions
+1. A move is only allowed onto a highlighted square, so `Turn` never checks movement rules itself. The rules stay behind `LegalMoves`.
+2. `Turn` is the one place that changes the current color. When `Game` (Cindy) is built, it can keep a `Turn` and map `getCurrentColor()` to the white or black `Player`.
+3. Showing the new turn on the game screen is UI wiring and will be done when the Swing views are merged.

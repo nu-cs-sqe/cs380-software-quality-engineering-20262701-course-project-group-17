@@ -1,0 +1,32 @@
+@startuml
+title Move a Piece and Switch Turns - Class Diagram
+
+package domain {
+    class Turn {
+        - board: Board
+        - selection: PieceSelection
+        - currentColor: PieceColor
+        + Turn(board: Board, selection: PieceSelection)
+        + click(position: Position): void
+        + getCurrentColor(): PieceColor
+    }
+
+    class PieceSelection {
+        + select(position: Position, turn: PieceColor): void
+        + clear(): void
+        + getSelected(): Optional<Position>
+        + getHighlights(): Set<Position>
+    }
+
+    class Board {
+        + movePiece(from: Position, to: Position): void
+    }
+
+    class Position
+}
+
+Turn --> Board
+Turn --> PieceSelection
+PieceSelection --> Board
+Turn ..> Position
+@enduml
