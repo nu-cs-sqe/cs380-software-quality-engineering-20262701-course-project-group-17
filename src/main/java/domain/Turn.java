@@ -16,4 +16,8 @@ public class Turn {
     public PieceColor getCurrentColor() {
         return PieceColor.WHITE;
     }
+
+    public void click(Position position) {
+        selection.select(position, getCurrentColor());
+    }
 }
