@@ -4,12 +4,17 @@ import domain.piece.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
 import java.util.Set;
 
 import static org.easymock.EasyMock.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TurnTest {
+    private static final Position WHITE_PAWN = new Position(6, 4);
+    private static final Position WHITE_PAWN_TARGET = new Position(4, 4);
+    private static final Set<Position> WHITE_PAWN_MOVES = Set.of(new Position(5, 4), WHITE_PAWN_TARGET);
+
     private Board board;
     private LegalMoves legalMoves;
     private PieceSelection selection;
@@ -42,6 +47,21 @@ public class TurnTest {
                 () -> new Turn(board, null));
 
         assertEquals("selection must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void click_ownPiece_selectsWithoutSwitchingTurn() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        Turn turn = newTurn();
+
+        turn.click(WHITE_PAWN);
+
+        assertEquals(Optional.of(WHITE_PAWN), selection.getSelected());
+        assertEquals(PieceColor.WHITE, turn.getCurrentColor());
+    }
+
+    private void expectMoves(Position position, Set<Position> moves) {
+        expect(legalMoves.from(board, position)).andStubReturn(moves);
     }
 
     private Turn newTurn() {
