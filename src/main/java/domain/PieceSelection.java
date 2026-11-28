@@ -45,6 +45,10 @@ public class PieceSelection {
         highlights = Set.copyOf(legalMoves.from(board, position));
     }
 
+    public void clear() {
+        deselect();
+    }
+
     public Optional<Position> getSelected() {
         return selected;
     }
