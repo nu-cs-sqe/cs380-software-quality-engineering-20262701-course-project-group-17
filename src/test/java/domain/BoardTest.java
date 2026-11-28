@@ -283,6 +283,18 @@ public class BoardTest {
         assertEquals("from must hold a piece", exception.getMessage());
     }
 
+    @Test
+    public void movePiece_sameFromAndTo_throwsIllegalArgumentException() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> board.movePiece(new Position(3, 4), new Position(3, 4)));
+
+        assertEquals("from and to must be different", exception.getMessage());
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(3, 4)));
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
