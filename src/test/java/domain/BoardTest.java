@@ -273,6 +273,16 @@ public class BoardTest {
         assertTrue(board.isEmpty(new Position(0, 7)));
     }
 
+    @Test
+    public void movePiece_emptyFrom_throwsIllegalArgumentException() {
+        Board board = new Board();
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> board.movePiece(new Position(3, 4), new Position(3, 5)));
+
+        assertEquals("from must hold a piece", exception.getMessage());
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
