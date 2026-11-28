@@ -54,6 +54,8 @@ public class Board {
     }
 
     public void movePiece(Position from, Position to) {
+        Objects.requireNonNull(from, "from must not be null");
+        Objects.requireNonNull(to, "to must not be null");
         if (from.equals(to)) {
             throw new IllegalArgumentException("from and to must be different");
         }
