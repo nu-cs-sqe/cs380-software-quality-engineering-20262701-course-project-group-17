@@ -52,4 +52,9 @@ public class Board {
         Objects.requireNonNull(piece, "piece must not be null");
         grid[position.getRow()][position.getCol()] = piece;
     }
+
+    public void movePiece(Position from, Position to) {
+        placePiece(to, getPiece(from).orElseThrow());
+        grid[from.getRow()][from.getCol()] = null;
+    }
 }
