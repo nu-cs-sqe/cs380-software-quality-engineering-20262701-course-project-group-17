@@ -281,6 +281,27 @@ public class PieceSelectionTest {
         assertEquals(WHITE_PAWN_MOVES, selection.getHighlights());
     }
 
+    @Test
+    public void clear_pieceSelected_clearsSelectionAndHighlights() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        PieceSelection selection = newSelection();
+        selection.select(WHITE_PAWN, PieceColor.WHITE);
+
+        selection.clear();
+
+        assertNothingSelected(selection);
+    }
+
+    @Test
+    public void clear_nothingSelected_staysEmpty() {
+        PieceSelection selection = newSelection();
+
+        selection.clear();
+
+        assertNothingSelected(selection);
+        verify(legalMoves);
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andReturn(moves);
     }
