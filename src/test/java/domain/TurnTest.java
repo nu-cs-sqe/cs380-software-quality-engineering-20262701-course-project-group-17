@@ -14,6 +14,8 @@ public class TurnTest {
     private static final Position WHITE_PAWN = new Position(6, 4);
     private static final Position WHITE_PAWN_TARGET = new Position(4, 4);
     private static final Set<Position> WHITE_PAWN_MOVES = Set.of(new Position(5, 4), WHITE_PAWN_TARGET);
+    private static final Position BLACK_PAWN = new Position(1, 4);
+    private static final Position BLACK_PAWN_TARGET = new Position(3, 4);
 
     private Board board;
     private LegalMoves legalMoves;
@@ -95,8 +97,27 @@ public class TurnTest {
         assertEquals(PieceColor.BLACK, turn.getCurrentColor());
     }
 
+    @Test
+    public void click_blackMoves_switchesTurnBackToWhite() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        expectMoves(BLACK_PAWN, Set.of(BLACK_PAWN_TARGET));
+        Turn turn = newTurn();
+        playWhitePawnMove(turn);
+        turn.click(BLACK_PAWN);
+
+        turn.click(BLACK_PAWN_TARGET);
+
+        assertEquals(Optional.of(new Piece(PieceType.PAWN, PieceColor.BLACK)), board.getPiece(BLACK_PAWN_TARGET));
+        assertEquals(PieceColor.WHITE, turn.getCurrentColor());
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andStubReturn(moves);
+    }
+
+    private void playWhitePawnMove(Turn turn) {
+        turn.click(WHITE_PAWN);
+        turn.click(WHITE_PAWN_TARGET);
     }
 
     private Turn newTurn() {
