@@ -251,6 +251,28 @@ public class BoardTest {
         assertTrue(second.isEmpty(new Position(4, 4)));
     }
 
+    @Test
+    public void movePiece_toNeighbour_movesPieceAndEmptiesFrom() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        board.movePiece(new Position(3, 4), new Position(3, 5));
+
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(3, 5)));
+        assertTrue(board.isEmpty(new Position(3, 4)));
+    }
+
+    @Test
+    public void movePiece_oppositeCorners_doesNotSwapRowAndCol() {
+        Board board = new Board();
+        board.placePiece(new Position(0, 7), new Piece(PieceType.QUEEN, PieceColor.BLACK));
+
+        board.movePiece(new Position(0, 7), new Position(7, 0));
+
+        assertPiece(PieceType.QUEEN, PieceColor.BLACK, board.getPiece(new Position(7, 0)));
+        assertTrue(board.isEmpty(new Position(0, 7)));
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
