@@ -52,4 +52,23 @@ public class Board {
         Objects.requireNonNull(piece, "piece must not be null");
         grid[position.getRow()][position.getCol()] = piece;
     }
+
+    public void movePiece(Position from, Position to) {
+        requireDifferentPositions(from, to);
+        Piece piece = getPiece(from).orElseThrow(() -> new IllegalArgumentException("from must hold a piece"));
+        placePiece(to, piece);
+        removePiece(from);
+    }
+
+    private static void requireDifferentPositions(Position from, Position to) {
+        Objects.requireNonNull(from, "from must not be null");
+        Objects.requireNonNull(to, "to must not be null");
+        if (from.equals(to)) {
+            throw new IllegalArgumentException("from and to must be different");
+        }
+    }
+
+    private void removePiece(Position position) {
+        grid[position.getRow()][position.getCol()] = null;
+    }
 }

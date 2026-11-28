@@ -251,6 +251,71 @@ public class BoardTest {
         assertTrue(second.isEmpty(new Position(4, 4)));
     }
 
+    @Test
+    public void movePiece_toNeighbour_movesPieceAndEmptiesFrom() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        board.movePiece(new Position(3, 4), new Position(3, 5));
+
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(3, 5)));
+        assertTrue(board.isEmpty(new Position(3, 4)));
+    }
+
+    @Test
+    public void movePiece_oppositeCorners_doesNotSwapRowAndCol() {
+        Board board = new Board();
+        board.placePiece(new Position(0, 7), new Piece(PieceType.QUEEN, PieceColor.BLACK));
+
+        board.movePiece(new Position(0, 7), new Position(7, 0));
+
+        assertPiece(PieceType.QUEEN, PieceColor.BLACK, board.getPiece(new Position(7, 0)));
+        assertTrue(board.isEmpty(new Position(0, 7)));
+    }
+
+    @Test
+    public void movePiece_emptyFrom_throwsIllegalArgumentException() {
+        Board board = new Board();
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> board.movePiece(new Position(3, 4), new Position(3, 5)));
+
+        assertEquals("from must hold a piece", exception.getMessage());
+    }
+
+    @Test
+    public void movePiece_sameFromAndTo_throwsIllegalArgumentException() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> board.movePiece(new Position(3, 4), new Position(3, 4)));
+
+        assertEquals("from and to must be different", exception.getMessage());
+        assertPiece(PieceType.KING, PieceColor.WHITE, board.getPiece(new Position(3, 4)));
+    }
+
+    @Test
+    public void movePiece_nullFrom_throwsNullPointerException() {
+        Board board = new Board();
+
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> board.movePiece(null, new Position(3, 5)));
+
+        assertEquals("from must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void movePiece_nullTo_throwsNullPointerException() {
+        Board board = new Board();
+        board.placePiece(new Position(3, 4), whiteKing());
+
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> board.movePiece(new Position(3, 4), null));
+
+        assertEquals("to must not be null", exception.getMessage());
+    }
+
     private static Piece whiteKing() {
         return new Piece(PieceType.KING, PieceColor.WHITE);
     }
