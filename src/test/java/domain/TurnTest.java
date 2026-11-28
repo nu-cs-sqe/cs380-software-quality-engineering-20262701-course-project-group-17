@@ -84,6 +84,17 @@ public class TurnTest {
         assertTrue(selection.getHighlights().isEmpty());
     }
 
+    @Test
+    public void click_highlightedSquare_switchesTurnToBlack() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        Turn turn = newTurn();
+        turn.click(WHITE_PAWN);
+
+        turn.click(WHITE_PAWN_TARGET);
+
+        assertEquals(PieceColor.BLACK, turn.getCurrentColor());
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andStubReturn(moves);
     }
