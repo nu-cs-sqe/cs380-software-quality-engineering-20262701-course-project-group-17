@@ -54,7 +54,8 @@ public class Board {
     }
 
     public void movePiece(Position from, Position to) {
-        placePiece(to, getPiece(from).orElseThrow());
+        Piece piece = getPiece(from).orElseThrow(() -> new IllegalArgumentException("from must hold a piece"));
+        placePiece(to, piece);
         grid[from.getRow()][from.getCol()] = null;
     }
 }
