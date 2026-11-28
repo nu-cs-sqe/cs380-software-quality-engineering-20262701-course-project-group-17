@@ -20,6 +20,7 @@ public class Turn {
     public void click(Position position) {
         if (selection.getHighlights().contains(position)) {
             board.movePiece(selection.getSelected().orElseThrow(), position);
+            selection.clear();
         } else {
             selection.select(position, getCurrentColor());
         }
