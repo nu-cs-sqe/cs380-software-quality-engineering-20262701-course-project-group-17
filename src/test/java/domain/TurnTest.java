@@ -28,6 +28,22 @@ public class TurnTest {
         assertEquals(PieceColor.WHITE, turn.getCurrentColor());
     }
 
+    @Test
+    public void constructor_nullBoard_throwsNullPointerException() {
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> new Turn(null, selection));
+
+        assertEquals("board must not be null", exception.getMessage());
+    }
+
+    @Test
+    public void constructor_nullSelection_throwsNullPointerException() {
+        NullPointerException exception = assertThrows(NullPointerException.class,
+                () -> new Turn(board, null));
+
+        assertEquals("selection must not be null", exception.getMessage());
+    }
+
     private Turn newTurn() {
         replay(legalMoves);
         return new Turn(board, selection);
