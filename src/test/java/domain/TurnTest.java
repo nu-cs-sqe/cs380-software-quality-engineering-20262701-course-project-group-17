@@ -111,6 +111,56 @@ public class TurnTest {
         assertEquals(PieceColor.WHITE, turn.getCurrentColor());
     }
 
+    @Test
+    public void click_squareNotHighlighted_doesNotMove() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        Turn turn = newTurn();
+        turn.click(WHITE_PAWN);
+
+        turn.click(new Position(3, 3));
+
+        assertBoardIsStandard();
+        assertEquals(Optional.of(WHITE_PAWN), selection.getSelected());
+        assertEquals(PieceColor.WHITE, turn.getCurrentColor());
+    }
+
+    @Test
+    public void click_blackPieceOnFirstTurn_doesNothing() {
+        Turn turn = newTurn();
+
+        turn.click(BLACK_PAWN);
+
+        assertEquals(Optional.empty(), selection.getSelected());
+        assertBoardIsStandard();
+        assertEquals(PieceColor.WHITE, turn.getCurrentColor());
+        verify(legalMoves);
+    }
+
+    @Test
+    public void click_opponentPieceAfterMove_doesNothing() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        Turn turn = newTurn();
+        playWhitePawnMove(turn);
+
+        turn.click(WHITE_PAWN_TARGET);
+
+        assertEquals(Optional.empty(), selection.getSelected());
+        assertEquals(PieceColor.BLACK, turn.getCurrentColor());
+    }
+
+    @Test
+    public void click_squarePieceLeft_doesNothing() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        Turn turn = newTurn();
+        playWhitePawnMove(turn);
+
+        turn.click(WHITE_PAWN);
+
+        assertEquals(Optional.empty(), selection.getSelected());
+        assertTrue(board.isEmpty(WHITE_PAWN));
+        assertEquals(PieceColor.BLACK, turn.getCurrentColor());
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andStubReturn(moves);
     }
@@ -118,6 +168,16 @@ public class TurnTest {
     private void playWhitePawnMove(Turn turn) {
         turn.click(WHITE_PAWN);
         turn.click(WHITE_PAWN_TARGET);
+    }
+
+    private void assertBoardIsStandard() {
+        Board standard = Board.createStandard();
+        for (int row = 0; row < Position.BOARD_SIZE; row++) {
+            for (int col = 0; col < Position.BOARD_SIZE; col++) {
+                Position position = new Position(row, col);
+                assertEquals(standard.getPiece(position), board.getPiece(position));
+            }
+        }
     }
 
     private Turn newTurn() {
