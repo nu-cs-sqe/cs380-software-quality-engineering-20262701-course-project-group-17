@@ -69,9 +69,9 @@ All tests are in `src/test/java/domain/BoardTest.java`.
 ### Method under test: `movePiece(Position from, Position to)`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC25 | (3,4) holds a white king; move (3,4) to (3,5) | (3,5) holds the white king and (3,4) is empty | `movePiece_toNeighbour_movesPieceAndEmptiesFrom` | ❌ |
-| TC26 | (0,7) holds a black queen; move (0,7) to (7,0) | (7,0) holds the black queen and (0,7) is empty | `movePiece_oppositeCorners_doesNotSwapRowAndCol` | ❌ |
-| TC27 | empty board; move (3,4) to (3,5) | `IllegalArgumentException`: "from must hold a piece" | `movePiece_emptyFrom_throwsIllegalArgumentException` | ❌ |
-| TC28 | (3,4) holds a white king; move (3,4) to (3,4) | `IllegalArgumentException`: "from and to must be different"; (3,4) still holds the white king | `movePiece_sameFromAndTo_throwsIllegalArgumentException` | ❌ |
-| TC29 | empty board; `movePiece(null, (3,5))` | `NullPointerException`: "from must not be null" | `movePiece_nullFrom_throwsNullPointerException` | ❌ |
-| TC30 | (3,4) holds a white king; `movePiece((3,4), null)` | `NullPointerException`: "to must not be null" | `movePiece_nullTo_throwsNullPointerException` | ❌ |
+| TC25 | (3,4) holds a white king; move (3,4) to (3,5) | (3,5) holds the white king and (3,4) is empty | `movePiece_toNeighbour_movesPieceAndEmptiesFrom` | ✅ |
+| TC26 | (0,7) holds a black queen; move (0,7) to (7,0) | (7,0) holds the black queen and (0,7) is empty | `movePiece_oppositeCorners_doesNotSwapRowAndCol` | ✅ |
+| TC27 | empty board; move (3,4) to (3,5) | `IllegalArgumentException`: "from must hold a piece" | `movePiece_emptyFrom_throwsIllegalArgumentException` | ✅ |
+| TC28 | (3,4) holds a white king; move (3,4) to (3,4) | `IllegalArgumentException`: "from and to must be different"; (3,4) still holds the white king | `movePiece_sameFromAndTo_throwsIllegalArgumentException` | ✅ |
+| TC29 | empty board; `movePiece(null, (3,5))` | `NullPointerException`: "from must not be null" | `movePiece_nullFrom_throwsNullPointerException` | ✅ |
+| TC30 | (3,4) holds a white king; `movePiece((3,4), null)` | `NullPointerException`: "to must not be null" | `movePiece_nullTo_throwsNullPointerException` | ✅ |

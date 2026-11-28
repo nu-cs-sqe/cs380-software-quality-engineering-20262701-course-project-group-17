@@ -60,6 +60,6 @@ TC8 to TC10, TC14 and TC15 use a strict mock with `verify`, so they fail if `sel
 ### Method under test: `clear()`
 | ID | State / Input | Expected output | Test method | Implemented? |
 |----|---------------|-----------------|-------------|--------------|
-| TC23 | (6,4) is selected; `clear()` | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `clear_pieceSelected_clearsSelectionAndHighlights` | ❌ |
-| TC24 | nothing selected; `clear()` | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `clear_nothingSelected_staysEmpty` | ❌ |
-| TC25 | (6,4) is selected; `clear()`, then `WHITE` selects (6,4) | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4), (4,4)} | `clear_thenSelectSamePiece_selectsAgain` | ❌ |
+| TC23 | (6,4) is selected; `clear()` | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `clear_pieceSelected_clearsSelectionAndHighlights` | :white_check_mark: |
+| TC24 | nothing selected; `clear()` | `getSelected()` is `Optional.empty()` and `getHighlights()` is empty | `clear_nothingSelected_staysEmpty` | :white_check_mark: |
+| TC25 | (6,4) is selected; `clear()`, then `WHITE` selects (6,4) | `getSelected()` contains (6,4) and `getHighlights()` is {(5,4), (4,4)} | `clear_thenSelectSamePiece_selectsAgain` | :white_check_mark: |
