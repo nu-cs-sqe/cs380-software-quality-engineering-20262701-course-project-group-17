@@ -72,6 +72,18 @@ public class TurnTest {
         assertTrue(board.isEmpty(WHITE_PAWN));
     }
 
+    @Test
+    public void click_highlightedSquare_clearsSelection() {
+        expectMoves(WHITE_PAWN, WHITE_PAWN_MOVES);
+        Turn turn = newTurn();
+        turn.click(WHITE_PAWN);
+
+        turn.click(WHITE_PAWN_TARGET);
+
+        assertEquals(Optional.empty(), selection.getSelected());
+        assertTrue(selection.getHighlights().isEmpty());
+    }
+
     private void expectMoves(Position position, Set<Position> moves) {
         expect(legalMoves.from(board, position)).andStubReturn(moves);
     }
